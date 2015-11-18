@@ -43,7 +43,23 @@
     // device APIs are available
    
 				function onDeviceReady() {
-					 navigator.splashscreen.hide();
+						console.log("opening database");
+						db = window.openDatabase("app_database", "1.0", "app database", 50000000);
+						db.transaction(function (tx) {
+								  tx.executeSql('CREATE TABLE IF NOT EXISTS image (id unique, text)');
+								  tx.executeSql('INSERT INTO image (id, text) VALUES (1, "synergies")');						
+  							});
+					
+						tx.executeSql('INSERT INTO image (id, text) VALUES (?, ?)', [id, userValue]);
+					
+					tx.executeSql('SELECT * FROM foo', [], function (tx, results) {
+						  var len = results.rows.length, i;
+						  for (i = 0; i < len; i++) {
+							alert(results.rows.item(i).text);
+						  }
+						});
+						
+					 //navigator.splashscreen.hide();
 					 localStorage.load_hid;
 					 localStorage.start;
 					 localStorage.finish;
@@ -704,15 +720,15 @@
 			//---BOL using CAMERA ---//
 			$('#upload_picture').click(function(){
 				$("#image_source").attr('src','css/loading2.gif');
-				navigator.camera.getPicture(onSuccess, onFail, { quality: 20,
-								destinationType: Camera.DestinationType.DATA_URL
+				navigator.camera.getPicture(onSuccess, onFail, { quality: 30,
+								destinationType: Camera.DestinationType.FILE_URI
 							});
 							
-							function onSuccess(imageData) {
+							function onSuccess(imageURI) {
 								//var image = document.getElementById('myImage');
 								//image.src = "data:image/jpeg;base64," + imageData;
 								localStorage.camera = 1;
-								$('#cam_picture').html(imageData);
+								$('#cam_picture').html(imageURI);
 								setTimeout(function(){
 									   $('#bol_image').html('<img id="image_source" src="data:image/jpeg;base64,'+$('#cam_picture').html()+'" style="width:100%;padding-top:2px;"/>');
 									   setTimeout(function () {
