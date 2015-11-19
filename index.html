@@ -754,6 +754,11 @@
 								console.log("Response = " + r.response);
 								//alert("Response =" + r.response);
 								console.log("Sent = " + r.bytesSent);
+								  navigator.notification.alert(
+										  'The picture has been sent',
+										  alertCallback,
+										  'Smith TracknGo',
+										  'Ok');
 							}
 						
 						function fail(error) {
@@ -769,7 +774,7 @@
 			//---BOL using CAMERA ---//
 			$('#upload_picture').click(function(){
 				$("#image_source").attr('src','css/loading2.gif');
-				navigator.camera.getPicture(onSuccess, onFail, { quality: 1,
+				navigator.camera.getPicture(onSuccess, onFail, { quality: 10,
 								targetWidth: 1700,
 								targetHeight: 2200,
 								destinationType: Camera.DestinationType.FILE_URI
