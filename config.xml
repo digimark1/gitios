@@ -74,7 +74,7 @@
 	<gap:plugin name="org.transistorsoft.cordova.background-geolocation" />
 	<gap:plugin name="com.brodysoft.sqliteplugin"/>
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-	<!--<gap:plugin name="org.apache.cordova.file" />-->
+	<gap:plugin name="org.apache.cordova.file" version="1.0.1" />
 	<!--<gap:plugin name="com.chanthu.evri.gcs-file-transfer" />-->
 	<!-- <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" version="1.2.0" /> -->
 
