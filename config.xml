@@ -75,7 +75,7 @@
 	<gap:plugin name="com.brodysoft.sqliteplugin"/>
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<!--<gap:plugin name="org.apache.cordova.file" />-->
-	<gap:plugin name="com.chanthu.evri.gcs-file-transfer" />
+	<!--<gap:plugin name="com.chanthu.evri.gcs-file-transfer" />-->
 	<!-- <gap:plugin name="de.appplant.cordova.plugin.hidden-statusbar-overlay" version="1.2.0" /> -->
 
     <!-- Third party plugins -->
