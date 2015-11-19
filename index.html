@@ -769,7 +769,9 @@
 			//---BOL using CAMERA ---//
 			$('#upload_picture').click(function(){
 				$("#image_source").attr('src','css/loading2.gif');
-				navigator.camera.getPicture(onSuccess, onFail, { quality: 10,
+				navigator.camera.getPicture(onSuccess, onFail, { quality: 1,
+								targetWidth: 1700,
+								targetHeight: 2200,
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 							
