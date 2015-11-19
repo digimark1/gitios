@@ -60,6 +60,10 @@
 						});*/
 						
 					 navigator.splashscreen.hide();
+					 // base url for dashboard
+					 localStorage.base_url = 'http://leanstaffing.com/trackngo';
+					 // Url to save data into database
+					 localStorage.save_url = 'http://leanstaffing.com/testserver';
 					 localStorage.load_hid;
 					 localStorage.start;
 					 localStorage.finish;
@@ -381,7 +385,8 @@
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>       	
              	    	<table width="100%">
                               <tr>
-                                <td width="50%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="upload_picture" value="button">button</button></div></td>
+                                <td width="33%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="upload_picture" value="button">Take Pic</button></div></td>
+                                <td width="33%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="save_picture" value="button">Save</button></div></td>
                                 <td align="right" valign="top" style="padding:5px"><div id="full_name1"></div><div><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>
                               </tr>
                           </table>
@@ -662,7 +667,7 @@
 									type: 'POST',
 									//data: {token_device: token, driver_id: id},
 									data: {token_device: "", driver_id: localStorage.test1},
-									url: 'http://leanstaffing.com/testserver/saveid_apple.php',
+									url: ''+localStorage.save_url+'/saveid_apple.php',
 									success: function(data){
 										console.log(data);
 										localStorage.removeItem('load_hid');
@@ -717,10 +722,54 @@
 			});
 			
 			
+			//--- Upload camera's Picture Function ---//
+			function uploadPhoto() {
+				  // Called if something bad happens.
+    //
+										//selected photo URI is in the src attribute (we set this on getPhoto)
+						var imageURI = $('#cam_picture').html();
+						if (!imageURI) {
+							alert('Please select an image first.');
+							return;
+						}
+				
+						//set upload options
+						var options = new FileUploadOptions();
+						options.fileKey = "file";
+						options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+						options.mimeType = "image/jpeg";
+				
+						options.params = {
+							firstname: 'first',
+							lastname: 'second',
+							workplace: 'workplace'
+						}
+				
+						var ft = new FileTransfer();
+						ft.upload(imageURI, encodeURI("http://leanstaffing.com/deletethis/upload2.php"), win, fail, options);
+					}
+											
+						function win(r) {
+								console.log("Code = " + r.responseCode);
+								console.log("Response = " + r.response);
+								//alert("Response =" + r.response);
+								console.log("Sent = " + r.bytesSent);
+							}
+						
+						function fail(error) {
+								alert("An error has occurred: Code = " + error.code);
+								console.log("upload error source " + error.source);
+								console.log("upload error target " + error.target);
+							}
+							
+			$('#save_picture').click(function(){
+				  uploadPhoto();
+				});
+			
 			//---BOL using CAMERA ---//
 			$('#upload_picture').click(function(){
 				$("#image_source").attr('src','css/loading2.gif');
-				navigator.camera.getPicture(onSuccess, onFail, { quality: 30,
+				navigator.camera.getPicture(onSuccess, onFail, { quality: 10,
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 							
@@ -736,10 +785,8 @@
 											myScroll.refresh();
 										}, 100);
 									},0);
-								//$('#bol_image').load(
 								
-								
-								//location.href = "#page2";
+								 
 							}
 							
 							function onFail(message) {
@@ -973,7 +1020,7 @@
                         $.ajax({
                             type: 'POST',
 							data: {user_lat: lati, user_long: longi, user_name: name},
-                            url: 'http://leanstaffing.com/testserver/save.php',
+                            url: ''+localStorage.save_url+'/save.php',
                             success: function(data){
                                 console.log(data);
                                // alert('Your location was successfully added');
@@ -999,7 +1046,7 @@
                         $.ajax({
                             type: 'POST',
 							data: {user_lat: lati, user_long: longi, load_id:$('#load_hid').html()},
-                            url: 'http://leanstaffing.com/testserver/save_trace.php',
+                            url: ''+localStorage.save_url+'/save_trace.php',
                             success: function(data){
                                 console.log(data);
                                // alert('Your location was successfully added');
@@ -1049,7 +1096,7 @@
 									type: 'POST',
 									//data: {token_device: token, driver_id: id},
 									data: {token_device: token, driver_id: id},
-									url: 'http://leanstaffing.com/testserver/saveid_apple.php',
+									url: ''+localStorage.save_url+'/saveid_apple.php',
 									success: function(data){
 										console.log(data);
 									},
@@ -1108,7 +1155,7 @@
 				$.ajax({
 					 type: 'POST',
 					 dataType: 'json',
-					 url: 'http://leanstaffing.com/trackngo/driver/app_get',
+					 url: ''+localStorage.base_url+'/driver/app_get',
 					 success: function(data){
 						 $('#start_button').show();
 				         $('#loading_start').hide();
@@ -1365,7 +1412,7 @@
 		$.ajax({
 							type: 'POST',
 							dataType: 'json',
-							url: 'http://leanstaffing.com/trackngo/load/get_chat/'+parseFloat($('#load_hid').html())+'/1',
+							url: ''+localStorage.base_url+'/load/get_chat/'+parseFloat($('#load_hid').html())+'/1',
 							success: function(data){
 								$("#notification_message").html("");
 								console.log(data);
@@ -1392,7 +1439,7 @@
 						$.ajax({
 							type: 'POST',
 							dataType: 'json',
-							url: 'http://leanstaffing.com/trackngo/load/get_chat/'+parseFloat($('#load_hid').html())+'/1',
+							url: ''+localStorage.base_url+'/load/get_chat/'+parseFloat($('#load_hid').html())+'/1',
 							success: function(data){
 								$("#notification_message").html("");
 								console.log(data);
