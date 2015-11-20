@@ -736,7 +736,8 @@
 						//set upload options
 						var options = new FileUploadOptions();
 						options.fileKey = "file";
-						options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+						//options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+						options.fileName = ""+$('#load_number_hid').html()+Math.floor((Math.random() * 1000))+".jpg";
 						options.mimeType = "image/jpeg";
 				
 						options.params = {
