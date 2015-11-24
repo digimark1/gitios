@@ -151,6 +151,7 @@
 						 $('#loading_start').hide();
 						$('#full_name').html(localStorage.name);
 						 $('#full_name1').html(localStorage.name);
+						 $('#full_name0_2').html(localStorage.name);
 								 //$('#full_name2').html(data[i].full_name);
 						 $('#full_name3').html(localStorage.name);
 					     $('#full_name4').html(localStorage.name);
@@ -388,7 +389,7 @@
              	    	<table width="100%">
                               <tr>
                                 <td width="50%"><div><img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="full_name"></div><div><a href="#" id="signout0_2" style="color:red">Sign Out</a></div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id="full_name0_2"></div><div><a href="#" id="signout0_2" style="color:red">Sign Out</a></div></td>
                               </tr>
                           </table>
                  </div>
@@ -1119,7 +1120,7 @@
 												success: function(data_s){
 													console(log.data_s);
 														for(j=0;j<data_s.length;j++){
-															  if(destination_sign == 0){
+															  if(data_s[j].destination_sign == 0){
 																  active_shipment++;
 																  }
 															}
@@ -1254,6 +1255,7 @@
 								 $('#hid_uid').html(data[i].idts_driver);
 								 $('#full_name').html(data[i].full_name);
 								 $('#full_name1').html(data[i].full_name);
+								 $('#full_name0_2').html(data[i].full_name);
 								 //$('#full_name2').html(data[i].full_name);
 								 $('#full_name3').html(data[i].full_name);
 								 $('#full_name4').html(data[i].full_name);
