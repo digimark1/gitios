@@ -1095,6 +1095,7 @@
 			
 		//---------------------------End ------------------
 		function active_load(id_driver){
+			                 var active_shipment; // Active shipments counter variable. //
 							 $.ajax({
 							 type: 'POST',
 							 dataType: 'json',
@@ -1112,13 +1113,14 @@
 										if((data[i].sw == 1)&&(data[i].tender == 1)){
 											
 											//-----Check  for every signature in the load to set active or inactive status.-----//
-											var active_shipment = 0;
+											
+											active_shipment = 0;
 											$.ajax({
 												type:'POST',
 												dataType:'json',
 												url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
 												success: function(data_s){
-													console(log.data_s);
+													console.log(data_s);
 														for(j=0;j<data_s.length;j++){
 															  if(data_s[j].destination_sign == 0){
 																  active_shipment++;
@@ -1126,7 +1128,7 @@
 															}
 													},
 												error: function(data_s){
-													console(log.data_s);
+													console.log(data_s);
 													}
 												});
 												if(active_shipment>0){
