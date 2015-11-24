@@ -277,13 +277,13 @@ body :-ms-input-placeholder {
 					/*margin-bottom:15px;*/
 					overflow:hidden;
 					}
-				#lol_item{
+				#lol_item, #lol_item_shipment{
 					width:100%;
 					}
 				#lol_item_inactive{
 					width:100%;
 					}
-				#lol_item h3{
+				#lol_item h3, #lol_item_shipment h3{
 					margin-top:2px;
 					margin-bottom:2px
 					}
@@ -302,13 +302,13 @@ body :-ms-input-placeholder {
 				table#lol_item_inactive tr:nth-child(odd) {
 				    background-color:#fff;
 				}
-				table#lol_item tr:nth-child(even) {
+				table#lol_item tr:nth-child(even), table#lol_item_shipment tr:nth-child(even) {
 					background-color: #eee;
 				}
-				table#lol_item tr:nth-child(odd) {
+				table#lol_item tr:nth-child(odd), table#lol_item_shipment tr:nth-child(odd) {
 				    background-color:#fff;
 				}
-				table#lol_item td, table#lol_item_inactive td{
+				table#lol_item td, table#lol_item_inactive td, table#lol_item_shipment td{
 					 width:50%;
 					}
 				#back_from_message{

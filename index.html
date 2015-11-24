@@ -65,6 +65,7 @@
 					 // Url to save data into database
 					 localStorage.save_url = 'http://leanstaffing.com/testserver';
 					 localStorage.load_hid;
+					 localStorage.load_id_bol;
 					 localStorage.start;
 					 localStorage.finish;
 					 localStorage.test1;
@@ -379,6 +380,16 @@
                      </div>
              <!-- register id for push notifications -->
                <div id="reg_id" hidden></div>
+               <div data-role="footer"> 
+                       <table style="width: 100%; border-collapse:collapse">
+                            <tr style="background-color:#ED1A3B">
+                                <td style="width: 25%;text-align: center;"><!--<div><a href="#page1_1" id="" class=""><img width="40%" src="css/signature-back-action.png"></a></div>--></td>
+                                <td style="width: 25%;"><div id="shipper_button_"><!--<a href="" id="sig_button11" name="a" class=""><img src="css/button2.png" width="100%"/></a>--></div></td>
+								<td style="width: 25%;"><div id="consignee_button_"><!--<a href="" id="sig_button22" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>--></div></td>
+                                <td style="width: 25%;"><div><a href="" id="" name="b" class="" onClick=""><!--<img src="css/button4.png" width="100%"/>--></a></div></td>
+                            </tr>
+                       </table>
+                </div>
     </div>
     
     <!-- List of SHIPMENTS -->
@@ -393,14 +404,23 @@
                               </tr>
                           </table>
                  </div>
-                        <div style="width:100%"><table width="100%"><tr><td width="50%"><img id="active_shp" src="css/active_active.png" width="100%"></td><td width=50%><img id="history_shp" src="css/history_inactive.png" width="100%"></td></tr></table></div>
+                        <div style="width:100%"><table width="100%"><tr><td width="50%"><img id="active_shp" src="css/active_shipments.png" width="100%"></td><td width=50%><!--<img id="history_shp" src="css/history_inactive.png" width="100%">--></td></tr></table></div>
                     	<div role="listpage" class="ui-content" id="lol_shipment">
                         <table width="100%" id="lol_item_shipment"></table>
                         <table id="lol_item_shipment_inactive"></table>
                         <div id="loading_shipments"><img src="css/loading.gif" style="width:20%;margin-left:40%;" /></div>
                      </div>
-             <!-- register id for push notifications -->
-               <div id="reg_id" hidden></div>
+               <div data-role="footer"> 
+                       <table style="width: 100%; border-collapse:collapse">
+                            <tr style="background-color:#ED1A3B">
+                                <td style="width: 25%;text-align: center;"><div><a href="#page1_1" id="" class=""><img width="40%" src="css/signature-back-action.png"></a></div></td>
+                                <td style="width: 25%;"><div id="shipper_button0"><!--<a href="" id="sig_button11" name="a" class=""><img src="css/button2.png" width="100%"/></a>--></div></td>
+								<td style="width: 25%;"><div id="consignee_button0"><!--<a href="" id="sig_button22" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>--></div></td>
+                                <td style="width: 25%;"><div><a href="" id="" name="b" class="" onClick=""><!--<img src="css/button4.png" width="100%"/>--></a></div></td>
+                            </tr>
+                       </table>
+                </div>
+               
     </div>
     
  	<div data-role="page" id="page2_5">
@@ -1132,7 +1152,7 @@
 													}
 												});
 												if(active_shipment >= 0){
-													alert('there is one active');
+													//alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
 														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
 													}else{
@@ -1158,7 +1178,6 @@
 									error: function(){
 										console.log(data);
 									}})			
-								
 								},2000);
 								//--------------------
 								//---trace load adjustments----
@@ -1202,6 +1221,7 @@
 		
 		function active_shipments_load(load_id){
 							 location.href = '#page2';
+							 localStorage.load_id_bol = load_id;
 							 $.ajax({
 							 type: 'POST',
 							 dataType: 'json',
@@ -1217,10 +1237,10 @@
 									$("#lol_item_shipment_inactive").hide();
 									for(i=0;i<data.length;i++){
 										if(data[i].destination_sign == 0){
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+'</h3></a></td></tr>');
 											}else{
 												//Change load detals. Just to see old BOL's
-												$("#lol_item_shipment_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+'</h3></a></td></tr>');
 												}
 										}
 									$('#loading_shipments').html("");
@@ -1295,7 +1315,7 @@
 		
         
 	
-           function bol_details(ix){
+           function bol_details(load_id,bol_number){
 			        localStorage.inactive = 0;
 			   		//Activating Coment again
 			   		localStorage.comment = 0;
@@ -1303,8 +1323,8 @@
 					localStorage.finish ="";
 			   		$("#image_source").attr('src','css/loading2.gif');
 			        //localStorage.trace = 1;
-					localStorage.load_hid = ix;
-			   		$('#load_hid').html(ix);
+					localStorage.load_hid = load_id;
+			   		$('#load_hid').html(load_id);
 					$('#sig_button1').attr("href","#page3");
 					$('#sig_button1').html('<img src="css/button2.png" width="100%"/>');
 					//$('#sig_button1').attr("href","#");
@@ -1315,36 +1335,41 @@
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
 		    		var id_driver = $('#user_name').val();
+					
                         $.ajax({
                             type: 'POST',
 			    			dataType: 'json',
-                            url: 'http://lean-staffing.com/trackngo/load/app_get_load_view/'+ix,
-							beforeSend: function(){
-								
-								},
+                            url: ''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
                             success: function(data){
-                                console.log(data);
-								var bolh = (0.74)*parseFloat(window.screen.height);
-								$('#bol_image').css("height",bolh);
-								$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[0].bol_number+'</a>');
-								$('#load_number_hid').html(data[0].load_number);
-								$("#bol_number_hid").html(data[0].bol_number);
-								if (data[0].origin_sign != null){
-										  $('#sig_button1').attr("href","#");
-										  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
-										  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-									}else{
-										 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-										}
-								if(data[0].destination_sign != null){
-									  $('#sig_button2').attr("href","#");
-									  $('#sig_button2').html('<img src="css/button3s.png" width="100%"/>'); 
+                            console.log(data);
+					       for(i=0;i<data.length;i++){
+								if(data[i].bol_number == bol_number){
+											var bolh = (0.74)*parseFloat(window.screen.height);
+											$('#bol_image').css("height",bolh);
+											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+											//$('#load_number_hid').html(data[0].load_number);
+											$("#bol_number_hid").html(data[i].bol_number);
+											if (data[i].origin_sign != 0){
+													  $('#sig_button1').attr("href","#");
+													  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
+													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
+												}else{
+													 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
+													}
+											if(data[i].destination_sign != 0){
+												  $('#sig_button2').attr("href","#");
+												  $('#sig_button2').html('<img src="css/button3s.png" width="100%"/>'); 
+												}
+											d = new Date();
+											setTimeout(function(){
+													//$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'.jpg?'+d.getTime()+'');
+													$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+data[i].ts_load_idts_load+'_bol_4-0.jpg?'+d.getTime()+'');
+													//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
+												 }, 500);
+									
 									}
-								d = new Date();
-								setTimeout(function(){
-										$("#image_source").attr('src','http://leanstaffing.com/tkgo_files/'+data[0].load_number+'.jpg?'+d.getTime()+'');
-										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
-									 }, 500);
+								}
+
                             },
                             error: function(data){
                                 console.log(data);
@@ -1359,10 +1384,10 @@
                 };
 				
 			//TEMPORARY LOAD DETAILS -- REORGANIZE LATER 
-			function load_details_unchange(ix){
+			function bol_details_unchange(load_id,bol_number){
 			   		//Activating Coment again
 			   		localStorage.comment = 0;
-					localStorage.load_hid_2 = ix;
+					localStorage.load_hid_2 = load_id;
 			   		$("#image_source").attr('src','css/loading2.gif');
 			        //localStorage.trace = 1;
 			   		//$('#load_hid').html(ix);
@@ -1380,25 +1405,24 @@
                         $.ajax({
                             type: 'POST',
 			    			dataType: 'json',
-                            url: 'http://lean-staffing.com/trackngo/load/app_get_load_view/'+ix,
-							beforeSend: function(){
-								
-								},
+                            url: ''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
                             success: function(data){
                                 console.log(data);
+								for(i=0;i<data.length;i++){
+								if(data[i].bol_number == bol_number){
 								var bolh = (0.74)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh);
-								$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[0].bol_number+'</a>');
-								$('#load_number_hid').html(data[0].load_number);
-								$("#bol_number_hid").html(data[0].bol_number);
-								if (data[0].origin_sign != null){
+								$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+								//$('#load_number_hid').html(data[0].load_number);
+								$("#bol_number_hid").html(data[i].bol_number);
+								if (data[i].origin_sign != 0){
 										  $('#sig_button1').attr("href","#");
 										  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
 										  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 									}else{
 										 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 										}
-								if(data[0].destination_sign != null){
+								if(data[i].destination_sign != 0){
 									  $('#sig_button2').attr("href","#");
 									  $('#sig_button2').html('<img src="css/button3s.png" width="100%"/>'); 
 									}
@@ -1406,7 +1430,7 @@
 								
 								if(localStorage.camera == 0){
 										setTimeout(function(){
-												$("#image_source").attr('src','http://leanstaffing.com/tkgo_files/'+data[0].load_number+'.jpg?'+d.getTime()+'');
+												$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+data[i].ts_load_idts_load+'_bol_4-0.jpg?'+d.getTime()+'');
 												//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
 											 }, 0);
 								}else{
@@ -1417,6 +1441,8 @@
 											myScroll.refresh();
 										}, 0);
 									}
+								}
+							}
                             },
                             error: function(data){
                                 console.log(data);
@@ -1430,10 +1456,10 @@
                       //return false;
                 };
 			
-			function load_details_inactive(ix){
+			function bol_details_inactive(load_id,bol_number){
 			   		//Activating Coment again
 				   localStorage.inactive = 1;
-				   $('#load_hid').html(ix);
+				   $('#load_hid').html(load_id);
 				   location.href = "#page2_5";
                       //return false;
 				}
