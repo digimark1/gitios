@@ -63,7 +63,7 @@
 					 // base url for dashboard
 					 localStorage.base_url = 'http://leanstaffing.com/trackngo2';
 					 // Url to save data into database
-					 localStorage.save_url = 'http://leanstaffing.com/testserver';
+					 localStorage.save_url = 'http://leanstaffing.com/testserver2';
 					 localStorage.load_hid;
 					 localStorage.load_id_bol;
 					 localStorage.start;
@@ -212,7 +212,7 @@
 									 type: 'POST',
 									 dataType: 'json',
 									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.test1,
-									 //http://lean-staffing.com/trackngo/load/app_get_load_view/
+									 //http://leanstaffing.com/trackngo/load/app_get_load_view/
 										success: function(data){
 											console.log(data);
 											for(i=0;i<data.length;i++){
@@ -254,7 +254,7 @@
 									 $.ajax({
 									 type: 'POST',
 									 dataType: 'json',
-									 url: 'http://lean-staffing.com/trackngo/load/app_get_load_by_driver/'+localStorage.test1,
+									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.test1,
 										success: function(data){
 											console.log(data);
 											for(i=0;i<data.length;i++){
@@ -380,16 +380,7 @@
                      </div>
              <!-- register id for push notifications -->
                <div id="reg_id" hidden></div>
-               <div data-role="footer"> 
-                       <table style="width: 100%; border-collapse:collapse">
-                            <tr style="background-color:#ED1A3B">
-                                <td style="width: 25%;text-align: center;"><!--<div><a href="#page1_1" id="" class=""><img width="40%" src="css/signature-back-action.png"></a></div>--></td>
-                                <td style="width: 25%;"><div id="shipper_button_"><!--<a href="" id="sig_button11" name="a" class=""><img src="css/button2.png" width="100%"/></a>--></div></td>
-								<td style="width: 25%;"><div id="consignee_button_"><!--<a href="" id="sig_button22" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>--></div></td>
-                                <td style="width: 25%;"><div><a href="" id="" name="b" class="" onClick=""><!--<img src="css/button4.png" width="100%"/>--></a></div></td>
-                            </tr>
-                       </table>
-                </div>
+
     </div>
     
     <!-- List of SHIPMENTS -->
@@ -883,7 +874,7 @@
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function(){
 										d = new Date();
-										$("#image_source").attr('src','http://leanstaffing.com/tkgo_files/'+$('#load_number_hid').html()+'.jpg?'+d.getTime()+'');
+										$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_4-0.jpg?'+d.getTime()+'');
 										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
 									 }, 100);
 								setTimeout(function () {
@@ -997,7 +988,7 @@
 					    $.ajax({ 
                             type: 'POST',
                             data: {load_id: $('#load_hid').html(), message_id: $('#troubles_').val(), user_id : $('#user_name').val(), message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val()},
-                            url: 'http://lean-staffing.com/testserver/sendmessage.php',
+                            url: ''+localStorage.save_url+'/sendmessage.php',
                             success: function(data){
                                 console.log(data);
 							    navigator.notification.alert(
@@ -1036,7 +1027,7 @@
 					$.ajax({ 
                             type: 'POST',
                             data: {load_id: $('#load_hid').html(), message_id: custom, user_id : $('#user_name').val(), message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val()},
-                            url: 'http://lean-staffing.com/testserver/sendmessage.php',
+                            url: ''+localStorage.save_url+'/sendmessage.php',
                             success: function(data){
                                 console.log(data);
 								navigator.notification.alert(
@@ -1597,7 +1588,7 @@
 			$.ajax({
 					type: 'POST',
 					data: {origin_sig:$('#hidden_Signature').val(),load_id:$('#load_hid').html(),sig_print:$("#signature_print").html(),load_number:$('#load_number_hid').html()},
-					url: 'http://lean-staffing.com/testserver/save_sig.php',
+					url: ''+localStorage.save_url+'/save_sig.php',
 					success: function(data){
 						console.log(data);
 						
@@ -1624,7 +1615,7 @@
 			$.ajax({
 					type: 'POST',
 					data: {destination_sig:$('#hidden_Signature2').val(),load_id:$('#load_hid').html(),sig_print:$("#signature_print2").html(),load_number:$('#load_number_hid').html()},
-					url: 'http://lean-staffing.com/testserver/save_sig2.php',
+					url: ''+localStorage.save_url+'/save_sig2.php',
 					success: function(data){
 						console.log(data);
 						$('#sig_button2').attr("href","#");
@@ -1663,7 +1654,7 @@
 			$.ajax({
 					type: 'POST',
 					data: {comment_hand:$('#hidden_comment').val(),load_id:$('#load_hid').html(),comment_print:$("#comment_print").html(),load_number:$('#load_number_hid').html()},
-					url: 'http://lean-staffing.com/testserver/save_comment_hand.php',
+					url: ''+localStorage.save_url+'/save_comment_hand.php',
 					success: function(data){
 						console.log(data);
 						
@@ -1697,7 +1688,7 @@
 									$.ajax({
 										type: 'POST',
 										data: {load_id:lid, sig_id: sig, user_id: localStorage.test1, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
-										url: 'http://lean-staffing.com/testserver/message_signature.php',
+										url: ''+localStorage.save_url+'/message_signature.php',
 										success: function(data){
 													//$('#sig_button1').attr("href","#");
 													function alertCallback1(){
@@ -1764,7 +1755,7 @@
 					$('#clear_sig1').click(function(){
 						$sigdiv1.jSignature('reset');
 					});
-				$('#page3_tr').css('background-image','url(http://lean-staffing.com/tkgo_files/'+$('#load_number_hid').html()+'.jpg)');			
+				$('#page3_tr').css('background-image','url(http://leanstaffing.com/tkgo_files2/'+$('#load_number_hid').html()+'.jpg)');			
 			},1000);
 	
 		setTimeout(function(){
@@ -1792,7 +1783,7 @@
 					$("#signature2").jSignature('reset')
 				});	
 				//d = new Date();
-				$('#page5_tr').css('background-image','url(http://lean-staffing.com/tkgo_files/'+$('#load_number_hid').html()+'.jpg)');
+				$('#page5_tr').css('background-image','url(http://leanstaffing.com/tkgo_files2/'+$('#load_number_hid').html()+'.jpg)');
 			},1000);
 			
 		
