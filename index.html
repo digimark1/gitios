@@ -1120,18 +1120,19 @@
 												dataType:'json',
 												url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
 												success: function(data_s){
-													console.log(data_s);
 														for(j=0;j<data_s.length;j++){
 															  if(data_s[j].destination_sign == 0){
-																  active_shipment++;
+																  active_shipment = active_shipment + 1;
 																  }
 															}
+														console.log(data_s);
 													},
 												error: function(data_s){
 													console.log(data_s);
 													}
 												});
-												if(active_shipment>0){
+												if(active_shipment >= 0){
+													alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
 														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
 													}else{
@@ -1271,7 +1272,7 @@
 										localStorage.test1 = parseFloat($('#hid_uid').html());
 										window.plugins.insomnia.keepAwake();
 										//alert(localStorage.test1)
-										active_load(localStorage.test1);
+										//active_load(localStorage.test1);
 										location.href = "#page1_1";
 								 	}else{
 										navigator.notification.alert(
