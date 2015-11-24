@@ -61,7 +61,7 @@
 						
 					 navigator.splashscreen.hide();
 					 // base url for dashboard
-					 localStorage.base_url = 'http://leanstaffing.com/trackngo';
+					 localStorage.base_url = 'http://leanstaffing.com/trackngo2';
 					 // Url to save data into database
 					 localStorage.save_url = 'http://leanstaffing.com/testserver';
 					 localStorage.load_hid;
@@ -209,7 +209,7 @@
 									 $.ajax({
 									 type: 'POST',
 									 dataType: 'json',
-									 url: 'http://lean-staffing.com/trackngo/load/app_get_load_by_driver/'+localStorage.test1,
+									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.test1,
 									 //http://lean-staffing.com/trackngo/load/app_get_load_view/
 										success: function(data){
 											console.log(data);
@@ -366,7 +366,7 @@
              	    	<table width="100%">
                               <tr>
                                 <td width="50%"><div><img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="full_name"></div><div><a href="#" id="signout" style="color:red">Sign Out</a></div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id="full_name"></div><div><a href="#" id="signout0" style="color:red">Sign Out</a></div></td>
                               </tr>
                           </table>
                  </div>
@@ -380,7 +380,29 @@
                <div id="reg_id" hidden></div>
     </div>
     
- 	<div data-role="page" id="page2">
+    <!-- List of SHIPMENTS -->
+    
+    <div data-role="page" id="page2"> 
+  				<div data-role="header" data-position="fixed" data-tap-toggle="false"> 
+                <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
+             	    	<table width="100%">
+                              <tr>
+                                <td width="50%"><div><img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id="full_name"></div><div><a href="#" id="signout0_2" style="color:red">Sign Out</a></div></td>
+                              </tr>
+                          </table>
+                 </div>
+                        <div style="width:100%"><table width="100%"><tr><td width="50%"><img id="active_shp" src="css/active_active.png" width="100%"></td><td width=50%><img id="history_shp" src="css/history_inactive.png" width="100%"></td></tr></table></div>
+                    	<div role="listpage" class="ui-content" id="lol_shipment">
+                        <table width="100%" id="lol_item_shipment"></table>
+                        <table id="lol_item_shipment_inactive"></table>
+                        <div id="loading_shipments"><img src="css/loading.gif" style="width:20%;margin-left:40%;" /></div>
+                     </div>
+             <!-- register id for push notifications -->
+               <div id="reg_id" hidden></div>
+    </div>
+    
+ 	<div data-role="page" id="page2_5">
              	    <div data-role="header">
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>       	
              	    	<table width="100%">
@@ -566,7 +588,7 @@
                 </div>
      	</div>
      </div>
-        <!--<div style="margin-left:10px"><a href="#page2" id="back_from_message" class="btn-class2" onClick="" >BACK</a></div>-->
+        <!--<div style="margin-left:10px"><a href="#page2_5" id="back_from_message" class="btn-class2" onClick="" >BACK</a></div>-->
        <div data-role="footer"> 
                        <table style="width: 100%; border-collapse:collapse">
                             <tr style="background-color:#ED1A3B">
@@ -640,7 +662,7 @@
 		var driver_location_interval;
 		
 		
-		$('#signout, #signout1, #signout2, #signout3, #signout5, #signout6').click(function(){
+		$('#signout0, #signout0_2, #signout1, #signout2, #signout3, #signout5, #signout6').click(function(){
 			 function onConfirm(button){
 			   if(button == 1){
 				   	clean_apple_id();
@@ -835,7 +857,7 @@
 				},500); 
 			
 			 //$('#localstorage_trace').html(localStorage.trace);
-				                //location.href='#page2';
+				                //location.href='#page2_5';
 								var bolh1 = (0.74)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function(){
@@ -1075,26 +1097,47 @@
 							 $.ajax({
 							 type: 'POST',
 							 dataType: 'json',
-							 url: 'http://lean-staffing.com/trackngo/load/app_get_load_by_driver/'+id_driver,
+							 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+id_driver,
 							
 	                            success: function(data){
 	                                console.log(data);
 									active_loads_number = 0;
 								    $("#lol_item").html("");
-								    $("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+								    $("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th></tr>');
 									$("#lol_item_inactive").html("");
-									$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+									$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th></tr>');
 									$("#lol_item_inactive").hide();
 									for(i=0;i<data.length;i++){
-										if((data[i].destination_sign == null)&&(data[i].sw == 1)){
-											active_loads_number++;
-												$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="load_details('+data[i].idts_load+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="load_details('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
-											} else if ((data[i].destination_sign != null)&&(data[i].sw == 1)) {
+										if((data[i].sw == 1)&&(data[i].tender == 1)){
+											
+											//-----Check  for every signature in the load to set active or inactive status.-----//
+											var active_shipment = 0;
+											$.ajax({
+												type:'POST',
+												dataType:'json',
+												url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
+												success: function(data_s){
+													console(log.data_s);
+														for(j=0;j<data_s.length;j++){
+															  if(destination_sign == 0){
+																  active_shipment++;
+																  }
+															}
+													},
+												error: function(data_s){
+													console(log.data_s);
+													}
+												});
+												if(active_shipment>0){
+														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
+														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+													}else{
 												//Change load detals. Just to see old BOL's
-												$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="load_details_inactive('+data[i].idts_load+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: black;" class="" onclick="load_details_inactive('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
-												}
+														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td><ahref="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+														}
+											} 
 										}
-									$('#loading_loads').html("");
+									$('#loading_loads').html(""); //--Delete Loading Gif when all loads are checked. -----/
 									
 							//-------------- SEND REGISTER ID TO DATABASE --- ANDROID CLOUD MESSAGING --- PUSH
 							setTimeout(function(){
@@ -1150,6 +1193,44 @@
 															  'Ok');
                             }})
 				}
+				
+		//------- LOAD SHIPMENTS -----//
+		
+		function active_shipments_load(load_id){
+							 location.href = '#page2';
+							 $.ajax({
+							 type: 'POST',
+							 dataType: 'json',
+							 url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
+							
+	                            success: function(data){
+	                                console.log(data);
+									//active_loads_number = 0;
+								    $("#lol_item_shipment").html("");
+								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+									$("#lol_item_shipment_inactive").html("");
+									$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+									$("#lol_item_shipment_inactive").hide();
+									for(i=0;i<data.length;i++){
+										if(data[i].destination_sign == 0){
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+											}else{
+												//Change load detals. Just to see old BOL's
+												$("#lol_item_shipment_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+												}
+										}
+									$('#loading_shipments').html("");
+                                },
+                            error: function(data){
+                                console.log(data);
+								navigator.notification.alert(
+															  'There was an error with active loads',
+															  alertCallback,
+															  'Smith TracknGo',
+															  'Ok');
+                            }})
+		}
+		
 		
 		//---------------------------Query DATA From SERVER  -------------------
 		
@@ -1209,7 +1290,7 @@
 		
         
 	
-           function load_details(ix){
+           function bol_details(ix){
 			        localStorage.inactive = 0;
 			   		//Activating Coment again
 			   		localStorage.comment = 0;
@@ -1225,7 +1306,7 @@
 					$('#sig_button2').attr("href","#page5");
 					$('#sig_button2').html('<img src="css/button3.png" width="100%"/>');
 					
-				   location.href = "#page2";
+				   location.href = "#page2_5";
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
 		    		var id_driver = $('#user_name').val();
@@ -1287,7 +1368,7 @@
 					$('#sig_button2').attr("href","#page5");
 					$('#sig_button2').html('<img src="css/button3.png" width="100%"/>');
 					
-				   location.href = "#page2";
+				   location.href = "#page2_5";
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
 		    		var id_driver = $('#user_name').val();
@@ -1348,7 +1429,7 @@
 			   		//Activating Coment again
 				   localStorage.inactive = 1;
 				   $('#load_hid').html(ix);
-				   location.href = "#page2";
+				   location.href = "#page2_5";
                       //return false;
 				}
 		  
@@ -1363,13 +1444,13 @@
 	function close_sig(){
 		$("#signatureparent").html("");
 		screen.lockOrientation('portrait');
-		location.href='#page2';
+		location.href='#page2_5';
 		}
 		
 	function close_sig2(){
 		$("#signatureparent2").html("");
 		screen.lockOrientation('portrait');
-		location.href='#page2';
+		location.href='#page2_5';
 		}
 	function close_comment(){
 		$("#comment_hand_parent").html("");
@@ -1381,11 +1462,11 @@
 		$('#backmessage').click(function(){
 		     clearInterval(chatInt);
 			 //alert('reset chat');
-			location.href ="#page2";
+			location.href ="#page2_5";
 			});
 /*		function chatIntC(){
 			clearInterval(chatInt);
-			location.href ="#page2";
+			location.href ="#page2_5";
 			
 		}
 */
@@ -1595,7 +1676,7 @@
 																}else{
 																	//alert('not cleared');
 																	}
-															location.href='#page2';
+															location.href='#page2_5';
 															screen.lockOrientation('portrait');	
 														}
 														
@@ -1613,7 +1694,7 @@
 		
 	//----------END OF Function for saving signature
 	
-	$('#page2').on('pageshow',function(e,data) {
+	$('#page2_5').on('pageshow',function(e,data) {
 		// Avoid allowing signatures on messages
 				if(localStorage.inactive == 1){
 					}else{
