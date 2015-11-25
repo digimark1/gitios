@@ -43,27 +43,13 @@
     // device APIs are available
    
 				function onDeviceReady() {
-						/*console.log("opening database");
-						db = window.openDatabase("app_database", "1.0", "app database", 50000000);
-						db.transaction(function (tx) {
-								  tx.executeSql('CREATE TABLE IF NOT EXISTS image (id unique, text)');
-								  tx.executeSql('INSERT INTO image (id, text) VALUES (1, "synergies")');						
-  							});
 					
-						tx.executeSql('INSERT INTO image (id, text) VALUES (?, ?)', [id, userValue]);
-					
-					tx.executeSql('SELECT * FROM foo', [], function (tx, results) {
-						  var len = results.rows.length, i;
-						  for (i = 0; i < len; i++) {
-							alert(results.rows.item(i).text);
-						  }
-						});*/
-						
 					 navigator.splashscreen.hide();
 					 // base url for dashboard
 					 localStorage.base_url = 'http://leanstaffing.com/trackngo2';
 					 // Url to save data into database
 					 localStorage.save_url = 'http://leanstaffing.com/testserver2';
+					 localStorage.files = 'http://leanstaffing.com/tkgo_files2';
 					 localStorage.load_hid;
 					 localStorage.load_id_bol;
 					 localStorage.start;
@@ -75,6 +61,9 @@
 					 localStorage.comment;
 					 localStorage.inactive;
 					 localStorage.camera;
+					 localStorage.pages;
+					 localStorage.cont_pages;
+					 localStorage.bol_number;
 					 //using, but testing the blank issue /// /// localStorage.token;
 					 //localStorage.test2;
 					 //localStorage.msg;
@@ -419,8 +408,8 @@
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>       	
              	    	<table width="100%">
                               <tr>
-                                <td width="33%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="upload_picture" value="button">Take Pic</button></div></td>
-                                <td width="33%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="save_picture" value="button">Save</button></div></td>
+                                <td width="33%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="upload_picture" value="button">Take Pic</button>&nbsp;&nbsp;<button id="save_picture" value="button">Save</button></div></td>
+                                <td width="33%"><div id="next_page"><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
                                 <td align="right" valign="top" style="padding:5px"><div id="full_name1"></div><div><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>
                               </tr>
                           </table>
@@ -771,7 +760,7 @@
 						var options = new FileUploadOptions();
 						options.fileKey = "file";
 						//options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
-						options.fileName = ""+$('#load_number_hid').html()+Math.floor((Math.random() * 1000))+".jpg";
+						options.fileName = ($('#image_source').attr('src')).substr(($('#image_source').attr('src')).lastIndexOf("/")+1);
 						options.mimeType = "image/jpeg";
 				
 						options.params = {
@@ -781,7 +770,7 @@
 						}
 				
 						var ft = new FileTransfer();
-						ft.upload(imageURI, encodeURI("http://leanstaffing.com/deletethis/upload2.php"), win, fail, options);
+						ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win, fail, options);
 					}
 											
 						function win(r) {
@@ -802,6 +791,7 @@
 								console.log("upload error target " + error.target);
 							}
 							
+			// Save picture, sends the image to the server.				
 			$('#save_picture').click(function(){
 				  uploadPhoto();
 				});
@@ -822,7 +812,8 @@
 								$('#cam_picture').html(imageURI);
 								setTimeout(function(){
 									   //$('#bol_image').html('<img id="image_source" src="data:image/jpeg;base64,'+$('#cam_picture').html()+'" style="width:100%;padding-top:2px;"/>');
-									   $('#bol_image').html('<img id="image_source" src="'+$('#cam_picture').html()+'" style="width:100%;padding-top:2px;"/>');
+									   //$('#bol_image').html('<img id="image_source" src="'+$('#cam_picture').html()+'" style="width:100%;padding-top:2px;"/>');
+									   $('#image_source').attr('src',$('#cam_picture').html());
 									   setTimeout(function () {
 											myScroll.refresh();
 										}, 100);
@@ -874,12 +865,12 @@
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function(){
 										d = new Date();
-										$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_4-0.jpg?'+d.getTime()+'');
+										$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
 										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
 									 }, 100);
 								setTimeout(function () {
 											myScroll.refresh();
-										}, 500);
+									}, 500);
 				
 				//----- SEND TRACING LOCATION WHEN THE BOL IS DISPLAYED----///
 				if(localStorage.finish == 1){
@@ -1116,9 +1107,9 @@
 	                                console.log(data);
 									active_loads_number = 0;
 								    $("#lol_item").html("");
-								    $("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th></tr>');
+								    $("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
 									$("#lol_item_inactive").html("");
-									$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th></tr>');
+									$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
 									$("#lol_item_inactive").hide();
 									for(i=0;i<data.length;i++){
 										if((data[i].sw == 1)&&(data[i].tender == 1)){
@@ -1145,10 +1136,10 @@
 												if(active_shipment >= 0){
 													//alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
-														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
 													}else{
 												//Change load detals. Just to see old BOL's
-														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td><ahref="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+'</h3></a></td></tr>');
+														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
 														}
 											} 
 										}
@@ -1228,10 +1219,10 @@
 									$("#lol_item_shipment_inactive").hide();
 									for(i=0;i<data.length;i++){
 										if(data[i].destination_sign == 0){
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 											}else{
 												//Change load detals. Just to see old BOL's
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+data[i].bol_number+'</h3></a></td><td><ahref="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+','+data[i].bol_number+')"><h3>'+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 												}
 										}
 									$('#loading_shipments').html("");
@@ -1303,10 +1294,38 @@
 								  'Ok');
 					 }})
 			 });
+			
+
+		//---Change BOL pages on click---//
 		
-        
+           $('#change_next_page').click(function(){
+				if(localStorage.cont_pages > localStorage.pages  ){
+						localStorage.cont_pages = 0;
+					}else{
+					      }
+				  d = new Date();
+			      setTimeout(function(){
+								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+							 }, 500);
+				  localStorage.cont_pages = localStorage.cont_pages + 1;
+			   })
+		
+		// Load BOL details -----///
 	
-           function bol_details(load_id,bol_number){
+           function bol_details(load_id,bol_number,pages_number){
+			   		//--- Clicks counter to change pages ---//
+					localStorage.cont_pages = 0;
+			   		//----BUTTON to change pages----//
+						if(pages_number >= 2){
+							       $('#next_page').html('<button id="change_next_page" value="button">Next Page</button>');
+							  }else{
+							       $('#next_page').html('');	
+								};
+					//--- Number of pages for this BOL. --//		
+				    localStorage.pages = pages_number;
+					//----BOL Number for image drawing.
+					localStorage.bol_number = bol_number;
+					
 			        localStorage.inactive = 0;
 			   		//Activating Coment again
 			   		localStorage.comment = 0;
@@ -1353,8 +1372,8 @@
 												}
 											d = new Date();
 											setTimeout(function(){
-													//$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'.jpg?'+d.getTime()+'');
-													$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+data[i].ts_load_idts_load+'_bol_4-0.jpg?'+d.getTime()+'');
+													//$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'.jpg?'+d.getTime()+'');
+													$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_4-0.jpg?'+d.getTime()+'');
 													//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
 												 }, 500);
 									
@@ -1421,7 +1440,7 @@
 								
 								if(localStorage.camera == 0){
 										setTimeout(function(){
-												$("#image_source").attr('src','http://leanstaffing.com/tkgo_files2/'+data[i].ts_load_idts_load+'_bol_4-0.jpg?'+d.getTime()+'');
+												$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'-0.jpg?'+d.getTime()+'');
 												//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
 											 }, 0);
 								}else{
