@@ -1114,11 +1114,10 @@
 									$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
 									$("#lol_item_inactive").hide();
 									for(i=0;i<data.length;i++){
+										active_shipment = 0;
 										if((data[i].sw == 1)&&(data[i].tender == 1)){
 											
 											//-----Check  for every signature in the load to set active or inactive status.-----//
-											
-											active_shipment = 0;
 											$.ajax({
 												type:'POST',
 												dataType:'json',
@@ -1126,7 +1125,7 @@
 												success: function(data_s){
 														for(j=0;j<data_s.length;j++){
 															  if(data_s[j].destination_sign == '0'){
-																  alert('destination signature empty');
+																  //alert('destination signature empty');
 																  active_shipment = active_shipment + 1;
 																  }
 															}
