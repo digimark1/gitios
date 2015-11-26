@@ -1316,8 +1316,10 @@
 			   alert('Im inside');
 				if((parseFloat(localStorage.cont_pages)) > (parseFloat(localStorage.pages))){
 						localStorage.cont_pages = 0;
+						alert('Must reset');
 					}else{
 						localStorage.cont_pages = parseFloat(localStorage.cont_pages) + 1;
+						alert('Must be counting-'+localStorage.cont_pages);
 					      }
 				  d = new Date();
 			      setTimeout(function(){
