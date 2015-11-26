@@ -1313,6 +1313,7 @@
 		//---Change BOL pages on click---//
 		
            $('#change_next_page').click(function(){
+			   alert('Im inside');
 				if((parseFloat(localStorage.cont_pages)) > (parseFloat(localStorage.pages))){
 						localStorage.cont_pages = 0;
 					}else{
