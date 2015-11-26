@@ -662,6 +662,7 @@
 		var chatInt;
 		var active_loads_number;
 		var driver_location_interval;
+		var active_shipment;
 		
 		
 		$('#signout0, #signout0_2, #signout1, #signout2, #signout3, #signout5, #signout6').click(function(){
@@ -1100,7 +1101,7 @@
 			
 		//---------------------------End ------------------
 		function active_load(id_driver){
-			                 var active_shipment; // Active shipments counter variable. //
+			                  // Active shipments counter variable. //
 							 $.ajax({
 							 type: 'POST',
 							 dataType: 'json',
@@ -1116,7 +1117,7 @@
 									$("#lol_item_inactive").hide();
 									
 									for(i=0;i<data.length;i++){
-										active_shipment = 0;
+										active_shipment = 1;
 										if((data[i].sw == 1)&&(data[i].tender == 1)){
 											
 											//-----Check  for every signature in the load to set active or inactive status.-----//
@@ -1128,7 +1129,7 @@
 														for(j=0;j<data_s.length;j++){
 															  if(data_s[j].destination_sign == '0'){
 																  alert('destination signature empty-'+j);
-																  active_shipment = active_shipment+1;
+																  active_shipment = active_shipment + 1;
 																  }else{
 																	  };
 															}
@@ -1138,7 +1139,7 @@
 													console.log(data_s);
 													}
 												});
-												if(active_shipment >= 1){
+												if(active_shipment >= 2){
 													//alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
 														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
