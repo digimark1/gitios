@@ -410,7 +410,7 @@
              	    	<table width="100%">
                               <tr>
                                 <td width="33%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="upload_picture" value="button">Take Pic</button>&nbsp;&nbsp;<button id="save_picture" value="button">Save</button></div></td>
-                                <td width="33%"><div id="next_page"><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
+                                <td width="33%"><div id="next_page"><button id="change_next_page" value="button">Next Page</button><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
                                 <td align="right" valign="top" style="padding:5px"><div id="full_name1"></div><div><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>
                               </tr>
                           </table>
@@ -1326,7 +1326,7 @@
 								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
 							 }, 500);
 				  
-			   })
+			   });
 		
 		// Load BOL details -----///
 	
@@ -1335,9 +1335,10 @@
 					localStorage.cont_pages = 0;
 			   		//----BUTTON to change pages----//
 						if(pages_number >= 2){
-							       $('#next_page').html('<button id="change_next_page" value="button">Next Page</button>');
+							
+							       $('#next_page').show();
 							  }else{
-							       $('#next_page').html('');	
+							       $('#next_page').hide();	
 								};
 					//--- Number of pages for this BOL. --//		
 				    localStorage.pages = pages_number;
