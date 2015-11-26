@@ -417,7 +417,7 @@
                  </div>
                 <div id="header_load"></div>
                 <div id="bol_image">
-                    <img id="image_source" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
+                    <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
                 </div>
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>
@@ -1102,6 +1102,7 @@
 		//---------------------------End ------------------
 		function active_load(id_driver){
 			                  var active_shipment;// Active shipments counter variable. //
+							  var shipment_number; // Number of shipments, active or inactive.
 							 $.ajax({
 							 type: 'POST',
 							 dataType: 'json',
@@ -1127,13 +1128,14 @@
 												url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
 												async:false,
 												success: function(data_s){
-													active_shipment = 1;
+													active_shipment = 0;
+													shipment_number = 0;
 														for(j=0;j<data_s.length;j++){
 															  if(data_s[j].destination_sign == '0'){
-																  //alert('destination signature empty-'+j);
-																  active_shipment = active_shipment + 1;
-																  alert(active_shipment);
+																	  active_shipment++;
+																	  shipment_number++;
 																  }else{
+																      shipment_number++;
 																	  };
 															};
 													    localStorage.active_shipment = active_shipment;
@@ -1143,13 +1145,13 @@
 													console.log(data_s);
 													}
 												});
-												if((parseFloat(localStorage.active_shipment)) >= 2){
+												if(active_shipment >= 1){
 													//alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
-														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
+														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
 													}else{
 												//Change load detals. Just to see old BOL's
-														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
+														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
 														}
 											} 
 										}
