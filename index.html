@@ -1316,12 +1316,13 @@
 				if((parseFloat(localStorage.cont_pages)) > (parseFloat(localStorage.pages))){
 						localStorage.cont_pages = 0;
 					}else{
+						localStorage.cont_pages = parseFloat(localStorage.cont_pages) + 1;
 					      }
 				  d = new Date();
 			      setTimeout(function(){
 								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
 							 }, 500);
-				  localStorage.cont_pages = parseFloat(localStorage.cont_pages) + 1;
+				  
 			   })
 		
 		// Load BOL details -----///
