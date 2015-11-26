@@ -1101,7 +1101,7 @@
 			
 		//---------------------------End ------------------
 		function active_load(id_driver){
-			                  // Active shipments counter variable. //
+			                  var active_shipment;// Active shipments counter variable. //
 							 $.ajax({
 							 type: 'POST',
 							 dataType: 'json',
@@ -1128,8 +1128,9 @@
 												success: function(data_s){
 														for(j=0;j<data_s.length;j++){
 															  if(data_s[j].destination_sign == '0'){
-																  alert('destination signature empty-'+j);
+																  //alert('destination signature empty-'+j);
 																  active_shipment = active_shipment + 1;
+																  alert(active_shipment);
 																  }else{
 																	  };
 															}
