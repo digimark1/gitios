@@ -423,10 +423,10 @@
                 <div data-role="footer"> 
                        <table style="width: 100%; border-collapse:collapse">
                             <tr style="background-color:#ED1A3B">
-                                <td style="width: 25%;"><div><a href="#page1_1" id="back" class="" onClick=""><img src="css/button1.png" width="80%" style="alignment-baseline:central"/></a></div></td>
-                                <td style="width: 25%;"><div id="shipper_button"><a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="100%"/></a></div></td>
-								<td style="width: 25%;"><div id="consignee_button"><a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a></div></td>
-                                <td style="width: 25%;"><div><a href="#page4" id="driver_message" name="b" class="" onClick="message_board()"><img src="css/button4.png" width="100%"/></a></div></td>
+                                <td style="width: 25%;"><div><a href="#page2" id="back" class="" onClick=""><img src="css/button1.png" width="80%" style="alignment-baseline:central"/></a></div></td>
+                                <td style="width: 25%;"><!--<div id="shipper_button"><a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="100%"/></a></div>--></td>
+								<td style="width: 25%;"><!--<div id="consignee_button"><a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a></div>--></td>
+                                <td style="width: 25%;"><div><a href="#page4" id="driver_message" name="b" class="" onClick=""><img src="css/button4.png" width="100%"/></a></div></td>
                             </tr>
                        </table>
                    <div id="load_id_hidden" hidden></div>
@@ -760,7 +760,7 @@
 						var options = new FileUploadOptions();
 						options.fileKey = "file";
 						//options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
-						options.fileName = ($('#image_source').attr('src')).substr(($('#image_source').attr('src')).lastIndexOf("/")+1);
+						options.fileName = ($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
 						options.mimeType = "image/jpeg";
 				
 						options.params = {
@@ -798,6 +798,8 @@
 			
 			//---BOL using CAMERA ---//
 			$('#upload_picture').click(function(){
+				localStorage.image_name = $("#image_source").attr('src');
+				$("#image_source").attr('alt',localStorage.image_name);
 				$("#image_source").attr('src','css/loading2.gif');
 				navigator.camera.getPicture(onSuccess, onFail, { quality: 40,
 								targetWidth: 1750,
@@ -1123,7 +1125,7 @@
 												url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
 												success: function(data_s){
 														for(j=0;j<data_s.length;j++){
-															  if(data_s[j].destination_sign == 0){
+															  if(data_s[j].destination_sign == '0'){
 																  active_shipment = active_shipment + 1;
 																  }
 															}
@@ -1133,7 +1135,7 @@
 													console.log(data_s);
 													}
 												});
-												if(active_shipment >= 0){
+												if(active_shipment >= 1){
 													//alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
 														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
@@ -1373,7 +1375,7 @@
 											d = new Date();
 											setTimeout(function(){
 													//$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'.jpg?'+d.getTime()+'');
-													$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_4-0.jpg?'+d.getTime()+'');
+													$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'-0.jpg?'+d.getTime()+'');
 													//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
 												 }, 500);
 									
@@ -1437,20 +1439,21 @@
 									  $('#sig_button2').html('<img src="css/button3s.png" width="100%"/>'); 
 									}
 								d = new Date();
-								
-								if(localStorage.camera == 0){
 										setTimeout(function(){
 												$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'-0.jpg?'+d.getTime()+'');
 												//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
-											 }, 0);
+											 }, 0);	
+											 							
+								if(localStorage.camera == 0){
+
 								}else{
 									   //$("#image_source").attr('src','data:image/jpeg;base64,'+$('#cam_picture').html()+'');
 									   //$('#bol_image').html('<img id="image_source" src="data:image/jpeg;base64,'+localStorage.camera+'" style="width:100%;padding-top:2px;"/>');
-									   $('#bol_image').html('<img id="image_source" src="'+$('#cam_picture').html()+'" style="width:100%;padding-top:2px;"/>');
+/*									   $('#image_source').attr('src',$('#cam_picture').html());
 									   setTimeout(function () {
 											myScroll.refresh();
 										}, 0);
-									}
+*/									}
 								}
 							}
                             },
@@ -1745,7 +1748,7 @@
 						   	view_bol();
 						}
 					}
-		load_details_unchange($('#load_hid').html());
+		//load_details_unchange($('#load_hid').html(), localStorage.load_id_bol);
 		$('#back4').show();
 			if ((localStorage.start == 1)){
 				
