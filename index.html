@@ -1128,7 +1128,7 @@
 														for(j=0;j<data_s.length;j++){
 															  if(data_s[j].destination_sign == '0'){
 																  //alert('destination signature empty');
-																  localStorage.active_shipment++;
+																  localStorage.active_shipment = localStorage.active_shipment+1;
 																  }
 															}
 														console.log(data_s);
