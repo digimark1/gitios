@@ -1134,14 +1134,15 @@
 																  alert(active_shipment);
 																  }else{
 																	  };
-															}
+															};
+													    localStorage.active_shipment = active_shipment;
 														console.log(data_s);
 													},
 												error: function(data_s){
 													console.log(data_s);
 													}
 												});
-												if(active_shipment >= 2){
+												if((parseFloat(localStorage.active_shipment)) >= 2){
 													//alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
 														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
@@ -1151,7 +1152,7 @@
 														}
 											} 
 										}
-										localStorage.active_shipment = active_shipment;
+										//localStorage.active_shipment = active_shipment;
 									$('#loading_loads').html(""); //--Delete Loading Gif when all loads are checked. -----/
 									
 							//-------------- SEND REGISTER ID TO DATABASE --- ANDROID CLOUD MESSAGING --- PUSH
