@@ -1139,10 +1139,10 @@
 												if(localStorage.active_shipment >= 1){
 													//alert('there is one active');
 														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
-														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
+														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+localStorage.active_shipment+'</td></tr>');
 													}else{
 												//Change load detals. Just to see old BOL's
-														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+active_shipment+'</td></tr>');
+														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+')"><h3>'+data[i].load_number+'</h3></a></td><td>'+localStorage.active_shipment+'</td></tr>');
 														}
 											} 
 										}
