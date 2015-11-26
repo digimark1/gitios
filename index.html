@@ -1314,7 +1314,7 @@
 		
            $('#change_next_page').click(function(){
 			   alert('Im inside');
-				if((parseFloat(localStorage.cont_pages)) > (parseFloat(localStorage.pages))){
+				if((parseFloat(localStorage.cont_pages)) >= (parseFloat(localStorage.pages)-1)){
 						localStorage.cont_pages = 0;
 						alert('Must reset');
 					}else{
