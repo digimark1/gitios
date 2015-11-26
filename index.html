@@ -1125,6 +1125,7 @@
 												type:'POST',
 												dataType:'json',
 												url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
+												async:false,
 												success: function(data_s){
 													active_shipment = 1;
 														for(j=0;j<data_s.length;j++){
