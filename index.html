@@ -762,9 +762,10 @@
 						var options = new FileUploadOptions();
 						options.fileKey = "file";
 						//options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
-						options.fileName = ($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
+						var name_date = ($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
+						var name_no_date = name_date.split("?"); // delete date in seconds from url
+						options.fileName = name_no_date[0]; //($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
 						options.mimeType = "image/jpeg";
-				
 						options.params = {
 							firstname: 'first',
 							lastname: 'second',
