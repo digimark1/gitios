@@ -1407,15 +1407,16 @@
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
 		    		var id_driver = $('#user_name').val();
-					  alert('bol_details clicked');
+					  //alert('bol_details clicked');
                         $.ajax({
                             type: 'POST',
 			    			dataType: 'json',
                             url: ''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
                             success: function(data){
-								 alert('shipment success');
+								 alert('shipment-'+load_id+'-success');
                             console.log(data);
 					       for(i=0;i<data.length;i++){
+							   alert('inside the "for"');
 								if(data[i].bol_number == bol_number){
 											var bolh = (0.74)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
