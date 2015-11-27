@@ -1275,10 +1275,10 @@
 									$("#lol_item_shipment_inactive").hide();
 									for(i=0;i<data.length;i++){
 										if(data[i].destination_sign == 0){
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 											}else{
 												//Change load detals. Just to see old BOL's
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 												}
 										}
 									$('#loading_shipments').html("");
@@ -1413,11 +1413,12 @@
 			    			dataType: 'json',
                             url: ''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
                             success: function(data){
-								 alert('shipment-'+load_id+'-success');
+								 //alert('shipment-'+load_id+'-success');
                             console.log(data);
 					       for(i=0;i<data.length;i++){
 							   alert('inside the "for"');
 								if(data[i].bol_number == bol_number){
+									alert('bol number number');
 											var bolh = (0.74)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
