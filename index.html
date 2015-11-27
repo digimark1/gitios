@@ -1407,12 +1407,13 @@
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
 		    		var id_driver = $('#user_name').val();
-					
+					  alert('bol_details clicked');
                         $.ajax({
                             type: 'POST',
 			    			dataType: 'json',
                             url: ''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
                             success: function(data){
+								 alert('shipment success');
                             console.log(data);
 					       for(i=0;i<data.length;i++){
 								if(data[i].bol_number == bol_number){
