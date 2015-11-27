@@ -890,19 +890,6 @@
 		//------  VIEW BOL IMAGE ------//
 		
 		function view_bol(){
-			
-			setTimeout(function(){
-					//if($("#img_gps").attr("src") == "css/button3.png"){
-						
-					if($("#img_gps").attr("src") == "css/button3.png"){
-							 $('#localstorage_trace').html(1);
-					}else{
-							 $('#localstorage_trace').html(0);
-							/* clearInterval(location_trace_interval);
-							 alert('location_trace_deleted');*/
-						}
-				},500); 
-			
 			 //$('#localstorage_trace').html(localStorage.trace);
 				                //location.href='#page2_5';
 								var bolh1 = (0.74)*parseFloat(window.screen.height);
@@ -1292,17 +1279,13 @@
 															  'Ok');
                             }})
 		}
-		
-		
 		//---------------------------Query DATA From SERVER  -------------------
-		
 			$('#login_phone').click(function(){
 				$('#start_button').hide();
 				$('#loading_start').show();
 				var cont_2 = 0;
 				var user_name = $('#user_name').val();
 				//alert(user_name);
-				
 				$.ajax({
 					 type: 'POST',
 					 dataType: 'json',
@@ -1325,7 +1308,6 @@
 								 localStorage.name = data[i].full_name;
 								 }
 							 };
-							 
 							  if (cont_2 == 1){
 										localStorage.test1 = parseFloat($('#hid_uid').html());
 										window.plugins.insomnia.keepAwake();
@@ -1368,7 +1350,6 @@
 			      setTimeout(function(){
 								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
 							 }, 500);
-				  
 			   });
 		
 		// Load BOL details -----///
@@ -1416,13 +1397,13 @@
 								 //alert('shipment-'+load_id+'-success');
                             console.log(data);
 					       for(i=0;i<data.length;i++){
-							   alert('inside the "for"');
+							   //alert('inside the "for"');
 								if(data[i].bol_number == bol_number){
-									alert('bol number number');
+									//alert('bol number number');
 											var bolh = (0.74)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
-											alert('Hello bol number-'+data[i].bol_number+'-');
+											//alert('Hello bol number-'+data[i].bol_number+'-');
 											//$('#load_number_hid').html(data[0].load_number);
 											$("#bol_number_hid").html(data[i].bol_number);
 											if (data[i].origin_sign != 0){
@@ -1438,7 +1419,7 @@
 												}
 											d = new Date();
 											setTimeout(function(){
-												alert('inside bol_details');
+												//alert('inside bol_details');
 													//$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'.jpg?'+d.getTime()+'');
 													$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'-0.jpg?'+d.getTime()+'');
 													//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
@@ -1825,7 +1806,7 @@
 					  localStorage.start = 1;
 					},100);
 				}
-		//	}
+		//
 		localStorage.load_hid = localStorage.load_hid_2;
 	})
 	$('#page3').on('pageshow',function(e,data) {
