@@ -1416,6 +1416,7 @@
 											var bolh = (0.74)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+											alert('Hello bol number-'+data[i].bol_number);
 											//$('#load_number_hid').html(data[0].load_number);
 											$("#bol_number_hid").html(data[i].bol_number);
 											if (data[i].origin_sign != 0){
@@ -1796,7 +1797,7 @@
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
-		// Starts save pic button hidden
+		// Starts save pic button hidden //
 		$('#save_pic').hide();
 		// Avoid allowing signatures on messages
 				if(localStorage.inactive == 1){
