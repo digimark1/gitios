@@ -411,10 +411,10 @@
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>       	
              	    	<table width="100%">
                               <tr>
-                                <td width="25%%"><div><button id="upload_picture" value="button">Take Pic</button>&nbsp;</td>
-                                <td width="25%"><div><button id="save_picture" value="button">Save Pic</button></div></td>
-                                <td width="25%"><div id="next_page"><button id="change_next_page" value="button">Next Page</button><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
-                                <td width="25%"><button id="save_bol" value="button">Save BOL</button></td>
+                                <td width="25%"><div><button id="upload_picture" value="button">Take<br>Pic</button></td>
+                                <td width="25%"><div id="save_pic"><button id="save_picture" value="button">Save<br>Pic</button></div></td>
+                                <td width="25%"><div id="next_page"><button id="change_next_page" value="button">Next<br>Page</button><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
+                                <td width="25%"><button id="save_bol" value="button">Save<br>BOL</button></td>
                                 <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
                               </tr>
                           </table>
@@ -758,7 +758,11 @@
 										//selected photo URI is in the src attribute (we set this on getPhoto)
 						var imageURI = $('#cam_picture').html();
 						if (!imageURI) {
-							alert('Please select an image first.');
+							 navigator.notification.alert(
+										  'Please, take a picture first',
+										  alertCallback,
+										  'Smith TracknGo',
+										  'Ok');
 							return;
 						}
 				
@@ -790,6 +794,10 @@
 										  alertCallback,
 										  'Smith TracknGo',
 										  'Ok');
+								  // Erase Picture when succeeding 
+								  $('#cam_picture').html('');
+								  // Hide Save pic Button
+								  $('#save_pic').hide();
 							}
 						
 						function fail(error) {
@@ -835,7 +843,7 @@
 				$("#image_source").attr('alt',localStorage.image_name);
 				$("#image_source").attr('src','css/loading2.gif');
 				navigator.camera.getPicture(onSuccess, onFail, { quality: 40,
-								targetWidth: 1750,
+								targetWidth: 1650,
 								targetHeight: 2200,
 								destinationType: Camera.DestinationType.FILE_URI
 							});
@@ -843,7 +851,8 @@
 							function onSuccess(imageURI) {
 								//var image = document.getElementById('myImage');
 								//image.src = "data:image/jpeg;base64," + imageData;
-								localStorage.camera = 1;
+								//localStorage.camera = 1;
+								$('#save_pic').show();
 								$('#cam_picture').html(imageURI);
 								setTimeout(function(){
 									   //$('#bol_image').html('<img id="image_source" src="data:image/jpeg;base64,'+$('#cam_picture').html()+'" style="width:100%;padding-top:2px;"/>');
