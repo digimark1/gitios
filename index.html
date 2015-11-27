@@ -201,6 +201,7 @@
 									 $.ajax({
 									 type: 'POST',
 									 dataType: 'json',
+									 async:false,
 									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.test1,
 									 //http://leanstaffing.com/trackngo/load/app_get_load_view/
 										success: function(data){
@@ -227,7 +228,7 @@
 								  setTimeout(function(){
 									location.href = "#page4";
 							 		//localStorage.msg = 0;
-							      },1000) 
+							      },100) 
 								 
 								} 
 							 
@@ -243,6 +244,7 @@
 								//alert(load_push);
 									 $.ajax({
 									 type: 'POST',
+									 async: false,
 									 dataType: 'json',
 									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.test1,
 										success: function(data){
@@ -273,7 +275,7 @@
 								   setTimeout(function(){
 									    location.href = "#page2";
 							 			//localStorage.bol = 0;
-							      },1000) 
+							      },100) 
 								   
 								}
 					}
@@ -409,9 +411,11 @@
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>       	
              	    	<table width="100%">
                               <tr>
-                                <td width="33%"><div><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --><button id="upload_picture" value="button">Take Pic</button>&nbsp;&nbsp;<button id="save_picture" value="button">Save</button></div></td>
-                                <td width="33%"><div id="next_page"><button id="change_next_page" value="button">Next Page</button><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="full_name1"></div><div><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>
+                                <td width="25%%"><div><button id="upload_picture" value="button">Take Pic</button>&nbsp;</td>
+                                <td width="25%"><div><button id="save_picture" value="button">Save Pic</button></div></td>
+                                <td width="25%"><div id="next_page"><button id="change_next_page" value="button">Next Page</button><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
+                                <td width="25%"><button id="save_bol" value="button">Save BOL</button></td>
+                                <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
                               </tr>
                           </table>
                  </div>
@@ -797,6 +801,32 @@
 			// Save picture, sends the image to the server.				
 			$('#save_picture').click(function(){
 				  uploadPhoto();
+				});
+			// Save bol, Creates Pdf and save it for manager.
+			$('#save_bol').click(function (){
+				       alert(localStorage.pages+'-'+localStorage.load_id_bol+'-'+localStorage.bol_number);
+				  $.ajax({
+					  type: 'POST',
+					  async: false,
+					  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number},
+					  url: ''+localStorage.save_url+'/savebol.php',
+					  success: function(data){
+						   navigator.notification.alert(
+						   							  'BOL has been sent to Manager',
+													  alertCallback,
+													  'Smith TracknGo',
+													  'Ok');
+						  console.log(data);
+						  },
+					  error: function(data){
+					      navigator.notification.alert(
+						   							  'There was a problem, Try again',
+													  alertCallback,
+													  'Smith TracknGo',
+													  'Ok');
+						  console.log(data);
+						  }
+					  });
 				});
 			
 			//---BOL using CAMERA ---//
