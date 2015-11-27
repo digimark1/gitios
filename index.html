@@ -908,6 +908,7 @@
 								var bolh1 = (0.74)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function(){
+									alert('inside view bol')
 										d = new Date();
 										$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
 										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
@@ -1434,6 +1435,7 @@
 												}
 											d = new Date();
 											setTimeout(function(){
+												alert('inside bol_details');
 													//$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'.jpg?'+d.getTime()+'');
 													$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'-0.jpg?'+d.getTime()+'');
 													//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
