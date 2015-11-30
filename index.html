@@ -210,7 +210,7 @@
 												if (data[i].load_number == load_number){
 														$('#load_hid').html(data[i].idts_load);
 														$('#load_number_hid').html(data[i].load_number);
-														$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+														$("#header_load").html('LOAD # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].load_number+'</a>');
 														$("#bol_number_hid").html(data[i].bol_number);
 														//$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img src="css/button3.png" width="100%"/></a>');
 														//localStorage.msg = 1;
@@ -253,10 +253,10 @@
 												if (data[i].load_number == load_number){
 														$('#load_hid').html(data[i].idts_load);
 														$('#load_number_hid').html(data[i].load_number);
-														$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+														//$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 														$("#bol_number_hid").html(data[i].bol_number);
-														$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-														$('#shipper_button').html('<a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="100%"/></a>');
+														//$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
+														//$('#shipper_button').html('<a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="100%"/></a>');
 														//localStorage.bol = 1;
 														active_load(localStorage.test1);
 														
@@ -755,6 +755,7 @@
 			function uploadPhoto() {
 				  // Called if something bad happens.
     //
+						$("#image_source").attr('src','css/loading2.gif');
 										//selected photo URI is in the src attribute (we set this on getPhoto)
 						var imageURI = $('#cam_picture').html();
 						if (!imageURI) {
@@ -794,6 +795,7 @@
 										  alertCallback,
 										  'Smith TracknGo',
 										  'Ok');
+								  $("#image_source").attr('src',$("#image_source").attr('alt'));
 								  // Erase Picture when succeeding 
 								  $('#cam_picture').html('');
 								  // Hide Save pic Button
@@ -812,7 +814,7 @@
 				});
 			// Save bol, Creates Pdf and save it for manager.
 			$('#save_bol').click(function (){
-				       alert(localStorage.pages+'-'+localStorage.load_id_bol+'-'+localStorage.bol_number);
+				       //alert(localStorage.pages+'-'+localStorage.load_id_bol+'-'+localStorage.bol_number);
 				  $.ajax({
 					  type: 'POST',
 					  async: false,
@@ -895,7 +897,7 @@
 								var bolh1 = (0.74)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function(){
-									alert('inside view bol')
+									//alert('inside view bol')
 										d = new Date();
 										$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
 										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
@@ -1810,7 +1812,12 @@
 		localStorage.load_hid = localStorage.load_hid_2;
 	})
 	$('#page3').on('pageshow',function(e,data) {
-		
+	setTimeout(function(){
+									//alert('inside view bol')
+										d = new Date();
+										$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
+										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
+									 }, 100);	
 	//	localStorage.msg = 0;
 	//	localStorage.bol = 0;
 		$('#loading_signature').hide();
@@ -1825,7 +1832,7 @@
 					$('#clear_sig1').click(function(){
 						$sigdiv1.jSignature('reset');
 					});
-				$('#page3_tr').css('background-image','url(http://leanstaffing.com/tkgo_files2/'+$('#load_number_hid').html()+'.jpg)');			
+				$('#page3_tr').css('background-image','url('+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg)');			
 			},1000);
 	
 		setTimeout(function(){
@@ -1853,7 +1860,7 @@
 					$("#signature2").jSignature('reset')
 				});	
 				//d = new Date();
-				$('#page5_tr').css('background-image','url(http://leanstaffing.com/tkgo_files2/'+$('#load_number_hid').html()+'.jpg)');
+				$('#page5_tr').css('background-image','url('+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg)');
 			},1000);
 			
 		
