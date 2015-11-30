@@ -377,17 +377,27 @@
     
     <!-- List of SHIPMENTS -->
     
-    <div data-role="page" id="page2"> 
-  				<div data-role="header" data-position="fixed" data-tap-toggle="false"> 
+    <div data-role="page" id="page2">
+    			<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%">
+                    <!-- panel content goes here -->
+                    <ul data-role="listview">
+                        <li><div><a style="color:red" href="#header2" data-rel="close"><img width="60%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></a></div><div id="full_name0_2"></div></li>
+                        <li><a href="#page1_1">ACTIVE LOADS</a></li>
+                        <li><a href="#page1_1">INACTIVE LOADS</a></li>
+                        <li><a href="#" id="signout0_2" style="color:red">Sign Out</a></li>
+                    </ul>
+                   <!--<div><a href="#" id="signout0_2" style="color:red">Sign Out</a></div>-->
+                </div>
+  				<div data-role="header" id="header2" data-position="fixed" data-tap-toggle="false"> 
                 <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
-             	    	<table width="100%">
+             	    	<table width="100%" style="background-color:#ED1A3B">
                               <tr>
-                                <td width="50%"><div><img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="full_name0_2"></div><div><a href="#" id="signout0_2" style="color:red">Sign Out</a></div></td>
+                                <td width="10%" style="padding-left:5px"><div><a href="#mypanel"><img width="110%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id="load_shipment"></div></td>
                               </tr>
                           </table>
                  </div>
-                        <div style="width:100%"><table width="100%"><tr><td width="50%"><img id="active_shp" src="css/active_shipments.png" width="100%"></td><td width=50%><div id="load_shipment"></div><!--<img id="history_shp" src="css/history_inactive.png" width="100%">--></td></tr></table></div>
+                        <div style="width:100%"><table width="100%"><tr><td width="50%"><img id="active_shp" src="css/active_shipments.png" width="100%"></td><td width=50%><!--<img id="history_shp" src="css/history_inactive.png" width="100%">--></td></tr></table></div>
                     	<div role="listpage" class="ui-content" id="lol_shipment">
                         <table width="100%" id="lol_item_shipment"></table>
                         <table id="lol_item_shipment_inactive"></table>
@@ -549,7 +559,7 @@
                 <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
              	    	<table width="100%">
                               <tr>
-                                <td width="40%"><div><img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></div></td>
+                                <td width="40%"><div><a href="#" class="ui-btn ui-icon-search ui-btn-icon-left"></a></div></td>
                                 <td align="right" valign="top" style="padding:5px"><div id="full_name4"></div><div><a href="#" id="signout2" style="color:red">Sign Out</a></div></td>
                               </tr>
                           </table>
@@ -661,7 +671,6 @@
 	<!---------------------------------- SCRIPTS ----------------- --------->
     <script src="js/jSignature.min.noconflict.js"></script>
 		<script>
-		
 		var location_trace_interval;
 		var chatInt;
 		var active_loads_number;
@@ -1264,10 +1273,10 @@
 									$("#lol_item_shipment_inactive").hide();
 									for(i=0;i<data.length;i++){
 										if(data[i].destination_sign == 0){
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 											}else{
 												//Change load detals. Just to see old BOL's
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 												}
 										}
 									$('#loading_shipments').html("");
@@ -1356,12 +1365,16 @@
 		
 		// Load BOL details -----///
 	
-           function bol_details(load_id,bol_number,pages_number){
+           function bol_details(load_id,bol_number,pages_number,origin,destination){
+			        if(origin == 0){
+						 localStorage.signature = 0; // SAVE BOL button ask to saving shipper signature
+						}else{
+						 localStorage.signature = 1; // SAVE BOL button ask to saving consignee signature
+						 }
 			   		//--- Clicks counter to change pages ---//
 					localStorage.cont_pages = 0;
 			   		//----BUTTON to change pages----//
 						if(pages_number >= 2){
-							
 							       $('#next_page').show();
 							  }else{
 							       $('#next_page').hide();	
@@ -1444,7 +1457,7 @@
                 };
 				
 			//TEMPORARY LOAD DETAILS -- REORGANIZE LATER 
-			function bol_details_unchange(load_id,bol_number){
+			function bol_details_unchange(load_id,bol_number,pages_number,origin,destinatio){
 			   		//Activating Coment again
 			   		localStorage.comment = 0;
 					localStorage.load_hid_2 = load_id;
@@ -1812,17 +1825,11 @@
 		localStorage.load_hid = localStorage.load_hid_2;
 	})
 	$('#page3').on('pageshow',function(e,data) {
-	setTimeout(function(){
-									//alert('inside view bol')
-										d = new Date();
-										$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
-										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
-									 }, 100);	
 	//	localStorage.msg = 0;
 	//	localStorage.bol = 0;
 		$('#loading_signature').hide();
 		$('#signature_button').show();
-		$('#header_signature_1').html('BOL #: '+'<a id="bol2" href="#" x-apple-data-detectors="false">'+$("#bol_number_hid").html()+'</a>');
+		$('#header_signature_1').html('BOL #: '+'<a id="bol2" href="#" x-apple-data-detectors="false">'+localStorage.bol_number+'</a>');
 		screen.lockOrientation('landscape');
 		setTimeout(function(){
 				$("#signatureparent").html('<div id="signature"></div>');
@@ -1850,7 +1857,7 @@
 		//localStorage.bol = 0;
 		$('#loading_signature2').hide();
 		$('#signature_button2').show();
-		$('#header_signature_2').html('BOL #: '+'<a id="bol3" href="#" x-apple-data-detectors="false">'+$("#bol_number_hid").html()+'</a>');
+		$('#header_signature_2').html('BOL #: '+'<a id="bol3" href="#" x-apple-data-detectors="false">'+localStorage.bol_number+'</a>');
 		screen.lockOrientation('landscape');
 		setTimeout(function(){
 				$("#signatureparent2").html('<div id="signature2"></div>');
