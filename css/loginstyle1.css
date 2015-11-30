@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#load_shipment{
+	color:#fff
+	}
 #load-div{
 	width:100%;
 	}
