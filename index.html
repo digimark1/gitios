@@ -393,7 +393,7 @@ $(document).one('pagebeforecreate', function () {
                               <tr>
                                 <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
                                 <td><div id="title1">TRACKN'GO!</div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="load_shipment"></div></td>
+                                <td align="right" style="padding:5px"><div id="load_shipment"></div></td>
                               </tr>
                           </table>
                  </div>
@@ -424,7 +424,7 @@ $(document).one('pagebeforecreate', function () {
                               <tr>
                                 <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
                                 <td><div id="title2">TRACKN'GO!</div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="load_shipment1"></div></td>
+                                <td align="right"  style="padding:5px"><div id="load_shipment1"></div></td>
                               </tr>
                           </table>
                     </div> 
@@ -436,9 +436,9 @@ $(document).one('pagebeforecreate', function () {
                     <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
                 </div>
                 <div id="pick_drop">
-                  <p>PickUp Location: <a href="#" onClick="navigator.app.loadUrl('https://google.com/', { openExternal:true });">EverGreen Street 1600</a></p>
+                  <p>PickUp Location: <a style="color:red" href="#">EverGreen Street 1600</a></p>
                   <br>
-                  <p>Drop Location: <a href="#" onClick="navigator.app.loadUrl('https://google.com/', { openExternal:true });">EverGreen Street 1600</a></p>
+                  <p>Drop Location: <a  style="color:red" href="#">EverGreen Street 1600</a></p>
                 </div>
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>
@@ -581,7 +581,7 @@ $(document).one('pagebeforecreate', function () {
                               <tr>
                                 <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
                                 <td><div id="title3">TRACKN'GO!</div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="load_shipment4"></div></td>
+                                <td align="right" style="padding:5px"><div id="load_shipment4"></div></td>
                               </tr>
                           </table>
                  </div>
@@ -955,7 +955,7 @@ $(document).one('pagebeforecreate', function () {
 		function view_bol(){
 			 //$('#localstorage_trace').html(localStorage.trace);
 				                //location.href='#page2_5';
-								var bolh1 = (0.74)*parseFloat(window.screen.height);
+								var bolh1 = (0.65)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function(){
 									//alert('inside view bol')
@@ -1467,7 +1467,7 @@ $(document).one('pagebeforecreate', function () {
 							   //alert('inside the "for"');
 								if(data[i].bol_number == bol_number){
 									//alert('bol number number');
-											var bolh = (0.74)*parseFloat(window.screen.height);
+											var bolh = (0.65)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 											//alert('Hello bol number-'+data[i].bol_number+'-');
@@ -1535,7 +1535,7 @@ $(document).one('pagebeforecreate', function () {
                                 console.log(data);
 								for(i=0;i<data.length;i++){
 								if(data[i].bol_number == bol_number){
-								var bolh = (0.74)*parseFloat(window.screen.height);
+								var bolh = (0.65)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh);
 								$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 								//$('#load_number_hid').html(data[0].load_number);
