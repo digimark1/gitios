@@ -366,7 +366,7 @@ $(document).one('pagebeforecreate', function () {
                 <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
              	    	<table width="100%" style="background-color:#ED1A3B">
                               <tr>
-                                <td width="" style="padding-left:5px"><div><a href="#mypanel"><img width="30%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
                                 <td><div id="title0">TRACKN'GO!</div></td>
                                 <td align="right" valign="top" style="padding:5px"><div id=""></div></td>
                               </tr>
@@ -386,19 +386,12 @@ $(document).one('pagebeforecreate', function () {
     <!-- List of SHIPMENTS -->
     
     <div data-role="page" id="page2">
-<!--    			<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%">
-                    <ul data-role="listview">
-                        <li><div><a style="color:red" href="#header2" data-rel="close"><img width="60%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></a></div><div id="full_name0_2"></div></li>
-                        <li><a href="#page1_1">ACTIVE LOADS</a></li>
-                        <li><a href="#page1_1">INACTIVE LOADS</a></li>
-                        <li><a href="#" id="signout0_2" style="color:red">Sign Out</a></li>
-                    </ul>
-                </div>-->
+
   				<div data-role="header" id="header2" data-position="fixed" data-tap-toggle="false"> 
                 <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
              	    	<table width="100%" style="background-color:#ED1A3B">
                               <tr>
-                                <td width="" style="padding-left:5px"><div><a href="#mypanel"><img width="30%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
                                 <td><div id="title1">TRACKN'GO!</div></td>
                                 <td align="right" valign="top" style="padding:5px"><div id="load_shipment"></div></td>
                               </tr>
@@ -429,13 +422,29 @@ $(document).one('pagebeforecreate', function () {
                     <div>
                     <table width="100%" style="background-color:#ED1A3B">
                               <tr>
-                                <td width="" style="padding-left:5px"><div><a href="#mypanel"><img width="30%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
                                 <td><div id="title2">TRACKN'GO!</div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id=""></div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id="load_shipment1"></div></td>
                               </tr>
                           </table>
-                    </div>       	
-             	    	<table width="100%">
+                    </div> 
+                    <div id="header_load"></div> 
+                        <div style="width:100%"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width=33%><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width=33%><img id="direction_bol" src="css/places_inactive.png" width="100%"></td></tr></table></div> 	
+                 </div>
+                
+                <div id="bol_image">
+                    <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
+                </div>
+                <div id="pick_drop">
+                  <p>PickUp Location: <a href="#" onClick="navigator.app.loadUrl('https://google.com/', { openExternal:true });">EverGreen Street 1600</a></p>
+                  <br>
+                  <p>Drop Location: <a href="#" onClick="navigator.app.loadUrl('https://google.com/', { openExternal:true });">EverGreen Street 1600</a></p>
+                </div>
+                <div id="screenheight" hidden></div>
+                <div id="screenheight2" hidden></div>
+                <div data-role="footer">
+                 <div id="picture_buttons">
+                       <table width="100%">
                               <tr>
                                 <td width="25%"><div><button id="upload_picture" value="button">Take<br>Pic</button></td>
                                 <td width="25%"><div id="save_pic"><button id="save_picture" value="button">Save<br>Pic</button></div></td>
@@ -443,15 +452,9 @@ $(document).one('pagebeforecreate', function () {
                                 <td width="25%"><button id="save_bol" value="button">Save<br>BOL</button></td>
                                 <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
                               </tr>
-                          </table>
-                 </div>
-                <div id="header_load"></div>
-                <div id="bol_image">
-                    <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
-                </div>
-                <div id="screenheight" hidden></div>
-                <div id="screenheight2" hidden></div>
-                <div data-role="footer"> 
+                          </table> 
+                      </div>
+                    <div id="digital_buttons">
                        <table style="width: 100%; border-collapse:collapse">
                             <tr style="background-color:#ED1A3B">
                                 <td style="width: 25%;"><div><a href="#page2" id="back" class="" onClick=""><img src="css/button1.png" width="80%" style="alignment-baseline:central"/></a></div></td>
@@ -460,6 +463,7 @@ $(document).one('pagebeforecreate', function () {
                                 <td style="width: 25%;"><div><a href="#page4" id="driver_message" name="b" class="" onClick=""><img src="css/button4.png" width="100%"/></a></div></td>
                             </tr>
                        </table>
+                     </div>
                    <div id="load_id_hidden" hidden></div>
                    <div id="load_number_hid" hidden></div>
                    <div id="bol_number_hid" hidden></div>
@@ -575,9 +579,9 @@ $(document).one('pagebeforecreate', function () {
                 <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
                 		<table width="100%" style="background-color:#ED1A3B">
                               <tr>
-                                <td width="" style="padding-left:5px"><div><a href="#mypanel"><img width="30%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
                                 <td><div id="title3">TRACKN'GO!</div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id=""></div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id="load_shipment4"></div></td>
                               </tr>
                           </table>
                  </div>
@@ -912,11 +916,39 @@ $(document).one('pagebeforecreate', function () {
 		
 		
         $('#history_ld').click(function(){
-			      $('#active_ld').attr('src','css/active_inactive.png');
+			    $('#active_ld').attr('src','css/active_inactive.png');
 				$('#history_ld').attr('src','css/history_active.png');
 				$('#lol_item').hide();
 				$('#lol_item_inactive').show();
-			})
+			});
+		
+		$('#digital_bol').click(function(){
+			    $('#digital_bol').attr('src','css/digital_active.png');
+				$('#direction_bol').attr('src','css/places_inactive.png');
+				$('#picture_bol').attr('src','css/picture_inactive.png');
+				$('#picture_buttons').hide();
+				$('#pick_drop').hide();
+				$('#digital_buttons').show();
+				$('#bol_image').show();
+			});
+		$('#picture_bol').click(function(){
+			    $('#digital_bol').attr('src','css/digital_inactive.png');
+				$('#direction_bol').attr('src','css/places_inactive.png');
+				$('#picture_bol').attr('src','css/picture_active.png');
+				$('#picture_buttons').show();
+				$('#pick_drop').hide();
+				$('#digital_buttons').hide();
+				$('#bol_image').show();
+			});	
+		$('#direction_bol').click(function(){
+			    $('#digital_bol').attr('src','css/digital_inactive.png');
+				$('#direction_bol').attr('src','css/places_active.png');
+				$('#picture_bol').attr('src','css/picture_inactive.png');
+				$('#picture_buttons').hide();
+				$('#pick_drop').show();
+				$('#digital_buttons').hide();
+				$('#bol_image').hide();
+			});	
 		  						
 		//------  VIEW BOL IMAGE ------//
 		
@@ -1285,7 +1317,7 @@ $(document).one('pagebeforecreate', function () {
 	                                console.log(data);
 									//active_loads_number = 0;
 									//Load's number to guide the user. BOL's with current load number.
-									$("#load_shipment").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
 								    $("#lol_item_shipment").html("");
 								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
 									$("#lol_item_shipment_inactive").html("");
@@ -1821,6 +1853,10 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
+		//HIDE picture buttons
+		$('#picture_buttons').hide();
+		// HIDE directions
+		$('#pick_drop').hide();
 		// Starts save pic button hidden //
 		$('#save_pic').hide();
 		// Avoid allowing signatures on messages
