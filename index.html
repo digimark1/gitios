@@ -804,7 +804,8 @@
 										  alertCallback,
 										  'Smith TracknGo',
 										  'Ok');
-								  $("#image_source").attr('src',$("#image_source").attr('alt'));
+										  d = new Date();
+								  $("#image_source").attr('src',$("#image_source").attr('alt')+d.getTime());
 								  // Erase Picture when succeeding 
 								  $('#cam_picture').html('');
 								  // Hide Save pic Button
