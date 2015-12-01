@@ -36,6 +36,12 @@
     <!-- IScroll 4 -->
     <script type="text/javascript" src="js/new/iscroll.js"></script>
     <script type="text/javascript" charset="utf-8">
+	var panel = '<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%" data-theme="a"><ul data-role="listview"><li><div><a style="color:red" href="#" data-rel="close"><img width="60%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></a></div><div id="full_name0_2"></div></li><li><a href="#page1_1">ACTIVE LOADS</a></li><li><a href="#page1_1">INACTIVE LOADS</a></li><li><a href="#" id="signout0_2" style="color:red">Sign Out</a></li></ul></div>';
+
+$(document).one('pagebeforecreate', function () {
+    $.mobile.pageContainer.prepend(panel);
+    $("#mypanel").panel().enhanceWithin();
+});
     // Wait for device API libraries to load
     //
 	var pushNotification;
@@ -69,6 +75,7 @@
 					 //localStorage.test2;
 					 //localStorage.msg;
 					 //localStorage.bol;
+	
 					 screen.lockOrientation('portrait');
 					 console.log(navigator.camera);
 	
@@ -357,10 +364,11 @@
   <div data-role="page" id="page1_1"> 
   				<div data-role="header" data-position="fixed" data-tap-toggle="false"> 
                 <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
-             	    	<table width="100%">
+             	    	<table width="100%" style="background-color:#ED1A3B">
                               <tr>
-                                <td width="50%"><div><img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="full_name"></div><div><a href="#" id="signout0" style="color:red">Sign Out</a></div></td>
+                                <td width="10%" style="padding-left:5px"><div><a href="#mypanel"><img width="110%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td><div id="title0">Trackn ' Go</div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id=""></div></td>
                               </tr>
                           </table>
                  </div>
@@ -378,21 +386,20 @@
     <!-- List of SHIPMENTS -->
     
     <div data-role="page" id="page2">
-    			<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%">
-                    <!-- panel content goes here -->
+<!--    			<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%">
                     <ul data-role="listview">
                         <li><div><a style="color:red" href="#header2" data-rel="close"><img width="60%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></a></div><div id="full_name0_2"></div></li>
                         <li><a href="#page1_1">ACTIVE LOADS</a></li>
                         <li><a href="#page1_1">INACTIVE LOADS</a></li>
                         <li><a href="#" id="signout0_2" style="color:red">Sign Out</a></li>
                     </ul>
-                   <!--<div><a href="#" id="signout0_2" style="color:red">Sign Out</a></div>-->
-                </div>
+                </div>-->
   				<div data-role="header" id="header2" data-position="fixed" data-tap-toggle="false"> 
                 <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
              	    	<table width="100%" style="background-color:#ED1A3B">
                               <tr>
                                 <td width="10%" style="padding-left:5px"><div><a href="#mypanel"><img width="110%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td><div id="title1">Trackn ' Go</div></td>
                                 <td align="right" valign="top" style="padding:5px"><div id="load_shipment"></div></td>
                               </tr>
                           </table>
@@ -418,7 +425,16 @@
     
  	<div data-role="page" id="page2_5">
              	    <div data-role="header">
-                    <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>       	
+                    <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
+                    <div>
+                    <table width="100%" style="background-color:#ED1A3B">
+                              <tr>
+                                <td width="10%" style="padding-left:5px"><div><a href="#mypanel"><img width="110%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td><div id="title2">Trackn ' Go</div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id=""></div></td>
+                              </tr>
+                          </table>
+                    </div>       	
              	    	<table width="100%">
                               <tr>
                                 <td width="25%"><div><button id="upload_picture" value="button">Take<br>Pic</button></td>
@@ -556,13 +572,15 @@
 <!-- Page 4 --> 
     <div data-role="page" id="page4">
                 <div data-role="header" data-position="fixed" data-tap-toggle="false">
-                <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>      	
-             	    	<table width="100%">
+                <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
+                		<table width="100%" style="background-color:#ED1A3B">
                               <tr>
-                                <td width="40%"><div><a href="#" class="ui-btn ui-icon-search ui-btn-icon-left"></a></div></td>
-                                <td align="right" valign="top" style="padding:5px"><div id="full_name4"></div><div><a href="#" id="signout2" style="color:red">Sign Out</a></div></td>
+                                <td width="10%" style="padding-left:5px"><div><a href="#mypanel"><img width="110%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td><div id="title3">Trackn ' Go</div></td>
+                                <td align="right" valign="top" style="padding:5px"><div id=""></div></td>
                               </tr>
                           </table>
+
                  </div>
                    <div id="header_message"></div>
                     <div id="please_consignee">
@@ -1549,6 +1567,7 @@
 
 	/* SIGNATURE DETAILS
 	*/
+	
 	function close_sig(){
 		$("#signatureparent").html("");
 		screen.lockOrientation('portrait');

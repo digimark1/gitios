@@ -1,6 +1,15 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#title0, #title1, #title2, #title3 {
+	font-family: "Yanone Kaffeesatz";
+	color:#FFF;
+	text-shadow:none;
+	font-weight:700;
+	font-size: 1.3em;
+	margin-left:20px;
+	letter-spacing:2px
+	}
 #load_shipment{
 	color:#fff
 	}
