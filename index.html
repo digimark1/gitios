@@ -878,7 +878,9 @@
 							}
 							
 							function onFail(message) {
-								alert('Failed because: ' + message);
+								//alert('Failed because: ' + message);
+								// WHEN THE USER PRESS CANCEL --- not taking a photo.
+								$("#image_source").attr('src',localStorage.image_name);
 							}
 			});
 		// SHOW ACTIVE AND HISTORY LOADS
