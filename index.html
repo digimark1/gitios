@@ -36,7 +36,7 @@
     <!-- IScroll 4 -->
     <script type="text/javascript" src="js/new/iscroll.js"></script>
     <script type="text/javascript" charset="utf-8">
-	var panel = '<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%" data-theme="a"><ul data-role="listview"><li><div><a style="color:red" href="#" data-rel="close"><img width="60%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></a></div><div id="full_name0_2"></div></li><li><a href="#page1_1">ACTIVE LOADS</a></li><li><a href="#page1_1">INACTIVE LOADS</a></li><li><a href="#" id="signout0_2" style="color:red">Sign Out</a></li></ul></div>';
+	var panel = '<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%" data-theme="a"><ul data-role="listview"><li><div><a style="color:red" href="#" data-rel="close"><img width="60%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></a></div><div id="full_name0_2"></div></li><li><a href="#page1_1">ACTIVE LOADS</a></li><li><a href="#page1_1">INACTIVE LOADS</a></li><li><a href="#" id="" style="color:red" onClick="signout_function()">Sign Out</a></li></ul></div>';
 
 $(document).one('pagebeforecreate', function () {
     $.mobile.pageContainer.prepend(panel);
@@ -712,10 +712,24 @@ $(document).one('pagebeforecreate', function () {
 				'Smith TracknGo',
 				['Yes','No']
 			 );
-			 
-
-			
 			});
+			
+		function signout_function(){
+			 function onConfirm(button){
+			   if(button == 1){
+				   	clean_apple_id();
+				   }else{
+					   }
+			}
+			 navigator.notification.confirm(
+			 	'Are you sure?',
+				onConfirm,
+				'Smith TracknGo',
+				['Yes','No']
+			 );
+			};
+			
+			
 		function alertCallback() {
 			 //Nothing but needed to make custom alerts work
 			}
