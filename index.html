@@ -685,9 +685,6 @@ $(document).one('pagebeforecreate', function () {
     </div>
 
    <!-- BOL IMAGE PAGE -->
-   
-
-   
 	
 	<!---------------------------------- SCRIPTS ----------------- --------->
     <script src="js/jSignature.min.noconflict.js"></script>
@@ -858,30 +855,44 @@ $(document).one('pagebeforecreate', function () {
 				  uploadPhoto();
 				});
 			// Save bol, Creates Pdf and save it for manager.
+			 function onConfirm_signature(button){
+								   if(button == 1){
+									   }else{
+										   }
+								}
 			$('#save_bol').click(function (){
 				       //alert(localStorage.pages+'-'+localStorage.load_id_bol+'-'+localStorage.bol_number);
-				  $.ajax({
-					  type: 'POST',
-					  async: false,
-					  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number},
-					  url: ''+localStorage.save_url+'/savebol.php',
-					  success: function(data){
-						   navigator.notification.alert(
-						   							  'BOL has been sent to Manager',
-													  alertCallback,
-													  'Smith TracknGo',
-													  'Ok');
-						  console.log(data);
-						  },
-					  error: function(data){
-					      navigator.notification.alert(
-						   							  'There was a problem, Try again',
-													  alertCallback,
-													  'Smith TracknGo',
-													  'Ok');
-						  console.log(data);
-						  }
-					  });
+				if(localStorage.signature == 0){
+						
+								 navigator.notification.confirm(
+									'Are you sure?',
+									onConfirm_signature,
+									'Smith TracknGo',
+									['Yes','No']
+								 );
+					}
+						  $.ajax({
+							  type: 'POST',
+							  async: false,
+							  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number},
+							  url: ''+localStorage.save_url+'/savebol.php',
+							  success: function(data){
+								   navigator.notification.alert(
+															  'BOL has been sent to Manager',
+															  alertCallback,
+															  'Smith TracknGo',
+															  'Ok');
+								  console.log(data);
+								  },
+							  error: function(data){
+								  navigator.notification.alert(
+															  'There was a problem, Try again',
+															  alertCallback,
+															  'Smith TracknGo',
+															  'Ok');
+								  console.log(data);
+								  }
+							  });
 				});
 			
 			//---BOL using CAMERA ---//
@@ -1305,8 +1316,6 @@ $(document).one('pagebeforecreate', function () {
 										}
 								}
  // Changed from 20 Seconds to 40 seconds Aprox. //20151008 changed to 60
-											 
-										
                                 },
                             error: function(data){
                                 console.log(data);
@@ -1317,9 +1326,7 @@ $(document).one('pagebeforecreate', function () {
 															  'Ok');
                             }})
 				}
-				
 		//------- LOAD SHIPMENTS -----//
-		
 		function active_shipments_load(load_id,load_number){
 							 location.href = '#page2';
 							 localStorage.load_id_bol = load_id;
