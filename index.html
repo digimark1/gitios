@@ -1768,7 +1768,7 @@ $(document).one('pagebeforecreate', function () {
 			$("#signature_print2").html(simage2.src);
 			$.ajax({
 					type: 'POST',
-					data: {destination_sig:$('#hidden_Signature2').val(),load_id:$('#load_hid').html(),sig_print:$("#signature_print2").html(),load_number:$('#load_number_hid').html()},
+					data: {bol_number:localStorage.bol_number,load_id:localStorage.load_id_bol,sig_print:$("#signature_print2").html(), pages_number:localStorage.pages},
 					url: ''+localStorage.save_url+'/save_sig2.php',
 					success: function(data){
 						console.log(data);
@@ -1841,7 +1841,7 @@ $(document).one('pagebeforecreate', function () {
 							  // ------------Message to signature saving 
 									$.ajax({
 										type: 'POST',
-										data: {load_id:lid, sig_id: sig, bol_number:bol, user_id: localStorage.test1, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
+										data: {load_id:localStorage.load_id_bol, sig_id: sig, bol_number:localStorage.bol_number, user_id: localStorage.test1, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
 										url: ''+localStorage.save_url+'/message_signature.php',
 										success: function(data){
 													//$('#sig_button1').attr("href","#");
