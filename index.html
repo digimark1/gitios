@@ -1271,6 +1271,7 @@ $(document).one('pagebeforecreate', function () {
 									type: 'POST',
 									//data: {token_device: token, driver_id: id},
 									data: {token_device: token, driver_id: id},
+									async: false,
 									url: ''+localStorage.save_url+'/saveid_apple.php',
 									success: function(data){
 										console.log(data);
@@ -1324,6 +1325,7 @@ $(document).one('pagebeforecreate', function () {
 							 localStorage.load_id_bol = load_id;
 							 $.ajax({
 							 type: 'POST',
+							 async:false,
 							 dataType: 'json',
 							 url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
 							
@@ -1739,7 +1741,7 @@ $(document).one('pagebeforecreate', function () {
 			$("#signature_print").html(simage.src);
 			$.ajax({
 					type: 'POST',
-					data: {origin_sig:$('#hidden_Signature').val(),load_id:$('#load_hid').html(),sig_print:$("#signature_print").html(),load_number:$('#load_number_hid').html()},
+					data: {bol_number:localStorage.bol_number, load_id:localStorage.load_id_bol, sig_print:$("#signature_print").html(), pages_number:localStorage.pages},
 					url: ''+localStorage.save_url+'/save_sig.php',
 					success: function(data){
 						console.log(data);
@@ -1747,7 +1749,7 @@ $(document).one('pagebeforecreate', function () {
 						$('#sig_button1').attr("href","#");
 						$('#sig_button1').html('<img src="css/button2s.png" width="100%"/>');
 						$('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-						message_signature($('#load_hid').html(),1);
+						message_signature(localStorage.load_id_bol,1,localStorage.bol_number);
 						//sigData.jSignature("reset");
 					},
 					error: function(data){
@@ -1772,7 +1774,7 @@ $(document).one('pagebeforecreate', function () {
 						console.log(data);
 						$('#sig_button2').attr("href","#");
 						$('#sig_button2').html('<img src="css/button3s.png" width="100%"/>');
-						message_signature($('#load_hid').html(),2);
+						message_signature(localStorage.load_id_bol,2,localStorage.bol_number);
 						// Reset location traces sending //
 						localStorage.start = 0;
 						localStorage.finish = 1;
@@ -1834,12 +1836,12 @@ $(document).one('pagebeforecreate', function () {
 		});
 		
 	//----------Function for saving signature message to callchecks
-	function message_signature(lid,sig){
+	function message_signature(lid,sig,bol){
 									//alert(lid+'-'+sig)
 							  // ------------Message to signature saving 
 									$.ajax({
 										type: 'POST',
-										data: {load_id:lid, sig_id: sig, user_id: localStorage.test1, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
+										data: {load_id:lid, sig_id: sig, bol_number:bol, user_id: localStorage.test1, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
 										url: ''+localStorage.save_url+'/message_signature.php',
 										success: function(data){
 													//$('#sig_button1').attr("href","#");
