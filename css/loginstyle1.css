@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#picture_buttons, #digital_buttons {
+	background-color:#ed1a3b
+	}
 #title0, #title1, #title2, #title3 {
 	font-family: "Yanone Kaffeesatz";
 	color:#FFF;
