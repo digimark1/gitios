@@ -859,13 +859,24 @@ $(document).one('pagebeforecreate', function () {
 			//--- OnConfirm_signature changes function if the document is already signed. ---//
 			 function onConfirm_signature(button){
 								   if(button == 1){
-									     
 									    $.ajax({
 												  type: 'POST',
 												  async: false,
 												  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number},
 												  url: ''+localStorage.save_url+localStorage.save_bol+'',
 												  success: function(data){
+													   if(localStorage.signature == 0) {
+													   			  localStorage.signature = 1;
+																  $('#sig_button1').attr("href","#");
+																  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>');
+																  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
+																  $('#save_bol').show();
+																  
+													   		} else if(localStorage.signature == 1){
+																  localStorage.completed = 1;
+																  $('#save_bol').hide();
+																   $('#consignee_button').html('<a href="#" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3s.png" width="100%"/></a>');
+																}
 													   navigator.notification.alert(
 																				  'BOL has been sent to Manager',
 																				  alertCallback,
@@ -1463,8 +1474,10 @@ $(document).one('pagebeforecreate', function () {
 						 }
 					 if(destination == 1){
 						     $('#save_bol').hide();
+							 localStorage.completed = 1;
 						 }else{
 							 $('#save_bol').show();
+							 localStorage.completed = 0;
 							 }
 			   		//--- Clicks counter to change pages ---//
 					localStorage.cont_pages = 0;
