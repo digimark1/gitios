@@ -1785,7 +1785,7 @@ $(document).one('pagebeforecreate', function () {
 					url: ''+localStorage.save_url+'/save_sig.php',
 					success: function(data){
 						console.log(data);
-						
+						$('#save_bol').hide();
 						$('#sig_button1').attr("href","#");
 						$('#sig_button1').html('<img src="css/button2s.png" width="100%"/>');
 						$('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
@@ -1812,6 +1812,7 @@ $(document).one('pagebeforecreate', function () {
 					url: ''+localStorage.save_url+'/save_sig2.php',
 					success: function(data){
 						console.log(data);
+						$('#save_bol').hide();
 						$('#sig_button2').attr("href","#");
 						$('#sig_button2').html('<img src="css/button3s.png" width="100%"/>');
 						message_signature(localStorage.load_id_bol,2,localStorage.bol_number);
