@@ -437,9 +437,9 @@ $(document).one('pagebeforecreate', function () {
                     <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
                 </div>
                 <div id="pick_drop">
-                  <p>PickUp Location: <a style="color:red" href="http://www.google.com">EverGreen Street 1600</a></p>
+                  <p>PickUp Location: <a style="color:red" href="http://www.google.com" target="_blank">EverGreen Street 1600</a></p>
                   <br>
-                  <p>Drop Location: <a  style="color:red" href="http://www.alexa.com">EverGreen Street 1600</a></p>
+                  <p>Drop Location: <a  style="color:red" href="http://www.alexa.com" target="_blank">EverGreen Street 1600</a></p>
                 </div>
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>
@@ -447,10 +447,10 @@ $(document).one('pagebeforecreate', function () {
                  <div id="picture_buttons">
                        <table width="100%">
                               <tr>
-                                <td width="25%"><div><button id="upload_picture" value="button">Take<br>Pic</button></td>
+                                <td width="25%"><div><button id="upload_picture" value="button">Take<br>Pic</button></div></td>
                                 <td width="25%"><div id="save_pic"><button id="save_picture" value="button">Save<br>Pic</button></div></td>
                                 <td width="25%"><div id="next_page"><button id="change_next_page" value="button">Next<br>Page</button><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
-                                <td width="25%"><button id="save_bol" value="button">Save<br>BOL</button></td>
+                                <td width="25%"><div><button id="save_bol" value="button">Save<br>BOL</button></div></td>
                                 <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
                               </tr>
                           </table> 
@@ -1293,7 +1293,7 @@ $(document).one('pagebeforecreate', function () {
 														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+','+data[i].load_number+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
 													}else{
 												//Change load detals. Just to see old BOL's
-														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments('+data[i].idts_load+','+data[i].load_number+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
+														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="active_shipments_load('+data[i].idts_load+','+data[i].load_number+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
 														}
 											} 
 										}
@@ -1377,7 +1377,7 @@ $(document).one('pagebeforecreate', function () {
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 											}else{
 												//Change load detals. Just to see old BOL's
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details_inactive('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
 												}
 										}
 									$('#loading_shipments').html("");
