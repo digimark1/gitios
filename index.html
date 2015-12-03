@@ -71,6 +71,7 @@ $(document).one('pagebeforecreate', function () {
 					 localStorage.cont_pages;
 					 localStorage.bol_number;
 					 localStorage.active_shipment;
+					 localStorage.save_bol;
 					 //using, but testing the blank issue /// /// localStorage.token;
 					 //localStorage.test2;
 					 //localStorage.msg;
@@ -436,9 +437,9 @@ $(document).one('pagebeforecreate', function () {
                     <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
                 </div>
                 <div id="pick_drop">
-                  <p>PickUp Location: <a style="color:red" href="#">EverGreen Street 1600</a></p>
+                  <p>PickUp Location: <a style="color:red" href="http://www.google.com">EverGreen Street 1600</a></p>
                   <br>
-                  <p>Drop Location: <a  style="color:red" href="#">EverGreen Street 1600</a></p>
+                  <p>Drop Location: <a  style="color:red" href="http://www.alexa.com">EverGreen Street 1600</a></p>
                 </div>
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>
@@ -855,44 +856,58 @@ $(document).one('pagebeforecreate', function () {
 				  uploadPhoto();
 				});
 			// Save bol, Creates Pdf and save it for manager.
+			//--- OnConfirm_signature changes function if the document is already signed. ---//
 			 function onConfirm_signature(button){
 								   if(button == 1){
+									     
+									    $.ajax({
+												  type: 'POST',
+												  async: false,
+												  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number},
+												  url: ''+localStorage.save_url+localStorage.save_bol+'',
+												  success: function(data){
+													   navigator.notification.alert(
+																				  'BOL has been sent to Manager',
+																				  alertCallback,
+																				  'Smith TracknGo',
+																				  'Ok');
+													  console.log(data);
+													  },
+												  error: function(data){
+													  navigator.notification.alert(
+																				  'There was a problem, Try again',
+																				  alertCallback,
+																				  'Smith TracknGo',
+																				  'Ok');
+													  console.log(data);
+													  }
+												  });
 									   }else{
+										   
 										   }
-								}
+								};
+								
+			// Save BOL as a "signature"///
 			$('#save_bol').click(function (){
-				       //alert(localStorage.pages+'-'+localStorage.load_id_bol+'-'+localStorage.bol_number);
+				       //
 				if(localStorage.signature == 0){
-						
+								 localStorage.save_bol = '/savebol.php';
 								 navigator.notification.confirm(
-									'Are you sure?',
+									'Save Document Signed by the SHIPPER',
 									onConfirm_signature,
 									'Smith TracknGo',
 									['Yes','No']
 								 );
-					}
-						  $.ajax({
-							  type: 'POST',
-							  async: false,
-							  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number},
-							  url: ''+localStorage.save_url+'/savebol.php',
-							  success: function(data){
-								   navigator.notification.alert(
-															  'BOL has been sent to Manager',
-															  alertCallback,
-															  'Smith TracknGo',
-															  'Ok');
-								  console.log(data);
-								  },
-							  error: function(data){
-								  navigator.notification.alert(
-															  'There was a problem, Try again',
-															  alertCallback,
-															  'Smith TracknGo',
-															  'Ok');
-								  console.log(data);
-								  }
-							  });
+					}else if(localStorage.signature == 1){
+								 localStorage.save_bol = '/savebol2.php';
+								 navigator.notification.confirm(
+									'Save Document Signed by the CONSIGNEE',
+									onConfirm_signature,
+									'Smith TracknGo',
+									['Yes','No']
+								 );
+						}
+
 				});
 			
 			//---BOL using CAMERA ---//
@@ -1442,9 +1457,9 @@ $(document).one('pagebeforecreate', function () {
 	
            function bol_details(load_id,bol_number,pages_number,origin,destination){
 			        if(origin == 0){
-						 localStorage.signature = 0; // SAVE BOL button ask to saving shipper signature
+						     localStorage.signature = 0; // SAVE BOL button ask to saving shipper signature
 						}else{
-						 localStorage.signature = 1; // SAVE BOL button ask to saving consignee signature
+						     localStorage.signature = 1; // SAVE BOL button ask to saving consignee signature
 						 }
 			   		//--- Clicks counter to change pages ---//
 					localStorage.cont_pages = 0;
