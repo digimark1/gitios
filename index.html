@@ -60,7 +60,7 @@ $(document).one('pagebeforecreate', function () {
 					 localStorage.load_id_bol;
 					 localStorage.start;
 					 localStorage.finish;
-					 localStorage.test1;
+					 localStorage.user_id;
 					 localStorage.trace;
 					 localStorage.name;
 					 localStorage.message;
@@ -141,7 +141,7 @@ $(document).one('pagebeforecreate', function () {
         element.innerHTML = '<input type="hidden" id="latitude" name="latitude" value="'           + position.coords.latitude              + '"  /><br />' +
                             '<input type="hidden" id="longitude" name="longitude" value="'          + position.coords.longitude             + '" /><br />' ;
 	
-				if(!localStorage.test1){
+				if(!localStorage.user_id){
 					location.href='#page1';
 					$('#loading_start').hide();
 					 //alert('Please Sign in')
@@ -157,7 +157,7 @@ $(document).one('pagebeforecreate', function () {
 						 $('#full_name5').html(localStorage.name);
 						 $('#full_name6').html(localStorage.name);
 						//20151007
-						//active_load(localStorage.test1);
+						//active_load(localStorage.user_id);
 					}
     }
     // onError Callback receives a PositionError object
@@ -210,7 +210,7 @@ $(document).one('pagebeforecreate', function () {
 									 type: 'POST',
 									 dataType: 'json',
 									 async:false,
-									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.test1,
+									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.user_id,
 									 //http://leanstaffing.com/trackngo/load/app_get_load_view/
 										success: function(data){
 											console.log(data);
@@ -230,7 +230,7 @@ $(document).one('pagebeforecreate', function () {
 												 //alert('1call:'+$('#load_hid').html());
 										}
 										})
-								//active_load(localStorage.test1);
+								//active_load(localStorage.user_id);
 								 // load_details3($('#load_hid').html());
 								 
 								  setTimeout(function(){
@@ -254,7 +254,7 @@ $(document).one('pagebeforecreate', function () {
 									 type: 'POST',
 									 async: false,
 									 dataType: 'json',
-									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.test1,
+									 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+localStorage.user_id,
 										success: function(data){
 											console.log(data);
 											for(i=0;i<data.length;i++){
@@ -276,7 +276,7 @@ $(document).one('pagebeforecreate', function () {
 												//alert('2call:'+$('#load_hid').html());
 										}
 										})
-								//active_load(localStorage.test1);
+								//active_load(localStorage.user_id);
 								  //load_details2($('#load_hid').html());
 								 
 								   setTimeout(function(){
@@ -736,14 +736,14 @@ $(document).one('pagebeforecreate', function () {
 							$.ajax({
 									type: 'POST',
 									//data: {token_device: token, driver_id: id},
-									data: {token_device: "", driver_id: localStorage.test1},
+									data: {token_device: "", driver_id: localStorage.user_id},
 									url: ''+localStorage.save_url+'/saveid_apple.php',
 									success: function(data){
 										console.log(data);
 										localStorage.removeItem('load_hid');
 										localStorage.removeItem('start');
 										localStorage.removeItem('finish');
-										localStorage.removeItem('test1');
+										localStorage.removeItem('user_id');
 										localStorage.removeItem('trace');
 										localStorage.removeItem('name');
 										localStorage.removeItem('message');
@@ -1123,7 +1123,7 @@ $(document).one('pagebeforecreate', function () {
 					$('#loading_message').show();
 					    $.ajax({ 
                             type: 'POST',
-                            data: {load_id: localStorage.load_id_bol, message_id: $('#troubles_').val(), user_id : localStorage.test1, message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val(), bol_number:localStorage.bol_number},
+                            data: {load_id: localStorage.load_id_bol, message_id: $('#troubles_').val(), user_id : localStorage.user_id, message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val(), bol_number:localStorage.bol_number},
                             url: ''+localStorage.save_url+'/sendmessage.php',
                             success: function(data){
                                 console.log(data);
@@ -1162,7 +1162,7 @@ $(document).one('pagebeforecreate', function () {
 							custom=5;  
 					$.ajax({ 
                             type: 'POST',
-                            data: {load_id: $('#load_hid').html(), message_id: custom, user_id : $('#user_name').val(), message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val()},
+                            data: {load_id:localStorage.load_id_bol, message_id: custom, user_id : localStorage.user_id, message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val()},
                             url: ''+localStorage.save_url+'/sendmessage.php',
                             success: function(data){
                                 console.log(data);
@@ -1193,7 +1193,7 @@ $(document).one('pagebeforecreate', function () {
 					$('#latitude').val(lati); // Use to show location when sending callcheck
                     var longi = y;
 					$('#longitude').val(longi); // Use to show location when sending callcheck
-					var name = localStorage.test1;
+					var name = localStorage.user_id;
 					
                         $.ajax({
                             type: 'POST',
@@ -1219,7 +1219,7 @@ $(document).one('pagebeforecreate', function () {
 					$('#latitude').val(lati); // Use to show location when sending callcheck
                     var longi = y;
 					$('#longitude').val(longi); // Use to show location when sending callcheck
-					var name = localStorage.test1;
+					var name = localStorage.user_id;
 					
                         $.ajax({
                             type: 'POST',
@@ -1302,7 +1302,7 @@ $(document).one('pagebeforecreate', function () {
 							//-------------- SEND REGISTER ID TO DATABASE --- ANDROID CLOUD MESSAGING --- PUSH
 							setTimeout(function(){
 								var token = localStorage.token; // $('#token_device_hid').html();
-								var id = localStorage.test1;
+								var id = localStorage.user_id;
 								$.ajax({
 									type: 'POST',
 									//data: {token_device: token, driver_id: id},
@@ -1420,10 +1420,10 @@ $(document).one('pagebeforecreate', function () {
 								 }
 							 };
 							  if (cont_2 == 1){
-										localStorage.test1 = parseFloat($('#hid_uid').html());
+										localStorage.user_id = parseFloat($('#hid_uid').html());
 										window.plugins.insomnia.keepAwake();
-										//alert(localStorage.test1)
-										//active_load(localStorage.test1);
+										//alert(localStorage.user_id)
+										//active_load(localStorage.user_id);
 										location.href = "#page1_1";
 								 	}else{
 										navigator.notification.alert(
@@ -1881,7 +1881,7 @@ $(document).one('pagebeforecreate', function () {
 							  // ------------Message to signature saving 
 									$.ajax({
 										type: 'POST',
-										data: {load_id:localStorage.load_id_bol, sig_id: sig, bol_number:localStorage.bol_number, user_id: localStorage.test1, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
+										data: {load_id:localStorage.load_id_bol, sig_id: sig, bol_number:localStorage.bol_number, user_id: localStorage.user_id, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
 										url: ''+localStorage.save_url+'/message_signature.php',
 										success: function(data){
 													//$('#sig_button1').attr("href","#");
@@ -2025,12 +2025,12 @@ $(document).one('pagebeforecreate', function () {
 		$('#callcheck_li').hide();
 		//localStorage.msg = 0;
 		//localStorage.bol = 0;
-		active_load(localStorage.test1);
+		active_load(localStorage.user_id);
 		$('#active_ld').attr('src','css/active_active.png');
 		$('#history_ld').attr('src','css/history_inactive.png');
 		$('#lol_item').show();
 		$('#lol_item_inactive').hide();
-		//alert('iddriver'+localStorage.test1)
+		//alert('iddriver'+localStorage.user_id)
 		cordova.plugins.backgroundMode.enable();
 	    })
 	
