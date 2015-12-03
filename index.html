@@ -72,6 +72,7 @@ $(document).one('pagebeforecreate', function () {
 					 localStorage.bol_number;
 					 localStorage.active_shipment;
 					 localStorage.save_bol;
+					 localStorage.load_number;
 					 //using, but testing the blank issue /// /// localStorage.token;
 					 //localStorage.test2;
 					 //localStorage.msg;
@@ -218,8 +219,9 @@ $(document).one('pagebeforecreate', function () {
 												if (data[i].load_number == load_number){
 														$('#load_hid').html(data[i].idts_load);
 														$('#load_number_hid').html(data[i].load_number);
-														$("#header_load").html('LOAD # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].load_number+'</a>');
+														$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 														$("#bol_number_hid").html(data[i].bol_number);
+														localStorage.load_number = data[i].load_number;
 														//$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img src="css/button3.png" width="100%"/></a>');
 														//localStorage.msg = 1;
 														view_bol();
@@ -436,9 +438,9 @@ $(document).one('pagebeforecreate', function () {
                     <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
                 </div>
                 <div id="pick_drop">
-                  <p>PickUp Location: <a style="color:red" href="http://www.google.com"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>
+                  <p>PickUp Location: <a style="color:red" href="maps://?q={11.23},{74.18}"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>
                   <br>
-                  <p>Drop Location: <a  style="color:red" href="http://www.alexa.com" ; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>
+                  <p>Drop Location: <a  style="color:red" href="maps://?q={74.18},{11.23}" ; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>
                 </div>
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>
@@ -1355,6 +1357,7 @@ $(document).one('pagebeforecreate', function () {
 		function active_shipments_load(load_id,load_number){
 							 location.href = '#page2';
 							 localStorage.load_id_bol = load_id;
+							 localStorage.load_number = load_number;
 							 $.ajax({
 							 type: 'POST',
 							 async:false,
@@ -1703,7 +1706,7 @@ $(document).one('pagebeforecreate', function () {
 			//localStorage.bol = 0;
 			$('#message_button').show();
 			$('#loading_message').hide();
-			$('#header_message').html('BOL #: '+'<a id="bol4" href="#" x-apple-data-detectors="false">'+$("#bol_number_hid").html()+'</a>');
+			$('#header_message').html('LOAD #: '+'<a id="bol4" href="#" x-apple-data-detectors="false">'+localStorage.load_number+'</a>');
 		
 		$('#clear_message').click(function(){
 			$('#troubles_msg').val('')
