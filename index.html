@@ -1123,7 +1123,7 @@ $(document).one('pagebeforecreate', function () {
 					$('#loading_message').show();
 					    $.ajax({ 
                             type: 'POST',
-                            data: {load_id: $('#load_hid').html(), message_id: $('#troubles_').val(), user_id : $('#user_name').val(), message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val()},
+                            data: {load_id: localStorage.load_id_bol, message_id: $('#troubles_').val(), user_id : localStorage.test1, message_text: $("textarea#troubles_msg").val(), lat_message: $('#latitude').val(), lng_message:$('#longitude').val(), bol_number:localStorage.bol_number},
                             url: ''+localStorage.save_url+'/sendmessage.php',
                             success: function(data){
                                 console.log(data);
@@ -1743,8 +1743,8 @@ $(document).one('pagebeforecreate', function () {
 						$.ajax({
 							type: 'POST',
 							dataType: 'json',
-							url: ''+localStorage.base_url+'/load/get_chat/'+parseFloat($('#load_hid').html())+'/1',
-							success: function(data){
+							url: ''+localStorage.base_url+'/load/get_chat/'+localStorage.load_id_bol+'/1',
+								success: function(data){
 								$("#notification_message").html("");
 								console.log(data);
 								for(i=0;i<data.length;i++){
