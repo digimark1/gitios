@@ -636,7 +636,7 @@ $(document).one('pagebeforecreate', function () {
                                 <td style="width: 25%;text-align: center;"><div><a href="" id="backmessage" class=""><img width="40%" src="css/signature-back-action.png"></a></div></td>
                                 <td style="width: 25%;"><div id="shipper_button1"><!--<a href="" id="sig_button11" name="a" class=""><img src="css/button2.png" width="100%"/></a>--></div></td>
 								<td style="width: 25%;"><div id="consignee_button1"><!--<a href="" id="sig_button22" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>--></div></td>
-                                <td style="width: 25%;"><div><a href="" id="driver_message1" name="b" class="" onClick=""><img src="css/button4.png" width="100%"/></a></div></td>
+                                <td style="width: 25%;"><div><!--<a href="" id="driver_message1" name="b" class="" onClick=""><img src="css/button4.png" width="100%"/></a>--></div></td>
                             </tr>
                        </table>
                 </div>
@@ -977,6 +977,7 @@ $(document).one('pagebeforecreate', function () {
 			});
 		
 		$('#digital_bol').click(function(){
+			    $('#chat_bol').attr('src','css/chat_inactive.png');
 			    $('#digital_bol').attr('src','css/digital_active.png');
 				$('#direction_bol').attr('src','css/places_inactive.png');
 				$('#picture_bol').attr('src','css/picture_inactive.png');
@@ -986,6 +987,7 @@ $(document).one('pagebeforecreate', function () {
 				$('#bol_image').show();
 			});
 		$('#picture_bol').click(function(){
+			    $('#chat_bol').attr('src','css/chat_inactive.png');
 			    $('#digital_bol').attr('src','css/digital_inactive.png');
 				$('#direction_bol').attr('src','css/places_inactive.png');
 				$('#picture_bol').attr('src','css/picture_active.png');
@@ -995,6 +997,7 @@ $(document).one('pagebeforecreate', function () {
 				$('#bol_image').show();
 			});	
 		$('#direction_bol').click(function(){
+			    $('#chat_bol').attr('src','css/chat_inactive.png');
 			    $('#digital_bol').attr('src','css/digital_inactive.png');
 				$('#direction_bol').attr('src','css/places_active.png');
 				$('#picture_bol').attr('src','css/picture_inactive.png');
@@ -1008,9 +1011,13 @@ $(document).one('pagebeforecreate', function () {
 				setTimeout(function(){
 						location.href='#page4';
 					},500);
-				$('#direction_bol').attr('src','css/inactive_active.png');
+				$('#direction_bol').attr('src','css/places_active.png');
 				$('#picture_bol').attr('src','css/picture_inactive.png');
 				$('#digital_bol').attr('src','css/digital_inactive.png');
+				$('#picture_buttons').hide();
+				$('#pick_drop').hide();
+				$('#digital_buttons').show();
+				$('#bol_image').hide();
 			});		
 		  						
 		//------  VIEW BOL IMAGE ------//
@@ -1929,7 +1936,7 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
-		
+		$('#digital_bol').attr('src','css/digital_active.png');
 		//HIDE picture buttons
 		$('#picture_buttons').hide();
 		// HIDE directions
