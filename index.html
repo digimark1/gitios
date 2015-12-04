@@ -1002,9 +1002,9 @@ $(document).one('pagebeforecreate', function () {
 			    $('#digital_bol').attr('src','css/digital_inactive.png');
 				$('#direction_bol').attr('src','css/places_active.png');
 				$('#picture_bol').attr('src','css/picture_inactive.png');
-				$('#picture_buttons').hide();
+				//$('#picture_buttons').hide();
 				$('#pick_drop').show();
-				$('#digital_buttons').hide();
+				//$('#digital_buttons').hide();
 				$('#bol_image').hide();
 			});
 		 $('#chat_bol').click(function(){
@@ -1941,6 +1941,10 @@ $(document).one('pagebeforecreate', function () {
 	$('#page2_5').on('pageshow',function(e,data) {
 		$('#digital_bol').attr('src','css/digital_active.png');
 		$('#chat_bol').attr('src','css/chat_inactive.png');
+		//$('#picture_buttons').hide();
+				//$('#pick_drop').show();
+				//$('#digital_buttons').hide();
+		//$('#bol_image').show();
 		//HIDE picture buttons
 		$('#picture_buttons').hide();
 		// HIDE directions
