@@ -73,6 +73,7 @@ $(document).one('pagebeforecreate', function () {
 					 localStorage.active_shipment;
 					 localStorage.save_bol;
 					 localStorage.load_number;
+					 localStorage.pick_address;
 					 //using, but testing the blank issue /// /// localStorage.token;
 					 //localStorage.test2;
 					 //localStorage.msg;
@@ -439,7 +440,7 @@ $(document).one('pagebeforecreate', function () {
                 </div>
                 <div id="pick_drop">
                   <!--<p>PickUp Location: <a style="color:red" href="maps://?q=cupertino"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>-->
-                  <p>PickUp Location: <a style="color:red" onClick="location.href='maps://?q=cupertino'" target="_system">EverGreen Street 1600</a></p>
+                  <p>PickUp Location: <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system">EverGreen Street 1600</a></p>
                   <br>
                   <p>Drop Location:   <a style="color:red" href="maps://?q=cupertino" target="_system">EverGreen Street 1600</a></p>
                 </div>
@@ -1915,6 +1916,7 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
+		localStorage.pick_address = 'maps://?q=cupertino';
 		//HIDE picture buttons
 		$('#picture_buttons').hide();
 		// HIDE directions
