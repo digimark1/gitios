@@ -432,7 +432,7 @@ $(document).one('pagebeforecreate', function () {
                           </table>
                     </div> 
                     <div id="header_load"></div> 
-                        <div style="width:100%"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width=33%><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width=33%><img id="direction_bol" src="css/places_inactive.png" width="100%"></td></tr></table></div> 	
+                        <div style="width:100%"><table width="100%"><tr><td width="25%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width=25%><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width=25%><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><td width=25%><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td></tr></table></div> 	
                  </div>
                 
                 <div id="bol_image">
@@ -1002,7 +1002,16 @@ $(document).one('pagebeforecreate', function () {
 				$('#pick_drop').show();
 				$('#digital_buttons').hide();
 				$('#bol_image').hide();
-			});	
+			});
+		 $('#chat_bol').click(function(){
+			    $('#chat_bol').attr('src','css/chat_active.png');
+				setTimeout(function(){
+						location.href='#page4';
+					},500);
+				$('#direction_bol').attr('src','css/inactive_active.png');
+				$('#picture_bol').attr('src','css/picture_inactive.png');
+				$('#digital_bol').attr('src','css/digital_inactive.png');
+			});		
 		  						
 		//------  VIEW BOL IMAGE ------//
 		
