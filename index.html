@@ -450,21 +450,22 @@ $(document).one('pagebeforecreate', function () {
                  <div id="picture_buttons">
                        <table width="100%">
                               <tr>
-                                <td width="25%"><div><button id="upload_picture" value="button">Take<br>Pic</button></div></td>
+                                <td width="25%"><div id="take_photo_button"><img id="upload_picture" src="css/take_picture.png" width="100%"/</div></td>
                                 <td width="25%"><div id="save_pic"><button id="save_picture" value="button">Save<br>Pic</button></div></td>
-                                <td width="25%"><div id="next_page"><button id="change_next_page" value="button">Next<br>Page</button><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
                                 <td width="25%"><div><button id="save_bol" value="button">Save<br>BOL</button></div></td>
                                 <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
+                               <td width="25%"><div id="next_page"><img id="change_next_page" src="css/button4.png" width="100%"/><!-- <img width="100%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/> --></div></td>
+
                               </tr>
                           </table> 
                       </div>
                     <div id="digital_buttons">
                        <table style="width: 100%; border-collapse:collapse">
                             <tr style="background-color:#ED1A3B">
-                                <td style="width: 25%;"><div><a href="#page2" id="back" class="" onClick=""><img src="css/button1.png" width="80%" style="alignment-baseline:central"/></a></div></td>
+                                <td style="width: 25%;"><div id="load_list_button"><a href="#page2" id="back" class="" onClick=""><img src="css/button1.png" width="80%" style="alignment-baseline:central"/></a></div></td>
                                 <td style="width: 25%;"><div id="shipper_button"><a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="100%"/></a></div></td>
 								<td style="width: 25%;"><div id="consignee_button"><a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a></div></td>
-                                <td style="width: 25%;"><div><a href="#page4" id="driver_message" name="b" class="" onClick=""><img src="css/button4.png" width="100%"/></a></div></td>
+                                <td style="width: 25%;"><div id="next_page2"><img id="change_next_page2" src="css/button4.png" width="100%"/></div></td>
                             </tr>
                        </table>
                      </div>
@@ -1011,13 +1012,13 @@ $(document).one('pagebeforecreate', function () {
 				setTimeout(function(){
 						location.href='#page4';
 					},500);
-				$('#direction_bol').attr('src','css/places_active.png');
+				$('#direction_bol').attr('src','css/places_inactive.png');
 				$('#picture_bol').attr('src','css/picture_inactive.png');
 				$('#digital_bol').attr('src','css/digital_inactive.png');
-				$('#picture_buttons').hide();
-				$('#pick_drop').hide();
-				$('#digital_buttons').show();
-				$('#bol_image').hide();
+				//$('#picture_buttons').hide();
+				//$('#pick_drop').hide();
+				//$('#digital_buttons').show();
+				//$('#bol_image').hide();
 			});		
 		  						
 		//------  VIEW BOL IMAGE ------//
@@ -1468,7 +1469,7 @@ $(document).one('pagebeforecreate', function () {
 
 		//---Change BOL pages on click---//
 		
-           $('#change_next_page').click(function(){
+           $('#change_next_page, #change_next_page2').click(function(){
 			   $("#image_source").attr('src','css/loading2.gif');
 			   //alert('Im inside');
 				if((parseFloat(localStorage.cont_pages)) >= (parseFloat(localStorage.pages)-1)){
@@ -1504,8 +1505,10 @@ $(document).one('pagebeforecreate', function () {
 			   		//----BUTTON to change pages----//
 						if(pages_number >= 2){
 							       $('#next_page').show();
+								   $('#next_page2').show();
 							  }else{
-							       $('#next_page').hide();	
+							       $('#next_page').hide();
+								   $('#next_page2').hide();	
 								};
 					//--- Number of pages for this BOL. --//		
 				    localStorage.pages = pages_number;
@@ -1937,6 +1940,7 @@ $(document).one('pagebeforecreate', function () {
 	
 	$('#page2_5').on('pageshow',function(e,data) {
 		$('#digital_bol').attr('src','css/digital_active.png');
+		$('#chat_bol').attr('src','css/chat_inactive.png');
 		//HIDE picture buttons
 		$('#picture_buttons').hide();
 		// HIDE directions
