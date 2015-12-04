@@ -440,9 +440,9 @@ $(document).one('pagebeforecreate', function () {
                 </div>
                 <div id="pick_drop">
                   <!--<p>PickUp Location: <a style="color:red" href="maps://?q=cupertino"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>-->
-                  <p>PickUp Location: <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system">EverGreen Street 1600</a></p>
+                  <p>PickUp Location: <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system">EverGreen Street 1600 Cupertino</a></p>
                   <br>
-                  <p>Drop Location:   <a style="color:red" href="maps://?q=cupertino" target="_system">EverGreen Street 1600</a></p>
+                  <p>Drop Location:   <a style="color:red" onClick="location.href=localStorage.drop_address" target="_system">EverGreen Street 1600 Miami</a></p>
                 </div>
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>
@@ -1501,6 +1501,10 @@ $(document).one('pagebeforecreate', function () {
 			   		localStorage.comment = 0;
 					localStorage.start ="";
 					localStorage.finish ="";
+					//----Pick and Drop locations----//
+					localStorage.pick_address = 'maps://?q=cupertino';
+		            localStorage.drop_address = 'maps://?q=miami';
+					//------------------------------//
 			   		$("#image_source").attr('src','css/loading2.gif');
 			        //localStorage.trace = 1;
 					localStorage.load_hid = load_id;
@@ -1916,7 +1920,7 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
-		localStorage.pick_address = 'maps://?q=cupertino';
+		
 		//HIDE picture buttons
 		$('#picture_buttons').hide();
 		// HIDE directions
