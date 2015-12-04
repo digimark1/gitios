@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-#load_list_button, #shipper_button, #consignee_button, #next_page2, #take_photo_button, #next_page, #save_pic_button{
+#load_list_button, #shipper_button, #consignee_button, #next_page2, #take_photo_button, #next_page, #save_pic{
 	width:80%;
 	}
 #picture_buttons, #digital_buttons {
