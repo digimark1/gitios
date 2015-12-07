@@ -1559,7 +1559,7 @@ $(document).one('pagebeforecreate', function () {
 											localStorage.pick_address = 'maps://?q='+''+data[i].pickup_address+'';
 											$('#pickup_text').html(data[i].pickup_address);
 											localStorage.drop_address = 'maps://?q='+''+data[i].drop_address+'';
-											$('#pickup_text').html(data[i].drop_address);
+											$('#drop_text').html(data[i].drop_address);
 											$("#bol_number_hid").html(data[i].bol_number);
 											if (data[i].origin_sign != 0){
 													  $('#sig_button1').attr("href","#");
