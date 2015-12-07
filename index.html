@@ -702,11 +702,12 @@ $(document).one('pagebeforecreate', function () {
 		
 		function load_history(){
 			 location.href = '#page1_1';
-			 $('#lol_item').hide();
-			 $('#lol_item_inactive').show();
-			 $('#active_ld').attr('src','css/active_inactive.png');
-			 $('#history_ld').attr('src','css/history_active.png');
-			 
+			 setTimeout(function(){ 
+				 $('#lol_item').hide();
+				 $('#lol_item_inactive').show();
+				 $('#active_ld').attr('src','css/active_inactive.png');
+				 $('#history_ld').attr('src','css/history_active.png');
+			 },500);
 			};
 		
 		
