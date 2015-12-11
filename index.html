@@ -218,7 +218,7 @@ $(document).one('pagebeforecreate', function () {
 											console.log(data);
 											for(i=0;i<data.length;i++){
 												if (data[i].load_number == load_number){
-														$('#load_hid').html(data[i].idts_load);
+														localStorage.load_id_bol = data[i].idts_load;
 														$('#load_number_hid').html(data[i].load_number);
 														$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 														$("#bol_number_hid").html(data[i].bol_number);
@@ -262,7 +262,7 @@ $(document).one('pagebeforecreate', function () {
 											console.log(data);
 											for(i=0;i<data.length;i++){
 												if (data[i].load_number == load_number){
-														$('#load_hid').html(data[i].idts_load);
+														localStorage.load_id_bol = data[i].idts_load;
 														$('#load_number_hid').html(data[i].load_number);
 														//$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 														$("#bol_number_hid").html(data[i].bol_number);
@@ -1088,10 +1088,7 @@ $(document).one('pagebeforecreate', function () {
 								setTimeout(function () {
 											myScroll.refresh();
 									}, 500);
-				
-				
 					}
-					
 		///-------- TRACE LOAD - Onpage2 ----///
 		function trace_load(){
 			   				//----- SEND TRACING LOCATION WHEN THE BOL IS DISPLAYED----///
@@ -1101,20 +1098,15 @@ $(document).one('pagebeforecreate', function () {
 /*Ask if already started sening trace */if(localStorage.start == 1){
 												//alert('localstorage start = 1')
 													}else{
-														
 														location_trace_interval = setInterval(function(){
-															
 															if($('#localstorage_trace').html() == 1){
 															//if( == 0)	{
-																
 															navigator.geolocation.getCurrentPosition(onSuccess, onError);
 																  function onSuccess(position) {
 																	 var x = position.coords.latitude;
 																	 var y = position.coords.longitude;
-																	 
-																		send_to_db2(x,y);
+																		send_trace(x,y);
 																		//alert('Ok, I started sending the trace');
-																	
 																  }
 																   function onError(error) {
 																	    navigator.notification.alert(
@@ -1123,15 +1115,12 @@ $(document).one('pagebeforecreate', function () {
 																			  'Smith TracknGo',
 																			  'Ok');
 																	}
-
-																
 															}else{
 																//alert('Im not sending a s**t, find out why');
 																}
 													//WARNING
-														 },300000);
-											//WARNING
-														}
+														 },100000);
+													}
 											}
 			};
 		///----------------------------------///
@@ -1266,7 +1255,7 @@ $(document).one('pagebeforecreate', function () {
 		}
 		
 		//-------------- Send Location to DATABASE ------------------------
-		function send_to_db(x,y){ 
+		function send_location(x,y){ 
                     var lati = x;
 					$('#latitude').val(lati); // Use to show location when sending callcheck
                     var longi = y;
@@ -1292,7 +1281,7 @@ $(document).one('pagebeforecreate', function () {
                             }})
 		}
 		
-		function send_to_db2(x,y){
+		function send_trace(x,y){
 					var lati = x;
 					$('#latitude').val(lati); // Use to show location when sending callcheck
                     var longi = y;
@@ -1301,7 +1290,7 @@ $(document).one('pagebeforecreate', function () {
 					
                         $.ajax({
                             type: 'POST',
-							data: {user_lat: lati, user_long: longi, load_id:$('#load_hid').html()},
+							data: {user_lat: lati, user_long: longi, load_id:localStorage.load_id_bol},
                             url: ''+localStorage.save_url+'/save_trace.php',
                             success: function(data){
                                 console.log(data);
@@ -1326,100 +1315,99 @@ $(document).one('pagebeforecreate', function () {
 							 type: 'POST',
 							 dataType: 'json',
 							 url: ''+localStorage.base_url+'/load/app_get_load_by_driver/'+id_driver,
-							
-	                            success: function(data){
-	                                console.log(data);
-									active_loads_number = 0;
-								    $("#lol_item").html("");
-								    $("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
-									$("#lol_item_inactive").html("");
-									$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
-									$("#lol_item_inactive").hide();
-									
-									for(i=0;i<data.length;i++){
-										
-										if((data[i].sw == 1)&&(data[i].tender == 1)){
+							success: function(data){
+											console.log(data);
+											active_loads_number = 0;
+											$("#lol_item").html("");
+											$("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
+											$("#lol_item_inactive").html("");
+											$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
+											$("#lol_item_inactive").hide();
 											
-											//-----Check  for every signature in the load to set active or inactive status.-----//
-											$.ajax({
-												type:'POST',
-												dataType:'json',
-												url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
-												async:false,
-												success: function(data_s){
-													active_shipment = 0;
-													shipment_number = 0;
-														for(j=0;j<data_s.length;j++){
-															  if(data_s[j].destination_sign == '0'){
-																	  active_shipment++;
-																	  shipment_number++;
-																  }else{
-																      shipment_number++;
-																	  };
-															};
-													    localStorage.active_shipment = active_shipment;
-														console.log(data_s);
-													},
-												error: function(data_s){
-													console.log(data_s);
-													}
-												});
-												if(active_shipment >= 1){
-													//alert('there is one active');
-														active_loads_number++; //---- number of active loads. Check if there is any active. ----//
-														$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+','+data[i].load_number+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
-													}else{
-												//Change load detals. Just to see old BOL's
-														$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="active_shipments_load('+data[i].idts_load+','+data[i].load_number+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
-														}
-											} 
-										}
-										//localStorage.active_shipment = active_shipment;
-									$('#loading_loads').html(""); //--Delete Loading Gif when all loads are checked. -----/
-									
-							//-------------- SEND REGISTER ID TO DATABASE --- ANDROID CLOUD MESSAGING --- PUSH
-							setTimeout(function(){
-								var token = localStorage.token; // $('#token_device_hid').html();
-								var id = localStorage.user_id;
-								$.ajax({
-									type: 'POST',
-									//data: {token_device: token, driver_id: id},
-									data: {token_device: token, driver_id: id},
-									async: false,
-									url: ''+localStorage.save_url+'/saveid_apple.php',
-									success: function(data){
-										console.log(data);
-									},
-									error: function(){
-										console.log(data);
-									}})			
-								},1000);
-								//--------------------
-								//---trace load adjustments----
-							if(active_loads_number >= 1){
-								// Start interval, just when new one arrives (or there is one active) //
-									if(localStorage.location_mark == 1){
-										}else{
-											 driver_location_interval = setInterval(function(){
-													navigator.geolocation.getCurrentPosition(onSuccess, onError);
-														  function onSuccess(position) {
-															 var x = position.coords.latitude;
-															 var y = position.coords.longitude;
-															 send_to_db(x,y);
-														    }
-														   function onError(error) {
-															  navigator.notification.alert(
-																  'GPS access error',
-																  alertCallback,
-																  'Smith TracknGo',
-																  'Ok');
+											for(i=0;i<data.length;i++){
+												
+												if((data[i].sw == 1)&&(data[i].tender == 1)){
+													
+													//-----Check  for every signature in the load to set active or inactive status.-----//
+													$.ajax({
+														type:'POST',
+														dataType:'json',
+														url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+data[i].idts_load,
+														async:false,
+														success: function(data_s){
+															active_shipment = 0;
+															shipment_number = 0;
+																for(j=0;j<data_s.length;j++){
+																	  if(data_s[j].destination_sign == '0'){
+																			  active_shipment++;
+																			  shipment_number++;
+																		  }else{
+																			  shipment_number++;
+																			  };
+																	};
+																localStorage.active_shipment = active_shipment;
+																console.log(data_s);
+															},
+														error: function(data_s){
+															console.log(data_s);
 															}
-												 },60000);
-											localStorage.location_mark = 1;
+														});
+														if(active_shipment >= 1){
+															//alert('there is one active');
+																active_loads_number++; //---- number of active loads. Check if there is any active. ----//
+																$("#lol_item").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="active_shipments_load('+data[i].idts_load+','+data[i].load_number+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
+															}else{
+														//Change load detals. Just to see old BOL's
+																$("#lol_item_inactive").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="inactive_shipments_load('+data[i].idts_load+','+data[i].load_number+')"><h3>'+data[i].load_number+'</h3></a></td><td align="center">'+shipment_number+'</td></tr>');
+																}
+													} 
+												}
+												//localStorage.active_shipment = active_shipment;
+											$('#loading_loads').html(""); //--Delete Loading Gif when all loads are checked. -----/
+											
+									//-------------- SEND REGISTER ID TO DATABASE --- ANDROID CLOUD MESSAGING --- PUSH
+									setTimeout(function(){
+										var token = localStorage.token; // $('#token_device_hid').html();
+										var id = localStorage.user_id;
+										$.ajax({
+											type: 'POST',
+											//data: {token_device: token, driver_id: id},
+											data: {token_device: token, driver_id: id},
+											async: false,
+											url: ''+localStorage.save_url+'/saveid_apple.php',
+											success: function(data){
+												console.log(data);
+											},
+											error: function(){
+												console.log(data);
+											}})			
+										},1000);
+										//--------------------
+										//---trace load adjustments----
+									if(active_loads_number >= 1){
+										// Start interval, just when new one arrives (or there is one active) //
+											if(localStorage.location_mark == 1){
+												}else{
+													 driver_location_interval = setInterval(function(){
+															navigator.geolocation.getCurrentPosition(onSuccess, onError);
+																  function onSuccess(position) {
+																	 var x = position.coords.latitude;
+																	 var y = position.coords.longitude;
+																	 send_location(x,y);
+																	}
+																   function onError(error) {
+																	  navigator.notification.alert(
+																		  'GPS access error',
+																		  alertCallback,
+																		  'Smith TracknGo',
+																		  'Ok');
+																	}
+														 },60000);
+													localStorage.location_mark = 1;
+												}
 										}
-								}
- // Changed from 20 Seconds to 40 seconds Aprox. //20151008 changed to 60
-                                },
+		 // Changed from 20 Seconds to 40 seconds Aprox. //20151008 changed to 60
+										},
                             error: function(data){
                                 console.log(data);
 								navigator.notification.alert(
@@ -1478,9 +1466,15 @@ $(document).one('pagebeforecreate', function () {
 															  'Ok');
                             }})
 	    	};
-		//-------------------INACTIVE SHIPMENTS LOAD---------------------------//
-		function inactive_shipments_load(){
-							//---Markers for resets, traces and more---//
+//-------------------INACTIVE SHIPMENTS LOAD---------------------------//
+		function inactive_shipments_load(load_id,load_number){
+			                  localStorage.inactive = 1;
+				              $('#load_hid').html(load_id);
+				              location.href = "#page2";
+							          };
+//--------------------UNCHANGED SHIPMENTS----------------------//
+		function unchanged_shipments_load(load_id,load_number){
+     						//---Markers for resets, traces and more---//
 							  localStorage.comment = 0;
 					          localStorage.load_hid_2 = load_id;
 							 //---END of Markers for resets, traces and more---//
@@ -1623,8 +1617,6 @@ $(document).one('pagebeforecreate', function () {
 				    localStorage.pages = pages_number;
 					//----BOL Number for image drawing.
 					localStorage.bol_number = bol_number;
-					
-
 					//------------------------------//
 			   		$("#image_source").attr('src','css/loading2.gif');
 			        //localStorage.trace = 1;
@@ -1694,98 +1686,10 @@ $(document).one('pagebeforecreate', function () {
                        
                       //return false;
                 };
-				
-			//TEMPORARY LOAD DETAILS -- REORGANIZE LATER 
-			function bol_details_unchange(load_id,bol_number,pages_number,origin,destinatio){
-			   		//Activating Coment again
-			   		localStorage.comment = 0;
-					localStorage.load_hid_2 = load_id;
-			   		$("#image_source").attr('src','css/loading2.gif');
-			        //localStorage.trace = 1;
-			   		//$('#load_hid').html(ix);
-					//localStorage.load_hid = $('#load_hid').html();
-					$('#sig_button1').attr("href","#page3");
-					$('#sig_button1').html('<img src="css/button2.png" width="100%"/>');
-					//$('#sig_button1').attr("href","#");
-					$('#sig_button2').attr("href","#page5");
-					$('#sig_button2').html('<img src="css/button3.png" width="100%"/>');
-					
-				   location.href = "#page2_5";
-                    var latitude_driver = parseFloat($('#latitude').val());//37.55;
-                    var longitude_driver = parseFloat($('#longitude').val());//-77.44;
-		    		var id_driver = $('#user_name').val();
-                        $.ajax({
-                            type: 'POST',
-			    			dataType: 'json',
-                            url: ''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
-                            success: function(data){
-                                console.log(data);
-								for(i=0;i<data.length;i++){
-								if(data[i].bol_number == bol_number){
-								var bolh = (0.6)*parseFloat(window.screen.height);
-								$('#bol_image').css("height",bolh);
-								$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
-								//$('#load_number_hid').html(data[0].load_number);
-								$("#bol_number_hid").html(data[i].bol_number);
-								if (data[i].origin_sign != 0){
-										  $('#sig_button1').attr("href","#");
-										  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
-										  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-									}else{
-										 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-										}
-								if(data[i].destination_sign != 0){
-									  $('#sig_button2').attr("href","#");
-									  $('#sig_button2').html('<img src="css/button3s.png" width="100%"/>'); 
-									}
-								d = new Date();
-										setTimeout(function(){
-												$("#image_source").attr('src',''+localStorage.files+'/'+data[i].ts_load_idts_load+'_bol_'+data[i].bol_number+'-0.jpg?'+d.getTime()+'');
-												//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
-											 }, 0);	
-											 							
-								if(localStorage.camera == 0){
-
-								}else{
-									   //$("#image_source").attr('src','data:image/jpeg;base64,'+$('#cam_picture').html()+'');
-									   //$('#bol_image').html('<img id="image_source" src="data:image/jpeg;base64,'+localStorage.camera+'" style="width:100%;padding-top:2px;"/>');
-/*									   $('#image_source').attr('src',$('#cam_picture').html());
-									   setTimeout(function () {
-											myScroll.refresh();
-										}, 0);
-*/									}
-								}
-							}
-                            },
-                            error: function(data){
-                                console.log(data);
-								navigator.notification.alert(
-								  'There was an error loading the details',
-								  alertCallback,
-								  'Smith TracknGo',
-								  'Ok');
-                            }})
-                       
-                      //return false;
-                };
-			
-			function bol_details_inactive(load_id,bol_number){
-			   		//Activating Coment again
-				   localStorage.inactive = 1;
-				   $('#load_hid').html(load_id);
-				   location.href = "#page2_5";
-                      //return false;
-				}
-		  
-		 
-					 
-    
+						  
 //----------------------END OF   Map, Distance , Time ------------------------------
-
-
 	/* SIGNATURE DETAILS
 	*/
-	
 	function close_sig(){
 		$("#signatureparent").html("");
 		screen.lockOrientation('portrait');
@@ -1848,7 +1752,7 @@ $(document).one('pagebeforecreate', function () {
 		$.ajax({
 							type: 'POST',
 							dataType: 'json',
-							url: ''+localStorage.base_url+'/load/get_chat/'+parseFloat($('#load_hid').html())+'/1',
+							url: ''+localStorage.base_url+'/load/get_chat/'+parseFloat(localStorage.load_id_bol)+'/1',
 							success: function(data){
 								$("#notification_message").html("");
 								console.log(data);
@@ -2008,7 +1912,7 @@ $(document).one('pagebeforecreate', function () {
 			$("#comment_print").html(simage3.src);
 			$.ajax({
 					type: 'POST',
-					data: {comment_hand:$('#hidden_comment').val(),load_id:$('#load_hid').html(),comment_print:$("#comment_print").html(),load_number:$('#load_number_hid').html()},
+					data: {comment_hand:$('#hidden_comment').val(),load_id:localStorage.load_id_bol,comment_print:$("#comment_print").html(),load_number:$('#load_number_hid').html()},
 					url: ''+localStorage.save_url+'/save_comment_hand.php',
 					success: function(data){
 						console.log(data);
@@ -2198,6 +2102,7 @@ $('#page2').on('pageshow',function(e,data){
 						}
 					}
 //------------
+        unchanged_shipments_load(localStorage.load_id_bol,localStorage.load_number);
 		if ((localStorage.start == 1)){
 				}else{
 			setTimeout(function(){
