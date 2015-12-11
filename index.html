@@ -1095,8 +1095,10 @@ $(document).one('pagebeforecreate', function () {
 			setTimeout(function(){
 					if(parseFloat(localStorage.active_shipment_counter) >= 1){
 							 $('#localstorage_trace').html(1);
+							 alert('shipment counter>=1');
 					}else{
 							 $('#localstorage_trace').html(0);
+							  alert('shipment counter = 0');
 						}
 				},100); 
 			
