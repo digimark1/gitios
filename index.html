@@ -1091,6 +1091,15 @@ $(document).one('pagebeforecreate', function () {
 					}
 		///-------- TRACE LOAD - Onpage2 ----///
 		function trace_load(){
+			//
+			setTimeout(function(){
+					if($("#img_gps").attr("src") == "css/button3.png"){
+							 $('#localstorage_trace').html(1);
+					}else{
+							 $('#localstorage_trace').html(0);
+						}
+				},100); 
+			
 			   				//----- SEND TRACING LOCATION WHEN THE BOL IS DISPLAYED----///
 				if(localStorage.finish == 1){
 					alert('localstorage finish = 1')
@@ -1116,10 +1125,10 @@ $(document).one('pagebeforecreate', function () {
 																			  'Ok');
 																	}
 															}else{
-																//alert('Im not sending a s**t, find out why');
+																alert('Im not sending a s**t, find out why');
 																}
 													//WARNING
-														 },100000);
+														 },80000);
 													}
 											}
 			};
