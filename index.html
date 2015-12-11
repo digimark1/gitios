@@ -1093,10 +1093,10 @@ $(document).one('pagebeforecreate', function () {
 		function trace_load(){
 			   				//----- SEND TRACING LOCATION WHEN THE BOL IS DISPLAYED----///
 				if(localStorage.finish == 1){
-					//alert('localstorage finish = 1')
+					alert('localstorage finish = 1')
 					}else{		
 /*Ask if already started sening trace */if(localStorage.start == 1){
-												//alert('localstorage start = 1')
+												alert('localstorage start = 1')
 													}else{
 														location_trace_interval = setInterval(function(){
 															if($('#localstorage_trace').html() == 1){
@@ -1106,7 +1106,7 @@ $(document).one('pagebeforecreate', function () {
 																	 var x = position.coords.latitude;
 																	 var y = position.coords.longitude;
 																		send_trace(x,y);
-																		//alert('Ok, I started sending the trace');
+																		alert('Ok, I started sending the trace');
 																  }
 																   function onError(error) {
 																	    navigator.notification.alert(
@@ -2097,7 +2097,7 @@ $('#page2').on('pageshow',function(e,data){
 					}else{
 						if(localStorage.load_hid == localStorage.load_hid_2){
 							}else{
-						    //alert('view_bol activated')
+						    alert('trace_load activated')
 						   	trace_load();
 						}
 					}
