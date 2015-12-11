@@ -1093,7 +1093,7 @@ $(document).one('pagebeforecreate', function () {
 		function trace_load(){
 			//
 			setTimeout(function(){
-					if($("#img_gps").attr("src") == "css/button3.png"){
+					if(parseFloat(localStorage.active_shipment_counter) >= 1){
 							 $('#localstorage_trace').html(1);
 					}else{
 							 $('#localstorage_trace').html(0);
@@ -1429,6 +1429,8 @@ $(document).one('pagebeforecreate', function () {
 				
 		//------- LOAD SHIPMENTS -----//
 		function active_shipments_load(load_id,load_number){
+							 localStorage.active_shipment_counter = "";
+				             var active_shipment_counter = 0;
 							//---Markers for resets, traces and more---//
 								localStorage.inactive = 0;
 								//Activating Comment again
@@ -1458,7 +1460,11 @@ $(document).one('pagebeforecreate', function () {
 									$("#lol_item_shipment_inactive").hide();
 									for(i=0;i<data.length;i++){
 										if(data[i].destination_sign == 0){
+											//Active shipment counter for trace control
+											   active_shipment_counter++;
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+											//
+											  localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
 												//Change load detals. Just to see old BOL's
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
@@ -1483,6 +1489,8 @@ $(document).one('pagebeforecreate', function () {
 							          };
 //--------------------UNCHANGED SHIPMENTS----------------------//
 		function unchanged_shipments_load(load_id,load_number){
+			                  localStorage.active_shipment_counter = "";
+			                  var active_shipment_counter = 0;
      						//---Markers for resets, traces and more---//
 							  localStorage.comment = 0;
 					          localStorage.load_hid_2 = load_id;
@@ -1507,7 +1515,11 @@ $(document).one('pagebeforecreate', function () {
 									$("#lol_item_shipment_inactive").hide();
 									for(i=0;i<data.length;i++){
 										if(data[i].destination_sign == 0){
+											  //Active shipment counter for trace control
+											   active_shipment_counter++;
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+											    //
+												localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
 												//Change load detals. Just to see old BOL's
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
