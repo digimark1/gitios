@@ -14,7 +14,6 @@
 				
 	</style>
     <script type="text/javascript">
-
 		var myScroll;
 		var myScroll_message;
 		function loaded () {
@@ -22,7 +21,6 @@
 				zoom: true,
 				bounce:false
 			});
-	
 		}
 		//test-a-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 		document.addEventListener('DOMContentLoaded', loaded, false);
@@ -37,7 +35,6 @@
     <script type="text/javascript" src="js/new/iscroll.js"></script>
     <script type="text/javascript" charset="utf-8">
 	var panel = '<div data-role="panel" id="mypanel" data-position="left" data-display="overlay" style="width:90%" data-theme="a"><ul data-role="listview" data-theme="d"><li><div><a style="color:red" href="#" data-rel="close"><img width="60%" src="css/logo.png" style="margin-top:0px; margin-bottom:0px"/></a></div><div id="full_name0_2"></div></li><li><a style="color:#333;background-color:#F6F6F6" href="#page1_1" data-rel="close">ACTIVE LOADS</a></li><li><a style="color:#333;background-color:#F6F6F6" onClick="load_history()" data-rel="close">LOAD HISTORY</a></li><!--<li id="callcheck_li"><a style="color:#333;background-color:#F6F6F6" href="#page4" data-rel="close">CALL CHECKS</a></li>--><li><a href="#" id="" style="color:red" onClick="signout_function()" data-rel="close">Sign Out</a></li></ul></div>';
-
 $(document).one('pagebeforecreate', function () {
     $.mobile.pageContainer.prepend(panel);
     $("#mypanel").panel().enhanceWithin();
@@ -47,9 +44,7 @@ $(document).one('pagebeforecreate', function () {
 	var pushNotification;
     document.addEventListener("deviceready", onDeviceReady, false);
     // device APIs are available
-   
 				function onDeviceReady() {
-					
 					 navigator.splashscreen.hide();
 					 // base url for dashboard
 					 localStorage.base_url = 'http://leanstaffing.com/trackngo2';
