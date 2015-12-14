@@ -5,6 +5,8 @@
 	display:none;
 	width:33%;
 	position:absolute;
+	z-index: 1;
+    background: #E9E9E9;
 	}
 #load_list_button, #shipper_button, #consignee_button, #next_page2, #take_photo_button, #next_page, #save_pic{
 	width:80%;
