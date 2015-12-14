@@ -432,7 +432,8 @@ $(document).one('pagebeforecreate', function () {
                           </table>
                     </div> 
                     <div id="header_load"></div> 
-                        <div style="width:100%"><table width="100%"><tr><td width="25%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width=25%><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width=25%><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><td width=25%><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td></tr></table></div> 	
+                        <div style="width:100%"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><!--<td width="25%"><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td>--></tr></table></div>
+                        <div id="doc_options"><img id="menu1" src="css/chat_inactive.png" width="100%"></div> 	
                  </div>
                 
                 <div id="bol_image">
@@ -1036,6 +1037,13 @@ $(document).one('pagebeforecreate', function () {
 				$('#pick_drop').hide();
 				$('#digital_buttons').show();
 				$('#bol_image').show();
+				// expandable menu
+				if($('#doc_options').css('display') == 'block'){
+				  $('#doc_options').css('display','none');
+				}else{
+					$('#doc_options').css('display','block');
+					}
+				//-------
 			});
 		$('#picture_bol').click(function(){
 			    $('#chat_bol').attr('src','css/chat_inactive.png');
@@ -1999,6 +2007,7 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
+		$('#doc_options').css('display','none');
 		$('#digital_bol').attr('src','css/digital_active.png');
 		$('#chat_bol').attr('src','css/chat_inactive.png');
 		//$('#picture_buttons').hide();
