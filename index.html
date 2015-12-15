@@ -141,8 +141,9 @@ $(document).one('pagebeforecreate', function () {
 				if(!localStorage.user_id){
 					location.href='#page1';
 					$('#loading_start').hide();
-					 //alert('Please Sign in')
+					alert('device ready and needs the user');
 					}else{
+						alert('device ready for app use');
 						if(localStorage.location_mark == 1){
 						        localStorage.location_mark == 0
 							}else{};
