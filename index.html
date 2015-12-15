@@ -1613,6 +1613,7 @@ $(document).one('pagebeforecreate', function () {
 						localStorage.cont_pages = parseFloat(localStorage.cont_pages) + 1;
 						//alert('Must be counting-'+localStorage.cont_pages);
 					      }
+				  
 				  d = new Date();
 			      setTimeout(function(){
 								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
