@@ -148,9 +148,9 @@ $(document).one('pagebeforecreate', function () {
 						        localStorage.location_mark = 0;
 							}else{
 								};
-						if(localStorage.finish != 1){
+						if(localStorage.finish == 0){
 							      localStorage.tobecontinued = 1;
-								  alert('localStorage.finish !=1');
+								  alert('localStorage.finish ==0');
 							}else{
 								  localStorage.tobecontinued = 0;
 								};
@@ -254,7 +254,7 @@ $(document).one('pagebeforecreate', function () {
 							 //---- LOAD #
 							if (load_sub == "New load #"){
 								localStorage.start ="";
-								localStorage.finish ="";
+								localStorage.finish = 0;
 								localStorage.inactive = 0;
 								//localStorage.load_hid ="";
 								localStorage.load_hid = 1;
@@ -1478,7 +1478,7 @@ $(document).one('pagebeforecreate', function () {
 								//Activating Comment again
 								localStorage.comment = 0;
 								localStorage.start ="";
-								localStorage.finish ="";
+								localStorage.finish = 0;
 								localStorage.load_hid = load_id;
 							 //---END of Markers for resets, traces and more---//
 							 location.href = '#page2';
