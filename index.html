@@ -146,7 +146,14 @@ $(document).one('pagebeforecreate', function () {
 						//alert('device ready for app use');
 						if(localStorage.location_mark == 1){
 						        localStorage.location_mark = 0;
-							}else{};
+							}else{
+								};
+						if(localStorage.finish != 1){
+							      localStorage.tobecontinued = 1;
+								  alert('localStorage.finish !=1');
+							}else{
+								  localStorage.tobecontinued = 0;
+								};
 						setTimeout(function(){
 							 location.href='#page1_1';
 							 $('#loading_start').hide();
@@ -924,7 +931,7 @@ $(document).one('pagebeforecreate', function () {
 																			// To enable the restart --- driver setinterval --- driver_location_interval
 																			localStorage.location_mark = 0;
 																			//-/-----/-//
-																			$('#localstorage_trace').html(0);
+																			localStorage.trace = 0;//$('#localstorage_trace').html(0);
 																			clearInterval(location_trace_interval);
 																			//clearInterval(driver_location_interval);
 																			//alert('location_trace_deleted_2');
@@ -1103,52 +1110,80 @@ $(document).one('pagebeforecreate', function () {
 			//
 			setTimeout(function(){
 					if(parseFloat(localStorage.active_shipment_counter) >= 1){
-							 $('#localstorage_trace').html(1);
+							 localStorage.trace = 1;//$('#localstorage_trace').html(1);
 							 alert('shipment counter>=1');
 					}else{
-							 $('#localstorage_trace').html(0);
+							 localStorage.trace = 0; //$('#localstorage_trace').html(0);
 							  alert('shipment counter = 0');
 						}
 				},100); 
 			
-			   				//----- SEND TRACING LOCATION WHEN THE BOL IS DISPLAYED----///
+			   				//----- SEND TRACING LOCATION WHEN THE SHIPMENTS ARE DISPLAYED----///
 				if(localStorage.finish == 1){
 					alert('localstorage finish = 1')
-					}else{		
+					}else{
 /*Ask if already started sening trace */if(localStorage.start == 1){
 												alert('localstorage start = 1')
 													}else{
 														location_trace_interval = setInterval(function(){
-															if($('#localstorage_trace').html() == 1){
-															//if( == 0)	{
+															if(localStorage.trace == 1){
 															navigator.geolocation.getCurrentPosition(onSuccess, onError);
 																  function onSuccess(position) {
 																	 var x = position.coords.latitude;
 																	 var y = position.coords.longitude;
 																		send_trace(x,y);
-																		//alert('Ok, I started sending the trace');
-																  }
+																		navigator.notification.alert(
+																			  'Ok, I started sending the trace',
+																			  alertCallback,
+																			  'Smith TracknGo',
+																			  'Ok');
+																  };
 																   function onError(error) {
 																	    navigator.notification.alert(
 																			  'GPS trace system is inactive',
 																			  alertCallback,
 																			  'Smith TracknGo',
 																			  'Ok');
-																	}
+																	};
 															}else{
 																alert('Im not sending a s**t, find out why');
 																}
 													//WARNING
 														 },80000);
 													}
-											}
-			};
+											}		
+					};
+
+		function trace_load2(){
+						location_trace_interval = setInterval(function(){
+						if(localStorage.trace == 1){
+						navigator.geolocation.getCurrentPosition(onSuccess, onError);
+							  function onSuccess(position) {
+								 var x = position.coords.latitude;
+								 var y = position.coords.longitude;
+									send_trace(x,y);
+									navigator.notification.alert(
+										  'Ok, I started sending the trace',
+										  alertCallback,
+										  'Smith TracknGo',
+										  'Ok');
+							  };
+							   function onError(error) {
+									navigator.notification.alert(
+										  'GPS trace system is inactive',
+										  alertCallback,
+										  'Smith TracknGo',
+										  'Ok');
+								};
+						}else{
+							alert('Im not sending a s**t, find out why');
+							}
+				       //WARNING
+					 },80000);
+			}
 		///----------------------------------///
 		<!-- MESSAGE TO DASHBOARD OPTIONS -->
 		
-	/*	$('#driver_message').click(function(){
-			//$('#msg_hid').hide();
-			})*/
 	
 	$('#troubles_').on('change', function() {
 				switch($('#troubles_').val()){
@@ -1166,19 +1201,7 @@ $(document).one('pagebeforecreate', function () {
 					break;
 					}
 	});
-	
-/*	    <option value="1">Traffic Jam</option>
-                                     <option value="2">Flat Tire</option>
-                                     <option value="3">Damaged Vehicle</option>
-                                     <option value="4">Weather Problem</option>*/
-				/*	
-				  if ($('#troubles_').val() == 1 ){
-						$('#msg_hid').show();
-						//alert($("textarea#troubles_msg").val());
-					}else{
-						//$('#msg_hid').hide();
-						}
-				});*/
+
 				
 				
 		$('#select_custom, #troubles_msg').click(function(){
@@ -1441,6 +1464,13 @@ $(document).one('pagebeforecreate', function () {
 				
 		//------- LOAD SHIPMENTS -----//
 		function active_shipments_load(load_id,load_number){
+			               //----- After being Closed and Reopened ---//
+						   if(localStorage.tobecontinued == 1){
+							      trace_load2();
+								  alert('tobecontinued == 1')
+								  localStorage.tobecontinued = 0;
+							   }
+						   //-----------------------------------------//
 							 localStorage.active_shipment_counter = "";
 				             var active_shipment_counter = 0;
 							//---Markers for resets, traces and more---//
@@ -1919,7 +1949,7 @@ $(document).one('pagebeforecreate', function () {
 									// To enable the restart --- driver setinterval --- driver_location_interval
 									localStorage.location_mark = 0;
 									//-/-----/-//
-									$('#localstorage_trace').html(0);
+									localStorage.trace = 0;//$('#localstorage_trace').html(0);
 									clearInterval(location_trace_interval);
 									//clearInterval(driver_location_interval);
 									//alert('location_trace_deleted_2');
@@ -2138,6 +2168,7 @@ $('#page2').on('pageshow',function(e,data){
 					}
 //------------
         unchanged_shipments_load(localStorage.load_id_bol,localStorage.load_number);
+//------------
 		if ((localStorage.start == 1)){
 				}else{
 			setTimeout(function(){
