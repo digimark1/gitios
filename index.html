@@ -77,7 +77,7 @@ $(document).one('pagebeforecreate', function () {
 					 screen.lockOrientation('portrait');
 					 console.log(navigator.camera);
 	
-					 navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:7000});
+					 navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:10000});
 					 //Push Notification
 					 try 
 							{ 
@@ -141,11 +141,11 @@ $(document).one('pagebeforecreate', function () {
 				if(!localStorage.user_id){
 					location.href='#page1';
 					$('#loading_start').hide();
-					alert('device ready and needs the user');
+					//alert('device ready and needs the user');
 					}else{
-						alert('device ready for app use');
+						//alert('device ready for app use');
 						if(localStorage.location_mark == 1){
-						        localStorage.location_mark == 0
+						        localStorage.location_mark = 0;
 							}else{};
 						setTimeout(function(){
 							 location.href='#page1_1';
@@ -1408,6 +1408,7 @@ $(document).one('pagebeforecreate', function () {
 										// Start interval, just when new one arrives (or there is one active) //
 											if(localStorage.location_mark == 1){
 												}else{
+													alert('location 60 seconds');
 													 driver_location_interval = setInterval(function(){
 															navigator.geolocation.getCurrentPosition(onSuccess, onError);
 																  function onSuccess(position) {
