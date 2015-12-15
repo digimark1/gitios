@@ -146,7 +146,9 @@ $(document).one('pagebeforecreate', function () {
 						//alert('device ready for app use');
 						if(localStorage.location_mark == 1){
 						        localStorage.location_mark = 0;
+								location.href='#page1_1';
 							}else{
+								location.href='#page1_1';
 								};
 						if(localStorage.finish == 0){
 							      localStorage.tobecontinued = 1;
@@ -154,9 +156,9 @@ $(document).one('pagebeforecreate', function () {
 								  active_shipments_load(localStorage.last_active_load, localStorage.last_active_load_number);
 							}else{
 								  localStorage.tobecontinued = 0;
+								  location.href='#page1_1';
 								};
 						setTimeout(function(){
-							 location.href='#page1_1';
 							 $('#loading_start').hide();
 							 $('#full_name').html(localStorage.name);
 							 $('#full_name1').html(localStorage.name);
