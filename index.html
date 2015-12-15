@@ -151,6 +151,7 @@ $(document).one('pagebeforecreate', function () {
 						if(localStorage.finish == 0){
 							      localStorage.tobecontinued = 1;
 								  alert('localStorage.finish ==0');
+								  active_shipments_load(localStorage.last_active_load, localStorage.last_active_load_number);
 							}else{
 								  localStorage.tobecontinued = 0;
 								};
@@ -271,7 +272,9 @@ $(document).one('pagebeforecreate', function () {
 											for(i=0;i<data.length;i++){
 												if (data[i].load_number == load_number){
 														localStorage.load_id_bol = data[i].idts_load;
+														localStorage.last_active_load = localStorage.load_id_bol;
 														$('#load_number_hid').html(data[i].load_number);
+														localStorage.last_active_load_number = data[i].load_number;
 														//$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 														$("#bol_number_hid").html(data[i].bol_number);
 														//$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
@@ -1483,7 +1486,12 @@ $(document).one('pagebeforecreate', function () {
 							 //---END of Markers for resets, traces and more---//
 							 location.href = '#page2';
 							 localStorage.load_id_bol = load_id;
+							 //---Last active Load ---// GO directly to last active load checked
+							 localStorage.last_active_load = localStorage.load_id_bol;
+							  //---END of Last active Load ---//
 							 localStorage.load_number = load_number;
+							 //---Last active Load NUMBER---// GO directly to last active load checked
+							 localStorage.last_active_load_number = localStorage.load_number;
 							 $.ajax({
 							 type: 'POST',
 							 async:false,
