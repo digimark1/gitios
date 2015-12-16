@@ -1698,6 +1698,9 @@ $(document).one('pagebeforecreate', function () {
 		//---Change BOL pages on click---//
 		
            $('#nextpage_im').click(function(){
+			   
+			   if(localStorage.pages == 1){
+				   }else{
 			   $("#image_source").attr('src','css/loading2.gif');
 			   //alert('Im inside');
 				if((parseFloat(localStorage.cont_pages)) >= (parseFloat(localStorage.pages)-1)){
@@ -1712,11 +1715,19 @@ $(document).one('pagebeforecreate', function () {
 				  
 				  d = new Date();
 			      setTimeout(function(){
-								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+					         if(localStorage.inactive == 1){
+								    $("#image_source").attr('src',''+localStorage.files+'/'+$('#load_hid').html()+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+								 }else{
+								    $("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+							      };
 							 }, 500);
+			   }
 			   });
 			   
            $('#lastpage_im').click(function(){
+			   
+			   if(localStorage.pages == 1){
+				   }else{
 			   $("#image_source").attr('src','css/loading2.gif');
 			   //alert('Im inside');
 				if((parseFloat(localStorage.cont_pages)) == 0){
@@ -1732,8 +1743,13 @@ $(document).one('pagebeforecreate', function () {
 				  
 				  d = new Date();
 			      setTimeout(function(){
-								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+								if(localStorage.inactive == 1){
+								    $("#image_source").attr('src',''+localStorage.files+'/'+$('#load_hid').html()+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+								 }else{
+								    $("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+							      };
 							 }, 500);
+				   }
 			   });
 		
 		// Load BOL details -----///
