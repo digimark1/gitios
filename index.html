@@ -1382,8 +1382,10 @@ $(document).one('pagebeforecreate', function () {
 											$("#lol_item").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
 											$("#lol_item_inactive").html("");
 											$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
-											$("#lol_item_inactive").hide();
-											
+											if(localStorage.inactive == 1){
+												}else{
+													 $("#lol_item_inactive").hide();
+													}
 											for(i=0;i<data.length;i++){
 												
 												if((data[i].sw == 1)&&(data[i].tender == 1)){
@@ -2250,15 +2252,7 @@ $(document).one('pagebeforecreate', function () {
 	})
 	
 	$('#page1_1').on('pageshow',function(e,data) {
-		//$('#callcheck_li').hide();
-		//localStorage.msg = 0;
-		//localStorage.bol = 0;
 		active_load(localStorage.user_id);
-		//$('#active_ld').attr('src','css/active_active.png');
-		//$('#history_ld').attr('src','css/history_inactive.png');
-		//$('#lol_item').show();
-		//$('#lol_item_inactive').hide();
-		//alert('iddriver'+localStorage.user_id)
 		cordova.plugins.backgroundMode.enable();
 	    });
 		
