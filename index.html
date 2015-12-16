@@ -723,6 +723,7 @@ $(document).one('pagebeforecreate', function () {
 		var active_shipment;
 		
 		function load_history(){
+			localStorage.inactive = 1;
 			 location.href = '#page1_1';
 			 setTimeout(function(){ 
 				 $('#lol_item').hide();
@@ -1383,6 +1384,7 @@ $(document).one('pagebeforecreate', function () {
 											$("#lol_item_inactive").html("");
 											$("#lol_item_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> LOAD # </th><th width="33%"> SHIPMENTS </th></tr>');
 											if(localStorage.inactive == 1){
+												     $('#lol_item').hide();
 												}else{
 													 $("#lol_item_inactive").hide();
 													}
