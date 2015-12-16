@@ -1105,7 +1105,7 @@ $(document).one('pagebeforecreate', function () {
 		function view_bol(){
 			 //$('#localstorage_trace').html(localStorage.trace);
 				                //location.href='#page2_5';
-								var bolh1 = (0.55)*parseFloat(window.screen.height);
+								var bolh1 = (0.51)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function (){
 									//alert('inside view bol')
@@ -1546,6 +1546,46 @@ $(document).one('pagebeforecreate', function () {
 			                  localStorage.inactive = 1;
 				              $('#load_hid').html(load_id);
 				              location.href = "#page2";
+							  //-----------------------
+												 $.ajax({
+												 type: 'POST',
+												 async:false,
+												 dataType: 'json',
+												 url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
+													success: function(data){
+														console.log(data);
+														//active_loads_number = 0;
+														//Load's number to guide the user. BOL's with current load number.
+														$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+														$("#lol_item_shipment").html("");
+														$("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+														$("#lol_item_shipment_inactive").html("");
+														$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+														$("#lol_item_shipment_inactive").hide();
+														for(i=0;i<data.length;i++){
+															if(data[i].destination_sign == 0){
+																  //Active shipment counter for trace control
+																   active_shipment_counter++;
+																	$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+																	//
+																	localStorage.active_shipment_counter = active_shipment_counter;
+																}else{
+																	//Change load detals. Just to see old BOL's
+																	$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+																	}
+															}
+														$('#loading_shipments').html("");
+													},
+												error: function(data){
+													console.log(data);
+													navigator.notification.alert(
+																  'There was an error with active loads',
+																  alertCallback,
+																  'Smith TracknGo',
+																  'Ok');
+												}})
+								//-------------
+							  
 							          };
 //--------------------UNCHANGED SHIPMENTS----------------------//
 		function unchanged_shipments_load(load_id,load_number){
@@ -1747,7 +1787,7 @@ $(document).one('pagebeforecreate', function () {
 							   //alert('inside the "for"');
 								if(data[i].bol_number == bol_number){
 									//alert('bol number number');
-											var bolh = (0.55)*parseFloat(window.screen.height);
+											var bolh = (0.51)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 											if(parseFloat(localStorage.pages)>1){
@@ -2212,6 +2252,7 @@ $('#page2').on('pageshow',function(e,data){
 						   	trace_load();
 						}
 					}
+		if(localStorage.inactive == 1){}else{
 //------------
         unchanged_shipments_load(localStorage.load_id_bol,localStorage.load_number);
 //------------
@@ -2224,6 +2265,7 @@ $('#page2').on('pageshow',function(e,data){
 				}
 		localStorage.load_hid = localStorage.load_hid_2;
 //-----------------------------------------	
+		}
 		});
 		
 	})(jQuery)
