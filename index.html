@@ -1110,7 +1110,11 @@ $(document).one('pagebeforecreate', function () {
 								setTimeout(function (){
 									//alert('inside view bol')
 										d = new Date();
-										$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
+										if(localStorage.inactive == 1){
+											    $("#image_source").attr('src',''+localStorage.files+'/'+$('#load_hid').html()+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
+											}else{
+										        $("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg?'+d.getTime()+'');
+											}
 										//$('#bol_image').append('<div><img id="image_source2" src="css/loading2.gif" style="width:100%;padding-top:2px;"/></div>');
 									 }, 100);
 									 
