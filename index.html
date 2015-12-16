@@ -443,8 +443,10 @@ $(document).one('pagebeforecreate', function () {
                                 <td align="right"  style="padding:5px"><div id="load_shipment1"></div></td>
                               </tr>
                           </table>
-                    </div> 
-                    <div id="header_load"></div> 
+                    </div>
+                    <div>
+                        <div id="header_load">ab</div><div id="header_load_pages">cd</div>
+                     </div>
                         <div style="width:100%"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><!--<td width="25%"><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td>--></tr></table></div>
                         <div id="doc_options"><img id="menu1" src="css/chat_inactive.png" width="100%"></div> 	
                  </div>
@@ -1720,6 +1722,12 @@ $(document).one('pagebeforecreate', function () {
 											var bolh = (0.6)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+											if(parseFloat(localStorage.pages)>1){
+												       $('#header_load_pages').html(localStorage.pages+' pages');
+												}else{
+													   $('#header_load_pages').html(localStorage.pages+' page');
+													}
+												
 											//alert('Hello bol number-'+data[i].bol_number+'-');
 											//$('#load_number_hid').html(data[0].load_number);
 											//---GETTING ADDRESS --- //

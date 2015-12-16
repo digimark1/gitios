@@ -387,6 +387,18 @@ body :-ms-input-placeholder {
 				text-decoration:none;
 				color:#626262
 				}
+				#header_load{
+					   display:inline-block;
+					   float:left;
+					   text-decoration:none;
+				       color:#626262
+					}
+				#header_load_pages{
+					   display:inline-block;
+					   float:right;
+					   text-decoration:none;
+				       color:#626262
+					}
 
 				#please_shipper, #please_consignee, #please_comment{
 					text-align: center;
