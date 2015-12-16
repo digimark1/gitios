@@ -447,8 +447,14 @@ $(document).one('pagebeforecreate', function () {
                     <div>
                         <div id="header_load">ab</div><div id="header_load_pages">cd</div>
                      </div>
-                        <div style="width:100%"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><!--<td width="25%"><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td>--></tr></table></div>
-                        <div id="doc_options"><img id="menu1" src="css/chat_inactive.png" width="100%"></div> 	
+                        <div style="width:100%;line-height: 0.3;"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><!--<td width="25%"><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td>--></tr></table>
+                        </div>
+                        <div id="doc_options"><img id="menu1" src="css/chat_inactive.png" width="100%"></div>
+                        <div style="display:inline-block;line-height: 0.3;">
+                            <table id="table_pager">
+                            <tr><td><div id='lastpage'><img id="lastpage_im" src="css/button5_s.png" width="100%"></div><td></td></td><td align="center"><div id="middle_number">22</div></td><td></td><td><div id='nextpage'><img id="nextpage_im" src="css/button4_s.png" width="100%"></div></td></tr>
+                            </table>
+                        </div>
                  </div>
                 
                 <div id="bol_image">
@@ -1099,7 +1105,7 @@ $(document).one('pagebeforecreate', function () {
 		function view_bol(){
 			 //$('#localstorage_trace').html(localStorage.trace);
 				                //location.href='#page2_5';
-								var bolh1 = (0.6)*parseFloat(window.screen.height);
+								var bolh1 = (0.55)*parseFloat(window.screen.height);
 								$('#bol_image').css("height",bolh1);
 								setTimeout(function (){
 									//alert('inside view bol')
@@ -1647,14 +1653,36 @@ $(document).one('pagebeforecreate', function () {
 
 		//---Change BOL pages on click---//
 		
-           $('#change_next_page, #change_next_page2').click(function(){
+           $('#nextpage_im').click(function(){
 			   $("#image_source").attr('src','css/loading2.gif');
 			   //alert('Im inside');
 				if((parseFloat(localStorage.cont_pages)) >= (parseFloat(localStorage.pages)-1)){
 						localStorage.cont_pages = 0;
+						$('#middle_number').html((parseFloat(localStorage.cont_pages)+1));
 						//alert('Must reset');
 					}else{
 						localStorage.cont_pages = parseFloat(localStorage.cont_pages) + 1;
+						$('#middle_number').html((parseFloat(localStorage.cont_pages)+1))
+						//alert('Must be counting-'+localStorage.cont_pages);
+					      }
+				  
+				  d = new Date();
+			      setTimeout(function(){
+								$("#image_source").attr('src',''+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-'+localStorage.cont_pages+'.jpg?'+d.getTime()+'');
+							 }, 500);
+			   });
+			   
+           $('#lastpage_im').click(function(){
+			   $("#image_source").attr('src','css/loading2.gif');
+			   //alert('Im inside');
+				if((parseFloat(localStorage.cont_pages)) == 0){
+					    
+						localStorage.cont_pages = (parseFloat(localStorage.pages)-1);
+						$('#middle_number').html((parseFloat(localStorage.cont_pages)+1));
+						//alert('Must reset');
+					}else{
+						localStorage.cont_pages = parseFloat(localStorage.cont_pages) - 1;
+						$('#middle_number').html((parseFloat(localStorage.cont_pages)+1));
 						//alert('Must be counting-'+localStorage.cont_pages);
 					      }
 				  
@@ -1719,7 +1747,7 @@ $(document).one('pagebeforecreate', function () {
 							   //alert('inside the "for"');
 								if(data[i].bol_number == bol_number){
 									//alert('bol number number');
-											var bolh = (0.6)*parseFloat(window.screen.height);
+											var bolh = (0.55)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 											if(parseFloat(localStorage.pages)>1){
