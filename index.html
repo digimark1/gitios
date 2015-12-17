@@ -446,7 +446,7 @@ $(document).one('pagebeforecreate', function () {
                           </table>
                     </div>
                     <div>
-                        <div id="header_load">ab</div><div id="header_load_pages">cd</div>
+                        <div id="header_load">&nbsp;_</div><div id="header_load_pages">&nbsp;_</div>
                      </div>
                         <div style="width:100%;line-height: 0.3;"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><!--<td width="25%"><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td>--></tr></table>
                         </div>
@@ -463,9 +463,25 @@ $(document).one('pagebeforecreate', function () {
                 </div>
                 <div id="pick_drop">
                   <!--<p>PickUp Location: <a style="color:red" href="maps://?q=cupertino"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>-->
-                  <p>PickUp Location: <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system"><span id="pickup_text"></span></a></p>
-                  <br>
-                  <p>Drop Location:   <a style="color:red" onClick="location.href=localStorage.drop_address" target="_system"><span id="drop_text"></span></a></p>
+                  <div id="pick_div">
+                      <div id="pick_div_text">
+                         <p><span id="pick_location_title">PickUp Location: </span><span id="pickup_text">Address</span></p>
+                         <p><a style="color:red" onClick="location.href=localStorage.pick_address" target="_system">OPEN IN MAP</a></p>
+                      </div>
+                      <div id="pick_div_im">
+                          <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system"><img alt="" src="css/maps-icon1.png" style="width:100%;padding-top:2px;"/></a> 
+                      </div>
+                   </div>
+                   <br>
+                   <div id="drop_div">
+                      <div id="drop_div_text">
+                          <p><span id="drop_location_title">Drop Location: </span><span id="drop_text">Address</span></p>
+                          <p><a style="color:red" onClick="location.href=localStorage.drop_address" target="_system">OPEN IN MAP</a></p>
+                       </div>
+                       <div id="drop_div_text">
+                          <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system"><img alt="" src="css/maps-icon2.png" style="width:100%;padding-top:2px;"/></a> 
+                      </div>
+                    </div>
                 </div>
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>

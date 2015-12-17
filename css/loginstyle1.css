@@ -1,6 +1,29 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#pick_location_title, #drop_location_title{
+	font-weight: 600;
+	}
+#pick_drop{
+		display: inline-block;
+		margin-left:5px;
+	   }
+#pick_div, #drop_div{
+	display:inline-block;
+	width:100%;
+	line-height:1.3;
+	}
+#pick_div_text, #drop_div_text{
+	width:50%;
+	display:inline-block;
+	float:left
+	}
+#pick_div_im, #drop_div_im{
+	width:50%;
+	display:inline-block;
+	float:right
+	}
+
 #table_pager td{
 	width:20%;
 	margin-bottom:0px;
