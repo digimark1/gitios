@@ -2188,6 +2188,7 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
+		$('#middle_number').html('1');
 		$('#doc_options').css('display','none');
 		$('#digital_bol').attr('src','css/digital_active.png');
 		$('#direction_bol').attr('src','css/places_inactive.png');
@@ -2323,6 +2324,8 @@ $('#page2').on('pageshow',function(e,data){
 //-----------------------------------------	
 		}
 		});
+		
+		$("select option:contains('Value a')").attr("disabled","disabled")
 		
 	})(jQuery)
 </script>
