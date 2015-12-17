@@ -1550,20 +1550,23 @@ $(document).one('pagebeforecreate', function () {
 									//Load's number to guide the user. BOL's with current load number.
 									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
 								    $("#lol_item_shipment").html("");
-								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%"></th></tr>');
 									$("#lol_item_shipment_inactive").html("");
-									$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th></tr>');
+									$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%"></th></tr>');
 									$("#lol_item_shipment_inactive").hide();
+									var pages;
 									for(i=0;i<data.length;i++){
 										if(data[i].destination_sign == 0){
 											//Active shipment counter for trace control
 											   active_shipment_counter++;
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+											   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 											//
 											  localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
 												//Change load detals. Just to see old BOL's
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td></tr>');
+												if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+data[i].bol_number+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 												}
 										}
 									$('#loading_shipments').html("");
@@ -2180,6 +2183,8 @@ $(document).one('pagebeforecreate', function () {
 	$('#page2_5').on('pageshow',function(e,data) {
 		$('#doc_options').css('display','none');
 		$('#digital_bol').attr('src','css/digital_active.png');
+		$('#direction_bol').attr('src','css/places_inactive.png');
+		$('#picture_bol').attr('src','css/picture_inactive.png');
 		//$('#chat_bol').attr('src','css/chat_inactive.png');
 		//$('#picture_buttons').hide();
 		//$('#pick_drop').hide();

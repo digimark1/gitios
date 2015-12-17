@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#pick_drop p{
+	margin-top:0px
+	}
 #pick_map_icon, #drop_map_icon{
 	width:50%;
 	padding-top:2px; 
