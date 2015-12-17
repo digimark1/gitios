@@ -489,9 +489,10 @@ $(document).one('pagebeforecreate', function () {
                  <div id="picture_buttons">
                        <table width="100%">
                               <tr>
+                                <td style="width: 25%;"><div id="load_list_button"><a href="#page2" id="back" class="" onClick=""><img src="css/back_pic.png" width="80%" /></a></div></td>
                                 <td width="25%"><div id="take_photo_button"><img id="upload_picture" src="css/take_pic.png" width="100%"/></div></td>
                                 <td width="25%"><div id="save_pic"><img id="save_picture" src="css/save_pic.png" width="100%"/></div></td>
-                                <td width="25%"><div><button id="save_bol" value="button">Save<br>BOL</button></div></td>
+                                <!--<td width="25%"><div><button id="save_bol" value="button">Save<br>BOL</button></div></td>-->
                                 <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
                                <td width="25%"><img id="chat_bol" src="css/chat_pic.png" width="100%"></td><!--<div id="next_page"><img id="change_next_page" src="css/button4.png" width="100%"/></div>--></td>
 
@@ -1088,11 +1089,11 @@ $(document).one('pagebeforecreate', function () {
 				$('#digital_buttons').show();
 				$('#bol_image').show();
 				// expandable menu
-				if($('#doc_options').css('display') == 'block'){
+				/*if($('#doc_options').css('display') == 'block'){
 				       $('#doc_options').css('display','none');
 				}else{
 					   $('#doc_options').css('display','block');
-					}
+					}*/
 				//-------
 			});
 		$('#picture_bol').click(function(){
@@ -1550,9 +1551,9 @@ $(document).one('pagebeforecreate', function () {
 									//Load's number to guide the user. BOL's with current load number.
 									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
 								    $("#lol_item_shipment").html("");
-								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">_&nbsp;</th></tr>');
+								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").html("");
-									$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">_&nbsp;</th></tr>');
+									$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").hide();
 									var pages;
 									for(i=0;i<data.length;i++){
@@ -1597,9 +1598,9 @@ $(document).one('pagebeforecreate', function () {
 														//Load's number to guide the user. BOL's with current load number.
 														$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
 														$("#lol_item_shipment").html("");
-														$("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">_&nbsp;</th></tr>');
+														$("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 														$("#lol_item_shipment_inactive").html("");
-														$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">_&nbsp;</th></tr>');
+														$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 														$("#lol_item_shipment_inactive").hide();
 														var pages;
 														for(i=0;i<data.length;i++){
@@ -1651,9 +1652,9 @@ $(document).one('pagebeforecreate', function () {
 									//Load's number to guide the user. BOL's with current load number.
 									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
 								    $("#lol_item_shipment").html("");
-								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">_&nbsp;</th></tr>');
+								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").html("");
-									$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">_&nbsp;</th></tr>');
+									$("#lol_item_shipment_inactive").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").hide();
 									var pages;
 									for(i=0;i<data.length;i++){

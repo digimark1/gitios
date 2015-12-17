@@ -386,8 +386,11 @@ body :-ms-input-placeholder {
 				table#lol_item tr:nth-child(odd), table#lol_item_shipment tr:nth-child(odd) {
 				    background-color:#fff;
 				}
-				table#lol_item td, table#lol_item_inactive td, table#lol_item_shipment td{
+				table#lol_item td, table#lol_item_inactive td{
 					 width:50%;
+					}
+				table#lol_item_shipment td{
+					width:33%
 					}
 				#back_from_message{
 				width:20%; 
