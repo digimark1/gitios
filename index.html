@@ -152,7 +152,7 @@ $(document).one('pagebeforecreate', function () {
 								};
 						if(localStorage.finish == 0){
 							      localStorage.tobecontinued = 1;
-								  alert('localStorage.finish ==0');
+								  //alert('localStorage.finish ==0');
 								  active_shipments_load(localStorage.last_active_load, localStorage.last_active_load_number);
 							}else{
 								  localStorage.tobecontinued = 0;
@@ -1141,19 +1141,19 @@ $(document).one('pagebeforecreate', function () {
 			setTimeout(function(){
 					if(parseFloat(localStorage.active_shipment_counter) >= 1){
 							 localStorage.trace = 1;//$('#localstorage_trace').html(1);
-							 alert('shipment counter>=1');
+							// alert('shipment counter>=1');
 					}else{
 							 localStorage.trace = 0; //$('#localstorage_trace').html(0);
-							  alert('shipment counter = 0');
+							 // alert('shipment counter = 0');
 						}
 				},100); 
 			
 			   				//----- SEND TRACING LOCATION WHEN THE SHIPMENTS ARE DISPLAYED----///
 				if(localStorage.finish == 1){
-					alert('localstorage finish = 1')
+					//alert('localstorage finish = 1')
 					}else{
 /*Ask if already started sening trace */if(localStorage.start == 1){
-												alert('localstorage start = 1')
+												//alert('localstorage start = 1')
 													}else{
 														location_trace_interval = setInterval(function(){
 															if(localStorage.trace == 1){
@@ -1176,7 +1176,7 @@ $(document).one('pagebeforecreate', function () {
 																			  'Ok');
 																	};
 															}else{
-																alert('Im not sending the trace');
+																//alert('Im not sending the trace');
 																}
 													//WARNING
 														 },80000);
@@ -1192,11 +1192,11 @@ $(document).one('pagebeforecreate', function () {
 								 var x = position.coords.latitude;
 								 var y = position.coords.longitude;
 									send_trace(x,y);
-									navigator.notification.alert(
+									/*navigator.notification.alert(
 										  'Ok, I started sending the trace',
 										  alertCallback,
 										  'Smith TracknGo',
-										  'Ok');
+										  'Ok');*/
 							  };
 							   function onError(error) {
 									navigator.notification.alert(
@@ -1206,7 +1206,7 @@ $(document).one('pagebeforecreate', function () {
 										  'Ok');
 								};
 						}else{
-							alert('Im not sending the trace2');
+							  //alert('Im not sending the trace2');
 							}
 				       //WARNING
 					 },80000);
@@ -1464,7 +1464,7 @@ $(document).one('pagebeforecreate', function () {
 										// Start interval, just when new one arrives (or there is one active) //
 											if(localStorage.location_mark == 1){
 												}else{
-													alert('location 60 seconds');
+													//alert('location 60 seconds');
 													 driver_location_interval = setInterval(function(){
 															navigator.geolocation.getCurrentPosition(onSuccess, onError);
 																  function onSuccess(position) {
@@ -1500,7 +1500,7 @@ $(document).one('pagebeforecreate', function () {
 			               //----- After being Closed and Reopened ---//
 						   if(localStorage.tobecontinued == 1){
 							      trace_load2();
-								  alert('tobecontinued == 1')
+								  //alert('tobecontinued == 1')
 								  localStorage.tobecontinued = 0;
 							   }
 						   //-----------------------------------------//
@@ -2098,7 +2098,7 @@ $(document).one('pagebeforecreate', function () {
 			$("#comment_print").html(simage3.src);
 			$.ajax({
 					type: 'POST',
-					data: {comment_hand:$('#hidden_comment').val(),load_id:localStorage.load_id_bol,comment_print:$("#comment_print").html(),load_number:$('#load_number_hid').html()},
+					data: {comment_hand:$('#hidden_comment').val(),load_id:localStorage.load_id_bol,comment_print:$("#comment_print").html(),bol_number:localStorage.bol_number},
 					url: ''+localStorage.save_url+'/save_comment_hand.php',
 					success: function(data){
 						console.log(data);
@@ -2276,7 +2276,7 @@ $('#page2').on('pageshow',function(e,data){
 					}else{
 						if(localStorage.load_hid == localStorage.load_hid_2){
 							}else{
-						    alert('trace_load activated')
+						   // alert('trace_load activated')
 						   	trace_load();
 						}
 					}
