@@ -256,11 +256,11 @@ $(document).one('pagebeforecreate', function () {
 							 
 							 //---- LOAD #
 							if (load_sub == "New load #"){
-								localStorage.start ="";
-								localStorage.finish = 0;
-								localStorage.inactive = 0;
+								//localStorage.start ="";
+								//localStorage.finish = 0;
+								//localStorage.inactive = 0;
 								//localStorage.load_hid ="";
-								localStorage.load_hid = 1;
+								//localStorage.load_hid = 1;
 								$("#image_source").attr('src','css/loading2.gif');
 								var load_sub_split = load_str.split("-");
 								var load_number = parseFloat(load_sub_split[0].substring(10,20));
@@ -293,13 +293,11 @@ $(document).one('pagebeforecreate', function () {
 												//alert('2call:'+$('#load_hid').html());
 										}
 										})
-								//active_load(localStorage.user_id);
-								  //load_details2($('#load_hid').html());
-								 
-								   setTimeout(function(){
-									    location.href = "#page2";
+								//active_load(localStorage.user_id);								 
+								   /*setTimeout(function(){
+									    //location.href = "#page2";
 							 			//localStorage.bol = 0;
-							      },100) 
+							      },100)*/ 
 								   
 								}
 					}
