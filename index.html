@@ -987,6 +987,8 @@ $(document).one('pagebeforecreate', function () {
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 													 // $("#select-document option:contains('ss')").attr("disabled","disabled");
 													  $("#select-document option[value='ss']").attr("disabled", "disabled");
+													  $("#select-document option[value='cs']").removeAttr('disabled');
+													  $("#select-document option[value='pd']").removeAttr('disabled');
 													  //$('#save_bol').show();
 													  
 												} else if(localStorage.signature == 1){
@@ -1932,8 +1934,8 @@ $(document).one('pagebeforecreate', function () {
 													  //$("select option:contains('Value a')").attr("disabled","disabled");
 												}else{
 													 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-													 $("#select-document option[value='cs']").attr("disabled", "disabled");
-													 $("#select-document option[value='pd']").attr("disabled", "disabled");
+													 //$("#select-document option[value='cs']").attr("disabled", "disabled");
+													 //$("#select-document option[value='pd']").attr("disabled", "disabled");
 													}
 											if(data[i].destination_sign != 0){
 												  $('#sig_button2').attr("href","#");
