@@ -489,9 +489,17 @@ $(document).one('pagebeforecreate', function () {
                  <div id="picture_buttons">
                        <table width="100%">
                               <tr>
-                                <td style="width: 25%;"><div id="load_list_button"><a href="#page2" id="back" class="" onClick=""><img src="css/back_pic.png" width="80%" /></a></div></td>
-                                <td width="25%"><div id="take_photo_button"><img id="upload_picture" src="css/take_pic.png" width="100%"/></div></td>
-                                <td width="25%"><div id="save_pic"><img id="save_picture" src="css/save_pic.png" width="100%"/></div></td>
+                                <td width="25%"><div id="load_list_button"><a href="#page2" id="back" class="" onClick=""><img src="css/back_pic.png" width="80%" /></a></div></td>
+                                <td width="25%">
+                                
+                                    <select name="select-document" id="select-document" data-native-menu="false"  style="width:30px;">
+                                        <option value="0">Document</option>
+                                        <option value="ss">Shipper Signature</option>
+                                        <option value="cs">Consignee Signature</option>
+                                        <option value="pd">Proof of Delivery</option>
+                                    </select>
+                                </td>
+                                <td width="25%"><div id="take_photo_button"><img id="upload_picture" src="css/take_pic.png" width="100%"/></div><div id="save_pic"><img id="save_picture" src="css/save_pic.png" width="100%"/></div></td>
                                 <!--<td width="25%"><div><button id="save_bol" value="button">Save<br>BOL</button></div></td>-->
                                 <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
                                <td width="25%"><img id="chat_bol" src="css/chat_pic.png" width="100%"></td><!--<div id="next_page"><img id="change_next_page" src="css/button4.png" width="100%"/></div>--></td>
@@ -858,39 +866,62 @@ $(document).one('pagebeforecreate', function () {
 				 }
 			});
 			
-			
+			 function onConfirm_picture(button){
+							   if(button == 1){
+										$("#image_source").attr('src','css/loading2.gif');
+														//selected photo URI is in the src attribute (we set this on getPhoto)
+										var imageURI = $('#cam_picture').html();
+										if (!imageURI) {
+											 navigator.notification.alert(
+														  'Please, take a picture first',
+														  alertCallback,
+														  'Smith TracknGo',
+														  'Ok');
+											return;
+										}
+								
+										//set upload options
+										var options = new FileUploadOptions();
+										options.fileKey = "file";
+										//options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+										var name_date = ($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
+										var name_no_date = name_date.split("?"); // delete date in seconds from url
+										options.fileName = name_no_date[0]; //($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
+										options.mimeType = "image/jpeg";
+										options.params = {
+											firstname: 'first',
+											lastname: 'second',
+											workplace: 'workplace'
+										}
+								
+										var ft = new FileTransfer();
+										ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win, fail, options);
+				
+														 
+						   }else{
+								 $('#take_photo_button').show();
+								 $('#save_pic').hide();
+							   }
+				}
 			//--- Upload camera's Picture Function ---//
 			function uploadPhoto() {
 				  // Called if something bad happens.
+				  if($('#select-document').val() == '0'){
+					        navigator.notification.alert(
+								  'Please, Choose the document',
+								  alertCallback,
+								  'Smith TracknGo',
+								  'Ok');
+					  }else{
+						  navigator.notification.confirm(
+								'Save this Document?',
+								onConfirm_picture,
+								'Smith TracknGo',
+								['Yes','No']
+							 );
+						  }
+							 
     //
-						$("#image_source").attr('src','css/loading2.gif');
-										//selected photo URI is in the src attribute (we set this on getPhoto)
-						var imageURI = $('#cam_picture').html();
-						if (!imageURI) {
-							 navigator.notification.alert(
-										  'Please, take a picture first',
-										  alertCallback,
-										  'Smith TracknGo',
-										  'Ok');
-							return;
-						}
-				
-						//set upload options
-						var options = new FileUploadOptions();
-						options.fileKey = "file";
-						//options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
-						var name_date = ($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
-						var name_no_date = name_date.split("?"); // delete date in seconds from url
-						options.fileName = name_no_date[0]; //($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
-						options.mimeType = "image/jpeg";
-						options.params = {
-							firstname: 'first',
-							lastname: 'second',
-							workplace: 'workplace'
-						}
-				
-						var ft = new FileTransfer();
-						ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win, fail, options);
 					}
 											
 						function win(r) {
@@ -898,11 +929,17 @@ $(document).one('pagebeforecreate', function () {
 								console.log("Response = " + r.response);
 								//alert("Response =" + r.response);
 								console.log("Sent = " + r.bytesSent);
-								  navigator.notification.alert(
-										  'The picture has been sent',
+								if($('#select-document').val()=='ss'){
+									  localStorage.signature = 0;
+									}else if(($('#select-document').val()=='cs')||($('#select-document').val()=='pd')){
+										localStorage.signature = 1;
+										}
+								  save_bol_function();
+								  /*navigator.notification.alert(
+										  'The document has been sent',
 										  alertCallback,
 										  'Smith TracknGo',
-										  'Ok');
+										  'Ok');*/
 										  d = new Date();
 								  $("#image_source").attr('src',$("#image_source").attr('alt')+d.getTime());
 								  // Erase Picture when succeeding 
@@ -923,9 +960,8 @@ $(document).one('pagebeforecreate', function () {
 				});
 			// Save bol, Creates Pdf and save it for manager.
 			//--- OnConfirm_signature changes function if the document is already signed. ---//
-			 function onConfirm_signature(button){
+			 function onConfirm_signature(){
 				var unsigned_shipments = 0;
-				if(button == 1){
 							$.ajax({
 									  type: 'POST',
 									  async: false,
@@ -937,11 +973,11 @@ $(document).one('pagebeforecreate', function () {
 													  $('#sig_button1').attr("href","#");
 													  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>');
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-													  $('#save_bol').show();
+													  //$('#save_bol').show();
 													  
 												} else if(localStorage.signature == 1){
 													  localStorage.completed = 1;
-													  $('#save_bol').hide();
+													  //$('#save_bol').hide();
 													   $('#consignee_button').html('<a href="#" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3s.png" width="100%"/></a>');
 													   //----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
 																  $.ajax({
@@ -999,33 +1035,32 @@ $(document).one('pagebeforecreate', function () {
 										  console.log(data);
 										  }
 									  });
-									   }else{
-										   
-										   }
 								};
 								
 			// Save BOL as a "signature"///
-			$('#save_bol').click(function (){
+			function save_bol_function(){
 				       //
 				if(localStorage.signature == 0){
 								 localStorage.save_bol = '/savebol.php';
-								 navigator.notification.confirm(
+								 onConfirm_signature();
+								 /*navigator.notification.confirm(
 									'Save Document Signed by the SHIPPER',
 									onConfirm_signature,
 									'Smith TracknGo',
 									['Yes','No']
-								 );
+								 );*/
 					}else if(localStorage.signature == 1){
 								 localStorage.save_bol = '/savebol2.php';
-								 navigator.notification.confirm(
+								 onConfirm_signature();
+								/* navigator.notification.confirm(
 									'Save Document Signed by the CONSIGNEE',
 									onConfirm_signature,
 									'Smith TracknGo',
 									['Yes','No']
-								 );
+								 );*/
 						}
 
-				});
+				};
 			
 			//---BOL using CAMERA ---//
 			$('#upload_picture').click(function(){
@@ -1042,6 +1077,7 @@ $(document).one('pagebeforecreate', function () {
 								//var image = document.getElementById('myImage');
 								//image.src = "data:image/jpeg;base64," + imageData;
 								//localStorage.camera = 1;
+								$('#take_photo_button').hide();
 								$('#save_pic').show();
 								$('#cam_picture').html(imageURI);
 								setTimeout(function(){
@@ -2188,6 +2224,9 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
+		$('#select-document-button').css('font-size','13px');
+		$('#select-document-button').attr('class','ui-btn ui-icon-carat-d ui-corner-all ui-shadow');
+		$('#select-document-button').css('padding','3px');
 		$('#middle_number').html('1');
 		$('#doc_options').css('display','none');
 		$('#digital_bol').attr('src','css/digital_active.png');
@@ -2325,7 +2364,7 @@ $('#page2').on('pageshow',function(e,data){
 		}
 		});
 		
-		$("select option:contains('Value a')").attr("disabled","disabled")
+		//$("select option:contains('Value a')").attr("disabled","disabled")
 		
 	})(jQuery)
 </script>
