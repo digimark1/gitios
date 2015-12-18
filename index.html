@@ -987,7 +987,7 @@ $(document).one('pagebeforecreate', function () {
 													  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>');
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 													 // $("#select-document option:contains('ss')").attr("disabled","disabled");
-													 $('#select_document_div').html('<select name="select-document" id="select-document" data-native-menu="false"><option value="0">Document</option><option value="ss" disabled>Shipper Signature</option><option value="cs">Consignee Signature</option><option value="pd">Proof of Delivery</option></select>');
+													 $('#select_document_div').html('<div class="ui-select"><a data-rel="popup" class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow" aria-haspopup="true" id="select-document-button" role="button" href="#select-document-listbox"><span>Consignee Signature</span></a><select tabindex="-1" name="select-document" id="select-document" data-native-menu="false"> <option value="0">Document</option> <option value="ss" disabled>Shipper Signature</option><option value="cs">Consignee Signature</option><option value="pd">Proof of Delivery</option></select><div id="select-document-listbox-placeholder" style="display:none;"><!-- placeholder for select-document-listbox --></div></div>');
 													  /*$("#select-document option[value='ss']").attr("disabled", "disabled");
 													  $("#select-document option[value='cs']").prop('disabled',false);
 													  $("#select-document option[value='pd']").prop('disabled', false);*/
@@ -1891,7 +1891,7 @@ $(document).one('pagebeforecreate', function () {
 					$('#sig_button2').attr("href","#page5");
 					$('#sig_button2').html('<img src="css/button3.png" width="100%"/>');
 					$('#select_document_div').show();
-					$('#select_document_div').html('<select name="select-document" id="select-document" data-native-menu="false"><option value="0">Document</option><option value="ss">Shipper Signature</option><option value="cs" disabled>Consignee Signature</option><option value="pd" disabled>Proof of Delivery</option></select>');
+					$('#select_document_div').html('<div class="ui-select"><a data-rel="popup" class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow" aria-haspopup="true" id="select-document-button" role="button" href="#select-document-listbox"><span>Consignee Signature</span></a><select tabindex="-1" name="select-document" id="select-document" data-native-menu="false"> <option value="0">Document</option> <option value="ss">Shipper Signature</option> <option value="cs" disabled>Consignee Signature</option><option value="pd" disabled>Proof of Delivery</option> </select><div id="select-document-listbox-placeholder" style="display:none;"><!-- placeholder for select-document-listbox --></div></div>');
 					/*$('#select-document').show();
 					$("#select-document option[value='ss']").removeAttr("disabled");
 					$("#select-document option[value='cs']").removeAttr("disabled");
@@ -1937,7 +1937,7 @@ $(document).one('pagebeforecreate', function () {
 													  /* $("#select-document option[value='ss']").attr("disabled", "disabled");
 													   $("#select-document option[value='cs']").prop("disabled",false);
 													   $("#select-document option[value='pd']").prop("disabled",false);*/
-													   $('#select_document_div').html('<select name="select-document" id="select-document" data-native-menu="false"><option value="0">Document</option><option value="ss" disabled>Shipper Signature</option><option value="cs">Consignee Signature</option><option value="pd">Proof of Delivery</option></select>');
+													   $('#select_document_div').html('<div class="ui-select"><a data-rel="popup" class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow" aria-haspopup="true" id="select-document-button" role="button" href="#select-document-listbox"><span>Consignee Signature</span></a><select tabindex="-1" name="select-document" id="select-document" data-native-menu="false"> <option value="0">Document</option> <option value="ss" disabled>Shipper Signature</option><option value="cs">Consignee Signature</option><option value="pd">Proof of Delivery</option></select><div id="select-document-listbox-placeholder" style="display:none;"><!-- placeholder for select-document-listbox --></div></div>');
 													  //$("select option:contains('Value a')").attr("disabled","disabled");
 												}else{
 													 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
