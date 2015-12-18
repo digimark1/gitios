@@ -987,8 +987,8 @@ $(document).one('pagebeforecreate', function () {
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 													 // $("#select-document option:contains('ss')").attr("disabled","disabled");
 													  $("#select-document option[value='ss']").attr("disabled", "disabled");
-													  $("#select-document option[value='cs']").prop('disabled','false');
-													  $("#select-document option[value='pd']").removeAttr('disabled');
+													  $("#select-document option[value='cs']").prop('disabled',false);
+													  $("#select-document option[value='pd']").prop('disabled', false);
 													  //$('#save_bol').show();
 													  
 												} else if(localStorage.signature == 1){
@@ -1857,22 +1857,22 @@ $(document).one('pagebeforecreate', function () {
 						     localStorage.signature = 1; // SAVE BOL button ask to saving consignee signature
 						 }
 					 if(destination == 1){
-						     $('#save_bol').hide();
+						     //$('#save_bol').hide();
 							 localStorage.completed = 1;
 						 }else{
-							 $('#save_bol').show();
+							 //$('#save_bol').show();
 							 localStorage.completed = 0;
 							 }
 			   		//--- Clicks counter to change pages ---//
 					localStorage.cont_pages = 0;
 			   		//----BUTTON to change pages----//
-						if(pages_number >= 2){
+						/*if(pages_number >= 2){
 							       $('#next_page').show();
 								   $('#next_page2').show();
 							  }else{
 							       $('#next_page').hide();
 								   $('#next_page2').hide();	
-								};
+								};*/
 					//--- Number of pages for this BOL. --//		
 				    localStorage.pages = pages_number;
 					//----BOL Number for image drawing.
@@ -1929,8 +1929,8 @@ $(document).one('pagebeforecreate', function () {
 													  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 													   $("#select-document option[value='ss']").attr("disabled", "disabled");
-													   $("#select-document option[value='cs']").prop("disabled","false");
-													   $("#select-document option[value='pd']").removeAttr("disabled");
+													   $("#select-document option[value='cs']").prop("disabled",false);
+													   $("#select-document option[value='pd']").prop("disabled",false);
 													  //$("select option:contains('Value a')").attr("disabled","disabled");
 												}else{
 													 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
