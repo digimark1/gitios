@@ -479,7 +479,7 @@ $(document).one('pagebeforecreate', function () {
                           <p><a style="color:red" onClick="location.href=localStorage.drop_address" target="_system">OPEN IN MAP</a></p>
                        </div>
                        <div id="drop_div_text">
-                          <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system"><img id="drop_map_icon" src="css/maps-icon2.png"/></a> 
+                          <a style="color:red" onClick="location.href=localStorage.drop_address" target="_system"><img id="drop_map_icon" src="css/maps-icon2.png"/></a> 
                       </div>
                     </div>
                 </div>
@@ -1016,7 +1016,9 @@ $(document).one('pagebeforecreate', function () {
 																	}})						
 																// Reset location traces sending //
 																if(unsigned_shipments >= 1){
+																	alert('unsigned_shipments >=1');
 																	}else{
+																		    alert('unsigned_shipments=0');
 																			localStorage.start = 0;
 																			localStorage.finish = 1;
 																			// To enable the restart --- driver setinterval --- driver_location_interval
