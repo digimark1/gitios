@@ -1021,6 +1021,8 @@ $(document).one('pagebeforecreate', function () {
 																	//alert('unsigned_shipments >=1');
 																	}else{
 																		     $("#select-document").hide();
+																			 $("#select-document option[value='cs']").attr("disabled", "disabled");
+																			 $("#select-document option[value='pd']").attr("disabled", "disabled");
 																			localStorage.start = 0;
 																			localStorage.finish = 1;
 																			// To enable the restart --- driver setinterval --- driver_location_interval
@@ -1883,7 +1885,7 @@ $(document).one('pagebeforecreate', function () {
 					$('#sig_button2').attr("href","#page5");
 					$('#sig_button2').html('<img src="css/button3.png" width="100%"/>');
 					$('#select-document').show();
-					$("#select-document option[value='ss']").attr("disabled", "");
+					$("#select-document option[value='ss']").removeAttr("disabled");
 					$("#select-document option[value='cs']").attr("disabled", "disabled");
 					$("#select-document option[value='pd']").attr("disabled", "disabled");
 					$('#take_photo_button').show();
@@ -1925,6 +1927,8 @@ $(document).one('pagebeforecreate', function () {
 													  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 													   $("#select-document option[value='ss']").attr("disabled", "disabled");
+													   $("#select-document option[value='cs']").removeAttr("disabled");
+													   $("#select-document option[value='pd']").removeAttr("disabled");
 													  //$("select option:contains('Value a')").attr("disabled","disabled");
 												}else{
 													 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
