@@ -987,7 +987,7 @@ $(document).one('pagebeforecreate', function () {
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 													 // $("#select-document option:contains('ss')").attr("disabled","disabled");
 													  $("#select-document option[value='ss']").attr("disabled", "disabled");
-													  $("#select-document option[value='cs']").removeAttr('disabled');
+													  $("#select-document option[value='cs']").prop('disabled','false');
 													  $("#select-document option[value='pd']").removeAttr('disabled');
 													  //$('#save_bol').show();
 													  
@@ -1929,7 +1929,7 @@ $(document).one('pagebeforecreate', function () {
 													  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
 													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 													   $("#select-document option[value='ss']").attr("disabled", "disabled");
-													   $("#select-document option[value='cs']").removeAttr("disabled");
+													   $("#select-document option[value='cs']").prop("disabled","false");
 													   $("#select-document option[value='pd']").removeAttr("disabled");
 													  //$("select option:contains('Value a')").attr("disabled","disabled");
 												}else{
