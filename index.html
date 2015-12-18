@@ -962,10 +962,22 @@ $(document).one('pagebeforecreate', function () {
 			//--- OnConfirm_signature changes function if the document is already signed. ---//
 			 function onConfirm_signature(){
 				var unsigned_shipments = 0;
+				$('#take_photo_button').show();
+				switch($('#select-document').val()){
+					case 'ss' :
+					   localStorage.doc_name = 'Shipper Signature';
+					break;
+					case 'cs' :
+						localStorage.doc_name = 'Consignee Signature';
+					break;
+					case 'pd' :
+						localStorage.doc_name = 'Proof of Delivery';
+					break;
+					}
 							$.ajax({
 									  type: 'POST',
 									  async: false,
-									  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number},
+									  data:{pages_number:localStorage.pages,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:localStorage.doc_name},
 									  url: ''+localStorage.save_url+localStorage.save_bol+'',
 									  success: function(data){
 										   if(localStorage.signature == 0) {
@@ -1020,7 +1032,7 @@ $(document).one('pagebeforecreate', function () {
 																		};
 													}
 										   navigator.notification.alert(
-																	  'BOL has been sent to Manager',
+																	  'The Document has been sent to Manager',
 																	  alertCallback,
 																	  'Smith TracknGo',
 																	  'Ok');
