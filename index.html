@@ -1016,9 +1016,9 @@ $(document).one('pagebeforecreate', function () {
 																	}})						
 																// Reset location traces sending //
 																if(unsigned_shipments >= 1){
-																	alert('unsigned_shipments >=1');
+																	//alert('unsigned_shipments >=1');
 																	}else{
-																		    alert('unsigned_shipments=0');
+																		    
 																			localStorage.start = 0;
 																			localStorage.finish = 1;
 																			// To enable the restart --- driver setinterval --- driver_location_interval
@@ -1030,6 +1030,7 @@ $(document).one('pagebeforecreate', function () {
 																			//alert('location_trace_deleted_2');
 																			cordova.plugins.backgroundMode.disable();
 																			bgGeo.stop();
+																			alert('unsigned_shipments=0');
 																			//sigData.jSignature("reset");
 																		};
 													}
