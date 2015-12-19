@@ -153,6 +153,7 @@ $(document).one('pagebeforecreate', function () {
 						if(localStorage.finish == 0){
 							      localStorage.tobecontinued = 1;
 								  //alert('localStorage.finish ==0');
+								  localStorage.first_trace = 'device_ready';
 								  active_shipments_load(localStorage.last_active_load, localStorage.last_active_load_number);
 							}else{
 								  localStorage.tobecontinued = 0;
@@ -283,6 +284,7 @@ $(document).one('pagebeforecreate', function () {
 														//$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 														//$('#shipper_button').html('<a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="100%"/></a>');
 														//localStorage.bol = 1;
+														localStorage.first_trace = 'notification_ready';
 														active_shipments_load(data[i].idts_load,data[i].load_number);
 														//view_bol();
 													}
@@ -1210,6 +1212,7 @@ $(document).one('pagebeforecreate', function () {
 		///-------- TRACE LOAD - Onpage2 ----///
 		function trace_load(){
 			//
+			localStorage.trace_load = 1;
 			setTimeout(function(){
 					if(parseFloat(localStorage.active_shipment_counter) >= 1){
 							 localStorage.trace = 1;//$('#localstorage_trace').html(1);
@@ -1257,6 +1260,7 @@ $(document).one('pagebeforecreate', function () {
 					};
 
 		function trace_load2(){
+			localStorage.trace_load2 = 1;
 						location_trace_interval = setInterval(function(){
 						if(localStorage.trace == 1){
 						navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -1427,6 +1431,7 @@ $(document).one('pagebeforecreate', function () {
 		}
 		
 		function send_trace(x,y){
+			
 					var lati = x;
 					$('#latitude').val(lati); // Use to show location when sending callcheck
                     var longi = y;
@@ -2254,9 +2259,9 @@ $(document).one('pagebeforecreate', function () {
 	//----------END OF Function for saving signature
 	
 	$('#page2_5').on('pageshow',function(e,data) {
-		//$('#select-document-button').css('font-size','13px');
-		//$('#select-document-button').attr('class','ui-btn ui-icon-carat-d ui-corner-all ui-shadow');
-		//$('#select-document-button').css('padding','3px');
+		$('#select-document-button').css('font-size','13px');
+		$('#select-document-button').attr('class','ui-btn ui-icon-carat-d ui-corner-all ui-shadow');
+		$('#select-document-button').css('padding','3px');
 		$('#middle_number').html('1');
 		$('#doc_options').css('display','none');
 		$('#digital_bol').attr('src','css/digital_active.png');
