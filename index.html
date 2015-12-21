@@ -1954,7 +1954,7 @@ function update_shipments_load(load_id){
                             console.log(data);
 					       for(i=0;i<data.length;i++){
 							   //alert('inside the "for"');
-								if(data[i].bol_number == bol_number){
+								if(data[i].bol_number == ''+bol_number+''){
 									//alert('bol number number');
 											var bolh = (0.51)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
