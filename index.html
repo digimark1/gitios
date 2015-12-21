@@ -1971,7 +1971,7 @@ function update_shipments_load(load_id){
 												   async:false,
 												   url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+pickup_lat+','+pickup_lng+'&key=AIzaSyAp8XadZn74QX4NLDphnzehQ0AN7q6NCwg',
 												   success: function(data){
-														 var pickup_address = ''+data.results[0].formatted_address+'';
+														 localStorage.pickup_formatted_address = ''+data.results[0].formatted_address+'';
 													   }
 												 })
 											$.ajax({
@@ -1980,13 +1980,13 @@ function update_shipments_load(load_id){
 												   async:false,
 												   url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+drop_lat+','+drop_lng+'&key=AIzaSyAp8XadZn74QX4NLDphnzehQ0AN7q6NCwg',
 												   success: function(data){
-														var drop_address = ''+data.results[0].formatted_address+'';
+														localStorage.drop_formatted_address = ''+data.results[0].formatted_address+'';
 													   }
 												 })
-											localStorage.pick_address = 'maps://?q='+''+pickup_address+'';
-											$('#pickup_text').html(pickup_address);
-											localStorage.drop_address = 'maps://?q='+''+drop_address+'';
-											$('#drop_text').html(drop_address);
+											localStorage.pick_address = 'maps://?q='+''+localStorage.pickup_formatted_address+'';
+											$('#pickup_text').html(localStorage.pickup_formatted_address);
+											localStorage.drop_address = 'maps://?q='+''+localStorage.drop_formatted_address+'';
+											$('#drop_text').html(localStorage.drop_formatted_address);
 											$("#bol_number_hid").html(data[i].bol_number);
 											if (data[i].origin_sign != 0){
 													  $('#sig_button1').attr("href","#");
@@ -2056,12 +2056,7 @@ function update_shipments_load(load_id){
 			 //alert('reset chat');
 			location.href ="#page2_5";
 			});
-/*		function chatIntC(){
-			clearInterval(chatInt);
-			location.href ="#page2_5";
 			
-		}
-*/
 		$('#page4').on('pageshow',function(e,data){
 			// Show callcheck in left panel.
 			//$('#callcheck_li').show();
