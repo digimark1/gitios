@@ -124,12 +124,10 @@ $(document).one('pagebeforecreate', function () {
     // onSuccess Geolocation
     //
     function onSuccess(position) {
-
 	//l-ocalStorage.trace = 1;
 	
 	//----End of background settings	
 	cordova.plugins.backgroundMode.setDefaults({
-
 		});
 		
 	cordova.plugins.backgroundMode.enable();
@@ -1088,7 +1086,6 @@ $(document).one('pagebeforecreate', function () {
 									['Yes','No']
 								 );*/
 						}
-
 				};
 			
 			//---BOL using CAMERA ---//
@@ -1128,7 +1125,6 @@ $(document).one('pagebeforecreate', function () {
 							}
 			});
 		// SHOW ACTIVE AND HISTORY LOADS
-
         $('#active_ld').click(function(){
 				$('#active_ld').attr('src','css/active_active.png');
 				$('#history_ld').attr('src','css/history_inactive.png');
@@ -1266,7 +1262,6 @@ $(document).one('pagebeforecreate', function () {
 													}
 											}		
 					};
-
 		function trace_load2(){
 			localStorage.trace_load2 = 1;
 						location_trace_interval = setInterval(function(){
