@@ -1027,6 +1027,8 @@ $(document).one('pagebeforecreate', function () {
 																// Reset location traces sending //
 																if(unsigned_shipments >= 1){
 																	//alert('unsigned_shipments >=1');
+																	         $('#select_document_div').hide();
+									                                         $('#take_photo_button').hide();
 																	}else{
 																		     //$('#select_document_div').html('<select name="select-document" id="select-document" data-native-menu="false"><option value="0">Document</option><option value="ss" disabled>Shipper Signature</option><option value="cs">Consignee Signature</option><option value="pd">Proof of Delivery</option></select>');
 																		     $('#select_document_div').hide();
@@ -2213,7 +2215,11 @@ function update_shipments_load(load_id){
                             }})						
 						// Reset location traces sending //
 						if(unsigned_shipments >= 1){
+							        $('#select_document_div').hide();
+									$('#take_photo_button').hide();
 							}else{
+								    $('#select_document_div').hide();
+									$('#take_photo_button').hide();
 									localStorage.start = 0;
 									localStorage.finish = 1;
 									// To enable the restart --- driver setinterval --- driver_location_interval
