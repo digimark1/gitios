@@ -463,14 +463,14 @@ $(document).one('pagebeforecreate', function () {
                   <div id="pick_div">
                       <div id="pick_div_text">
                          <p><span id="pick_location_title">PickUp Address: </span><span id="pickup_text">Address</span></p>
-                         <p><a style="color:red" onClick="location.href=localStorage.pick_address" target="_system">VIEW IN MAPS</a></p>
+                         <p><a style="color:blue; font-weight:500" onClick="location.href=localStorage.pick_address" target="_system">View in Maps</a></p>
                       </div>
                       <div id="pick_div_im">
                            <div id="shipper_table">
                                 <div id="shipper_take_picture">TAKE PICTURE</div>
                                 <div id="shipper_add_signature">ADD SIGNATURE</div>
                                 <div id="shipper_wrapper">
-                                	<div id="expand_shipper"><b>&nbsp; - </b>Shipper Bol</div>
+                                	<div id="expand_shipper"><b>&nbsp; - </b>Shipper BOL</div>
                                 	<div id="shipper_photos"></div>
                                  </div>
                            </div>
@@ -480,14 +480,14 @@ $(document).one('pagebeforecreate', function () {
                    <div id="drop_div">
                       <div id="drop_div_text">
                           <p><span id="drop_location_title">Delivery Address: </span><span id="drop_text">Address</span></p>
-                          <p><a style="color:red" onClick="location.href=localStorage.drop_address" target="_system">VIEW IN MAPS</a></p>
+                          <p><a style="color:blue; font-weight:500" onClick="location.href=localStorage.drop_address" target="_system">View in Maps</a></p>
                        </div>
                        <div id="drop_div_text">
                        <div id="consignee_table">
                              <div id="consignee_take_picture">TAKE PICTURE</div>
                              <div id="consignee_add_signature">ADD SIGNATURE</div>
                              <div id="consignee_wrapper">
-                                 <div id="expand_consignee"><b>&nbsp; - </b>Consignee Bol</div>
+                                 <div id="expand_consignee"><b>&nbsp; - </b>Consignee BOL</div>
                                  <div id="consignee_photos"></div>
                              </div>
                        </div>
@@ -502,7 +502,7 @@ $(document).one('pagebeforecreate', function () {
                      	<div id="div_document_name">
                             <!--<select data-native-menu="false" data-theme="a" data-overlay-theme="a" tabindex="-1">-->
                             <select data-role="" id="select_new_document" data-native-menu="false" data-theme="a" data-position="center" >
-                            	<option>Choose Document</option>
+                            	<option data-placeholder="false">Choose Document</option>
                                 <option>Invoice</option>
                                 <option>Manifest</option>
                                 <option>Lumper fee</option>
@@ -530,27 +530,27 @@ $(document).one('pagebeforecreate', function () {
 <script>
 $('#shipper_take_picture').click(function(){
 	localStorage.counter_photo1 = parseFloat(localStorage.counter_photo1) + 1;
-	 $('#shipper_photos').append('<div><a style="color:blue" href="#">-12/23/2015_'+localStorage.counter_photo1+'</a></div>');
+	 $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#">-12/23/2015_'+localStorage.counter_photo1+'</a></div>');
 	});
 $('#expand_shipper').click(function(){
-	   if($('#expand_shipper').html() == "<b>&nbsp; - </b>Shipper Bol"){
-	         $('#expand_shipper').html('<b>&nbsp; + </b>Shipper Bol');
+	   if($('#expand_shipper').html() == "<b>&nbsp; - </b>Shipper BOL"){
+	         $('#expand_shipper').html('<b>&nbsp; + </b>Shipper BOL');
 		     $('#shipper_photos').hide();
 	   }else{
-		   $('#expand_shipper').html('<b>&nbsp; - </b>Shipper Bol');
+		   $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
 		   $('#shipper_photos').show();
 		   }
 	});
 $('#consignee_take_picture').click(function(){
 	localStorage.counter_photo2 = parseFloat(localStorage.counter_photo2) + 1;
-	 $('#consignee_photos').append('<div><a style="color:blue" href="#">-12/23/2015_'+localStorage.counter_photo2+'</a></div>');
+	 $('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#">-12/23/2015_'+localStorage.counter_photo2+'</a></div>');
 	});
 $('#expand_consignee').click(function(){
-	   if($('#expand_consignee').html() == "<b>&nbsp; - </b>Consignee Bol"){
-	         $('#expand_consignee').html('<b>&nbsp; + </b>Consignee Bol');
+	   if($('#expand_consignee').html() == "<b>&nbsp; - </b>Consignee BOL"){
+	         $('#expand_consignee').html('<b>&nbsp; + </b>Consignee BOL');
 		     $('#consignee_photos').hide();
 	   }else{
-		     $('#expand_consignee').html('<b>&nbsp; - </b>Consignee Bol');
+		     $('#expand_consignee').html('<b>&nbsp; - </b>Consignee BOL');
 		     $('#consignee_photos').show();
 		   }
 	});
@@ -2434,9 +2434,9 @@ function update_shipments_load(load_id){
 	$('#page2_5').on('pageshow',function(e,data) {
 		localStorage.counter_photo1 = 0;
 		localStorage.counter_photo2 = 0;
-		$('#select-document-button').css('font-size','13px');
-		$('#select-document-button').attr('class','ui-btn ui-icon-carat-d ui-corner-all ui-shadow');
-		$('#select-document-button').css('padding','3px');
+		$('#select_new_document-button').css('font-size','13px');
+		$('#select_new_document-button').attr('class','ui-btn ui-icon-carat-d ui-corner-all ui-shadow');
+		$('#select_new_document-button').css('padding','3px');
 		$('#middle_number').html('1');
 		$('#doc_options').css('display','none');
 		$('#digital_bol').attr('src','css/digital_active.png');
