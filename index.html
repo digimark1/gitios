@@ -437,8 +437,122 @@ $(document).one('pagebeforecreate', function () {
                 </div>
                
     </div>
-    
+
+<!---- LAST DESIGN BOL PAGE 2_5 ----->   
  	<div data-role="page" id="page2_5">
+             	    <div data-role="header">
+                    <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
+                    <div>
+                    <table width="100%" style="background-color:#ED1A3B">
+                              <tr>
+                                <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
+                                <td><div id="title2">TRACKN'GO!</div></td>
+                                <td align="right"  style="padding:5px"><div id="load_shipment1"></div></td>
+                              </tr>
+                          </table>
+                    </div>
+                    <div id="header_container">
+                        <div id="header_load">&nbsp;_</div><div id="header_load_pages">&nbsp;_</div>
+                     </div>
+                 </div>
+                
+                <div id="bol_image">
+                    <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
+                </div>
+                <div id="pick_drop">
+                  <!--<p>PickUp Location: <a style="color:red" href="maps://?q=cupertino"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>-->
+                  <div id="pick_div">
+                      <div id="pick_div_text">
+                         <p><span id="pick_location_title">PickUp Address: </span><span id="pickup_text">Address</span></p>
+                         <p><a style="color:red" onClick="location.href=localStorage.pick_address" target="_system">VIEW IN MAPS</a></p>
+                      </div>
+                      <div id="pick_div_im">
+                           <div id="shipper_table">
+                                <div id="shipper_take_picture">TAKE PICTURE</div>
+                                <div id="shipper_add_signature">ADD SIGNATURE</div>
+                                <div id="expand_shipper"><b>&nbsp; - </b>Shipper Bol</div>
+                                <div id="shipper_photos"></div>
+                           </div>
+                          <!--<a style="color:red" onClick="location.href=localStorage.pick_address" target="_system"><img id="pick_map_icon" src="css/maps-icon1.png"/></a> -->
+                      </div>
+                   </div>
+                   <br>
+                   <div id="drop_div">
+                      <div id="drop_div_text">
+                          <p><span id="drop_location_title">Delivery Address: </span><span id="drop_text">Address</span></p>
+                          <p><a style="color:red" onClick="location.href=localStorage.drop_address" target="_system">VIEW IN MAPS</a></p>
+                       </div>
+                       <div id="drop_div_text">
+                       <div id="consignee_table">
+                             <div id="consignee_take_picture">TAKE PICTURE</div>
+                             <div id="consignee_add_signature">ADD SIGNATURE</div>
+                             <div id="expand_consignee"><b>&nbsp; - </b>Consignee Bol</div>
+                             <div id="consignee_photos"></div>
+                       </div>
+                          <!--<a style="color:red" onClick="location.href=localStorage.drop_address" target="_system"><img id="drop_map_icon" src="css/maps-icon2.png"/></a> -->
+                      </div>
+                    </div>
+                </div>
+                
+                <div id="aditional_documents">
+                 <div id="documents_title">ADITIONAL DOCUMENTS</div>
+                     <div id="document_options">
+                     	<div id="div_document_name">
+                            <select data-role="none">
+                            	<option>Choose Document</option>
+                                <option>Invoice</option>
+                                <option>Manifest</option>
+                                <option>Lumper fee</option>
+                            </select>
+                        </div>
+                        <div id="div_document_picture">
+                           <div id="document_take_picture">TAKE PICTURE</div>
+                        </div>
+                        <div id="div_lol_item_documents">
+                           <table id="lol_item_documents">
+                        	<tr><th width="40%"> DATE </th><th width="60%">DOCUMENT NAME</th></tr>
+                           </table>
+                        </div>
+                     </div>
+                </div>
+                
+                <div id="screenheight" hidden></div>
+                <div id="screenheight2" hidden></div>
+                <div data-role="footer" data-position="fixed" >
+                   <div id="load_id_hidden" hidden></div>
+                   <div id="load_number_hid" hidden></div>
+                   <div id="bol_number_hid" hidden></div>
+                </div> 
+       </div>
+<script>
+$('#shipper_take_picture').click(function(){
+	 $('#shipper_photos').append('<div><a style="color:blue" href="#">-Photo</a></div>');
+	});
+$('#expand_shipper').click(function(){
+	   if($('#expand_shipper').html() == "<b>&nbsp; - </b>Shipper Bol"){
+	         $('#expand_shipper').html('<b>&nbsp; + </b>Shipper Bol');
+		     $('#shipper_photos').hide();
+	   }else{
+		   $('#expand_shipper').html('<b>&nbsp; - </b>Shipper Bol');
+		   $('#shipper_photos').show();
+		   }
+	});
+$('#consignee_take_picture').click(function(){
+	 $('#consignee_photos').append('<div><a style="color:blue" href="#">-Photo</a></div>');
+	});
+$('#expand_consignee').click(function(){
+	   if($('#expand_consignee').html() == "<b>&nbsp; - </b>Consignee Bol"){
+	         $('#expand_consignee').html('<b>&nbsp; + </b>Consignee Bol');
+		     $('#consignee_photos').hide();
+	   }else{
+		     $('#expand_consignee').html('<b>&nbsp; - </b>Consignee Bol');
+		     $('#consignee_photos').show();
+		   }
+	});
+</script>      
+       
+<!------COPY PAGE 2_5 ---->
+<!--<div data-role="page" id="page2_6">
              	    <div data-role="header">
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
                     <div>
@@ -453,7 +567,7 @@ $(document).one('pagebeforecreate', function () {
                     <div>
                         <div id="header_load">&nbsp;_</div><div id="header_load_pages">&nbsp;_</div>
                      </div>
-                        <div style="width:100%;line-height: 0.3;"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td><!--<td width="25%"><img id="chat_bol" src="css/chat_inactive.png" width="100%"></td>--></tr></table>
+                        <div style="width:100%;line-height: 0.3;"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td></tr></table>
                         </div>
                         <div id="doc_options"><img id="menu1" src="css/chat_inactive.png" width="100%"></div>
                         <div style="display:inline-block;line-height: 0.3;">
@@ -467,7 +581,6 @@ $(document).one('pagebeforecreate', function () {
                     <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
                 </div>
                 <div id="pick_drop">
-                  <!--<p>PickUp Location: <a style="color:red" href="maps://?q=cupertino"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>-->
                   <div id="pick_div">
                       <div id="pick_div_text">
                          <p><span id="pick_location_title">PickUp Location: </span><span id="pickup_text">Address</span></p>
@@ -506,9 +619,7 @@ $(document).one('pagebeforecreate', function () {
                                  </div>
                                 </td>
                                 <td width="18%"><div id="take_photo_button"><img id="upload_picture" src="css/take_pic.png" width="120%"/></div><div id="save_pic"><img id="save_picture" src="css/save_pic.png" width="100%"/></div></td>
-                                <!--<td width="25%"><div><button id="save_bol" value="button">Save<br>BOL</button></div></td>-->
-                                <!--<td align="right" valign="top" style="padding:5px"><div hidden="" id="full_name1"></div><div hidden=""><a href="#" id="signout1" style="color:red">Sign Out</a></div></td>-->
-                               <td width="18%"><img id="chat_bol" src="css/chat_pic.png" width="120%"></td><!--<div id="next_page"><img id="change_next_page" src="css/button4.png" width="100%"/></div>--></td>
+                               <td width="18%"><img id="chat_bol" src="css/chat_pic.png" width="120%"></td></td>
 
                               </tr>
                           </table> 
@@ -519,7 +630,7 @@ $(document).one('pagebeforecreate', function () {
                                 <td style="width: 25%;"><div id="load_list_button"><a href="#page2" id="back" class="" onClick=""><img src="css/back_pic.png" width="80%" /></a></div></td>
                                 <td style="width: 25%;"><div id="shipper_button"><a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="80%"/></a></div></td>
 								<td style="width: 25%;"><div id="consignee_button"><a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="80%"/></a></div></td>
-                                <td style="width: 25%;"><img id="chat_bol2" src="css/chat_pic.png" width="80%"></td><!--<div id="next_page2"><img id="change_next_page2" src="css/button4.png" width="80%"/></div>--></td>
+                                <td style="width: 25%;"><img id="chat_bol2" src="css/chat_pic.png" width="80%"></td></td>
                             </tr>
                        </table>
                      </div>
@@ -527,9 +638,9 @@ $(document).one('pagebeforecreate', function () {
                    <div id="load_number_hid" hidden></div>
                    <div id="bol_number_hid" hidden></div>
                 </div> 
-       </div>
-       
-           <!----------- --------> 
+       </div>-->
+
+<!----------- --------> 
      <div data-role="page" id="page3">
      
 			<div data-role="header">
@@ -2327,14 +2438,11 @@ function update_shipments_load(load_id){
 		//$('#chat_bol').attr('src','css/chat_inactive.png');
 		//$('#picture_buttons').hide();
 		//$('#pick_drop').hide();
-		$('#digital_buttons').show();
-		$('#bol_image').show();
+		$('#bol_image').hide();
 		//HIDE picture buttons
-		$('#picture_buttons').hide();
 		// HIDE directions
-		$('#pick_drop').hide();
+		$('#pick_drop').show();
 		// Starts save pic button hidden //
-		$('#save_pic').hide();
 		// Avoid allowing signatures on messages
 		view_bol();
 				
