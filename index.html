@@ -440,7 +440,7 @@ $(document).one('pagebeforecreate', function () {
 
 <!---- LAST DESIGN BOL PAGE 2_5 ----->   
  	<div data-role="page" id="page2_5">
-             	    <div data-role="header" data-position="fixed">
+             	    <div data-role="header" data-position="fixed" data-tap-toggle="false">
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
                     <div>
                         <table width="100%">
@@ -536,6 +536,8 @@ $(document).one('pagebeforecreate', function () {
 $('#shipper_take_picture').click(function(){
 	localStorage.counter_photo1 = parseFloat(localStorage.counter_photo1) + 1;
 	 $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#">-12/23/2015_'+localStorage.counter_photo1+'</a></div>');
+	 $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
+	 $('#shipper_photos').show();
 	});
 $('#expand_shipper').click(function(){
 	   if($('#expand_shipper').html() == "<b>&nbsp; - </b>Shipper BOL"){
@@ -549,6 +551,8 @@ $('#expand_shipper').click(function(){
 $('#consignee_take_picture').click(function(){
 	localStorage.counter_photo2 = parseFloat(localStorage.counter_photo2) + 1;
 	 $('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#">-12/23/2015_'+localStorage.counter_photo2+'</a></div>');
+	 $('#expand_consignee').html('<b>&nbsp; - </b>Consignee BOL');
+	 $('#consignee_photos').show();
 	});
 $('#expand_consignee').click(function(){
 	   if($('#expand_consignee').html() == "<b>&nbsp; - </b>Consignee BOL"){
