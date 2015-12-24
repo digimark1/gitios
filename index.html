@@ -451,7 +451,10 @@ $(document).one('pagebeforecreate', function () {
                           </table>
                     </div>
                     <div id="header_container">
-                        <div id="header_load">&nbsp;_</div><div id="header_load_pages">&nbsp;_</div>
+                        <div id="header_load">&nbsp;_</div><div id="header_load_number">&nbsp;_</div>
+                     </div>
+                     <div style="width:100%">
+                         <table width="100%"><tr><td width="50%"><img id="original_id" src="css/original_link.png" width="100%"></td><td width=50%><img id="chat_bol" src="css/message_link.png" width="100%"></td></tr></table>
                      </div>
                  </div>
                 
@@ -501,11 +504,11 @@ $(document).one('pagebeforecreate', function () {
                      <div id="document_options">
                      	<div id="div_document_name">
                             <!--<select data-native-menu="false" data-theme="a" data-overlay-theme="a" tabindex="-1">-->
-                            <select data-role="" id="select_new_document" data-native-menu="false" data-theme="a" data-position="center" >
-                            	<option data-placeholder="false">Choose Document</option>
-                                <option>Invoice</option>
-                                <option>Manifest</option>
-                                <option>Lumper fee</option>
+                            <select data-role="" id="select_new_document" data-native-menu="false" data-theme="a" >
+                            	<option data-placeholder="false" value="0">Choose a Document</option>
+                                <option value="Invoice">Invoice</option>
+                                <option value="Manifest">Manifest</option>
+                                <option value="Lumper Fee">Lumper fee</option>
                             </select>
                         </div>
                         <div id="div_document_picture">
@@ -554,6 +557,17 @@ $('#expand_consignee').click(function(){
 		     $('#consignee_photos').show();
 		   }
 	});
+$('#document_take_picture').click(function(){
+	if($('#select_new_document').val()=='0'){
+	       navigator.notification.alert(
+									  'Please Choose a document and try again',
+									  alertCallback,
+									  'Smith TracknGo',
+									  'Ok');
+	}else{
+		$('#lol_item_documents').append('<tr><td>12/24/2015</td><td>'+$('#select_new_document').val()+'</td></tr>');
+		}
+	});
 </script>      
        
 <!------COPY PAGE 2_5 ---->
@@ -570,7 +584,7 @@ $('#expand_consignee').click(function(){
                           </table>
                     </div>
                     <div>
-                        <div id="header_load">&nbsp;_</div><div id="header_load_pages">&nbsp;_</div>
+                        <div id="header_load">&nbsp;_</div><div id="header_load_number">&nbsp;_</div>
                      </div>
                         <div style="width:100%;line-height: 0.3;"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td></tr></table>
                         </div>
@@ -2073,11 +2087,13 @@ function update_shipments_load(load_id){
 											var bolh = (0.51)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
-											if(parseFloat(localStorage.pages)>1){
-												       $('#header_load_pages').html(localStorage.pages+' pages');
+											$('#header_load_number').html(localStorage.load_number);
+											
+											/*if(parseFloat(localStorage.pages)>1){
+												       $('#header_load_number').html(localStorage.pages+' pages');
 												}else{
-													   $('#header_load_pages').html(localStorage.pages+' page');
-													}
+													   $('#header_load_number').html(localStorage.pages+' page');
+													}*/
 											//---GETTING ADDRESS --- //
 											 $.ajax({
 												   type: 'POST',
@@ -2434,10 +2450,11 @@ function update_shipments_load(load_id){
 	$('#page2_5').on('pageshow',function(e,data) {
 		localStorage.counter_photo1 = 0;
 		localStorage.counter_photo2 = 0;
-		$('#select_new_document-button').css('font-size','13px');
+		$('#select_new_document-button').css('font-size','14px');
 		$('#select_new_document-button').attr('class','ui-btn ui-icon-carat-d ui-corner-all ui-shadow');
-		$('#select_new_document-button').css('padding','3px');
-		$('#middle_number').html('1');
+		$('#select_new_document-button').css('padding','5px');
+		$('#select_new_document-button').css('width','100%');
+		//$('#middle_number').html('1');
 		$('#doc_options').css('display','none');
 		$('#digital_bol').attr('src','css/digital_active.png');
 		$('#direction_bol').attr('src','css/places_inactive.png');
