@@ -2087,7 +2087,7 @@ function update_shipments_load(load_id){
 											var bolh = (0.51)*parseFloat(window.screen.height);
 											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
-											$('#header_load_number').html(localStorage.load_number);
+											$('#header_load_number').html("LOAD # :"+localStorage.load_number);
 											
 											/*if(parseFloat(localStorage.pages)>1){
 												       $('#header_load_number').html(localStorage.pages+' pages');
