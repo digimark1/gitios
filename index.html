@@ -440,7 +440,7 @@ $(document).one('pagebeforecreate', function () {
 
 <!---- LAST DESIGN BOL PAGE 2_5 ----->   
  	<div data-role="page" id="page2_5">
-             	    <div data-role="header">
+             	    <div data-role="header" data-position="fixed">
                     <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
                     <div>
                         <table width="100%">
@@ -453,25 +453,26 @@ $(document).one('pagebeforecreate', function () {
                     <div id="header_container">
                         <div id="header_load">&nbsp;_</div><div id="header_load_number">&nbsp;_</div>
                      </div>
-                     <div style="width:100%">
+                     <div style="width:100%; line-height:0.3">
                          <table width="100%"><tr><td width="50%"><img id="original_id" src="css/original_link.png" width="100%"></td><td width=50%><img id="chat_bol" src="css/message_link.png" width="100%"></td></tr></table>
                      </div>
                  </div>
                 
-                <div id="bol_image">
+               <!-- <div id="bol_image">
                     <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
-                </div>
+                </div>-->
                 <div id="pick_drop">
                   <!--<p>PickUp Location: <a style="color:red" href="maps://?q=cupertino"; onclick="window.open(this.href,'_system'); return false;">EverGreen Street 1600</a></p>-->
                   <div id="pick_div">
+                     <div id="shipper_title">SHIPPER</div>
                       <div id="pick_div_text">
                          <p><span id="pick_location_title">PickUp Address: </span><span id="pickup_text">Address</span></p>
                          <p><a style="color:blue; font-weight:500" onClick="location.href=localStorage.pick_address" target="_system">View in maps</a></p>
                       </div>
                       <div id="pick_div_im">
                            <div id="shipper_table">
-                                <div id="shipper_take_picture">TAKE PICTURE</div>
-                                <div id="shipper_add_signature">ADD SIGNATURE</div>
+                                <div id="shipper_take_picture"><img width="100%" src="css/take_picture.png" /></div>
+                                <div id="shipper_add_signature"><img width="100%" src="css/add_signature.png" /></div>
                                 <div id="shipper_wrapper">
                                 	<div id="expand_shipper"><b>&nbsp; - </b>Shipper BOL</div>
                                 	<div id="shipper_photos"></div>
@@ -481,14 +482,15 @@ $(document).one('pagebeforecreate', function () {
                       </div>
                    </div>
                    <div id="drop_div">
+                   <div id="consignee_title">CONSIGNEE</div>
                       <div id="drop_div_text">
                           <p><span id="drop_location_title">Delivery Address: </span><span id="drop_text">Address</span></p>
                           <p><a style="color:blue; font-weight:500" onClick="location.href=localStorage.drop_address" target="_system">View in maps</a></p>
                        </div>
                        <div id="drop_div_text">
                        <div id="consignee_table">
-                             <div id="consignee_take_picture">TAKE PICTURE</div>
-                             <div id="consignee_add_signature">ADD SIGNATURE</div>
+                             <div id="consignee_take_picture"><img width="100%" src="css/take_picture.png" /></div>
+                             <div id="consignee_add_signature"><img width="100%" src="css/add_signature.png" /></div>
                              <div id="consignee_wrapper">
                                  <div id="expand_consignee"><b>&nbsp; - </b>Consignee BOL</div>
                                  <div id="consignee_photos"></div>
@@ -505,14 +507,14 @@ $(document).one('pagebeforecreate', function () {
                      	<div id="div_document_name">
                             <!--<select data-native-menu="false" data-theme="a" data-overlay-theme="a" tabindex="-1">-->
                             <select data-role="" id="select_new_document" data-native-menu="false" data-theme="a" >
-                            	<option data-placeholder="false" value="0">Choose a Document</option>
+                            	<option data-placeholder="false" value="0">Select a Document</option>
                                 <option value="Invoice">Invoice</option>
                                 <option value="Manifest">Manifest</option>
                                 <option value="Lumper Fee">Lumper fee</option>
                             </select>
                         </div>
                         <div id="div_document_picture">
-                           <div id="document_take_picture">TAKE PICTURE</div>
+                           <div id="document_take_picture"><img width="100%" src="css/take_picture.png" /></div>
                         </div>
                         <div id="div_lol_item_documents">
                            <table id="lol_item_documents">
@@ -524,7 +526,7 @@ $(document).one('pagebeforecreate', function () {
                 
                 <div id="screenheight" hidden></div>
                 <div id="screenheight2" hidden></div>
-                <div data-role="footer" data-position="fixed" >
+                <div data-role="footer" data-position="fixed">
                    <div id="load_id_hidden" hidden></div>
                    <div id="load_number_hid" hidden></div>
                    <div id="bol_number_hid" hidden></div>
@@ -560,13 +562,16 @@ $('#expand_consignee').click(function(){
 $('#document_take_picture').click(function(){
 	if($('#select_new_document').val()=='0'){
 	       navigator.notification.alert(
-									  'Please Choose a document and try again',
+									  'Please Select a document and try again',
 									  alertCallback,
 									  'Smith TracknGo',
 									  'Ok');
 	}else{
 		$('#lol_item_documents').append('<tr><td>12/24/2015</td><td><a style="color:blue; font-weight:500" href="#">'+$('#select_new_document').val()+'</a></td></tr>');
 		}
+	});
+$('#original_id').click(function(){
+		window.open('http://leanstaffing.com/tkgo_files2/3_bol_JNS22486_sp.pdf', '_blank');
 	});
 </script>      
        

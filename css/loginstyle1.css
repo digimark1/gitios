@@ -1,10 +1,14 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
-#document_options{
+#aditional_documents{
 	padding: 5px;
 	}
+#document_options{
+	padding: 0px;
+	}
 #div_document_name{
+	padding: 5px;
 	display:inline-block;
 	float:left;
 	width:40%;
@@ -20,13 +24,14 @@
 	border-width:1px;
 	border-collapse:collapse;
 	}
-#documents_title{
+#documents_title, #shipper_title, #consignee_title{
 	width:100%;
 	text-align: center;
 	color:#FFF;
 	text-shadow:none;
 	background-color:#666;
 	display:inline-block;
+	margin-bottom: 5px;
 	}
 #shipper_photos div, #consignee_photos div{
 	padding: 5px;
@@ -46,7 +51,7 @@
 	border-width: 1px;*/
 	/*border-collapse:collapse;*/
 	}
-#shipper_take_picture, #consignee_take_picture, #consignee_add_signature, #shipper_add_signature, #document_take_picture{
+/*#shipper_take_picture, #consignee_take_picture, #consignee_add_signature, #shipper_add_signature, #document_take_picture{
 	background-color:#ed1a3b;
 	color:#FFF;
 	border-color:#999;
@@ -55,7 +60,7 @@
 	text-shadow:none;
 	padding: 5px;
 	margin-bottom:2px;
-	}
+	}*/
 #pick_drop p{
 	margin-top:0px
 	}
