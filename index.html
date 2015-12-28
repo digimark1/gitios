@@ -597,7 +597,7 @@ function shipper_take_pic(){
 													   // Erase Picture when succeeding 
 													  $('#cam_picture').html('');
 													  var d = new Date();
-													  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
+													  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.bol_number+','+localStorage.shipper_counter+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 													  $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
 													  $('#shipper_photos').show();
 													  localStorage.save_shipper_bol = '/save_shipper_page.php';
@@ -626,7 +626,12 @@ function shipper_take_pic(){
 //--- END OF JUST TAKING PICTURE ----//
 
 	};
+//---- VIEW PICTURE SHIPPER ------//
 
+function view_picture_shipper(load_id,bol_number,counter){
+	     window.open('http://leanstaffing.com/tkgo_files2/'+load_id+'_bol_'+bol_number+'_sp-'+counter+'.jpg', '_system');
+	};
+//---- END OF VIEW PICTURE SHIPPER  ---- //
 
 // ---- EXPAND SHIPPER ---- //
 
