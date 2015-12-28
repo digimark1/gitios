@@ -800,7 +800,7 @@ function save_additional_document(){
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
-									  data:{load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:$('#select_new_document').val(),url_name:localStorage.temp_document_name,idshipment:localStorage.shipment_id},
+									  data:{load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:$('#select_new_document').val(),url_name:localStorage.temp_document_name,id_shipment:localStorage.shipment_id},
 									  url: ''+localStorage.save_url+localStorage.save_document_pic+'',
 									  success: function(data){
 										   navigator.notification.alert(
