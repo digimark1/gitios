@@ -2288,7 +2288,7 @@ function update_shipments_load(load_id){
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 											$('#header_load_number').html("LOAD # :"+localStorage.load_number);
 											$('#shipper_photos').html('');
-											if(data[i].pickup_doc_pages != null){
+											if(data[i].pickup_doc_pages >= 1){
 												for(j=1;j<=data[i].pickup_doc_pages;j++){
 														 $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.bol_number+','+j+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 														   }
