@@ -657,9 +657,9 @@ $('#expand_shipper').click(function(){
 
 function onConfirm_picture_consignee(){
 	              if(button == 1){
-					  
+					   alert('Im not in ajax');
 					  }else{
-						  alert('Im in ajax')
+						  alert('Im in ajax');
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -763,8 +763,7 @@ function consignee_take_pic(){
 														  localStorage.save_consignee_bol = '/save_consignee_page.php';
 														  localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
 														  navigator.notification.confirm(
-																	'Do you want to take another picture \n'
-																	+'for the consignee?',
+																	'Do you want to take another picture for the consignee?',
 																	onConfirm_picture_consignee,
 																	'Smith TracknGo',
 																	['Yes','No']
