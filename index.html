@@ -2331,6 +2331,9 @@ function update_shipments_load(load_id){
 											if(data[i].destination_sign != 0){
 												  $('#consignee_take_picture').hide();
 												    }
+											if(data[i].origin_sign != 0 && data[i].destination_sign != 1){
+												  $('#consignee_take_picture').show();
+												}
 											d = new Date();
 											setTimeout(function(){
 												//alert('inside bol_details');
