@@ -576,6 +576,21 @@ function shipper_take_pic(){
 							});
 				function onSuccess1(imageURI) {
 					$('#cam_picture').html(imageURI);
+					//--- SAVE PICTURE TAKEN -----//
+						var imageURI = $('#cam_picture').html();
+						var options = new FileUploadOptions();
+						options.fileKey = "file";
+						options.fileName = ''+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'_sp-'+localStorage.shipper_counter+'.jpg';
+						//($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
+						options.mimeType = "image/jpeg";
+						options.params = {
+												firstname: 'first',
+												lastname: 'second',
+												workplace: 'workplace'
+											}
+						var ft = new FileTransfer();
+						ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win1, fail1, options);
+                    //--- END OF - SAVE PICTURE TAKEN -----//
 					setTimeout(function(){
 						   $('#image_source').attr('src',$('#cam_picture').html());
 						   setTimeout(function () {
@@ -588,26 +603,7 @@ function shipper_take_pic(){
 					     $("#image_source").attr('src',localStorage.image_name);
 					    }
 //--- END OF JUST TAKING PICTURE ----//
-//--- SAVE PICTURE TAKEN -----//
-	
-							
-					var imageURI = $('#cam_picture').html();
-					var options = new FileUploadOptions();
-					options.fileKey = "file";
-					options.fileName = ''+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'_sp-'+localStorage.shipper_counter+'.jpg';
-					//($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
-					options.mimeType = "image/jpeg";
-					options.params = {
-											firstname: 'first',
-											lastname: 'second',
-											workplace: 'workplace'
-										}
-					var ft = new FileTransfer();
-					ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win1, fail1, options);
-				
-														 
-						   
-//--- END OF - SAVE PICTURE TAKEN -----//
+
 	};
 // ---- WIN - FAIL ----- SHIPPER save_picture.php --- //
 function win1(r) {
