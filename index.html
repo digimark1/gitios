@@ -597,7 +597,7 @@ function shipper_take_pic(){
 													   // Erase Picture when succeeding 
 													  $('#cam_picture').html('');
 													  var d = new Date();
-													  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" >-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
+													  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 													  $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
 													  $('#shipper_photos').show();
 													  localStorage.save_shipper_bol = '/save_shipper_page.php';
