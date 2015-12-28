@@ -860,7 +860,7 @@ function document_take_pic(){
 														  $('#cam_picture').html('');
 														  var d = new Date()
 														  $('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" href="http://leanstaffing.com/tkgo_files2/'+localStorage.temp_document_name+'" target="_blank">'+$('#select_new_document').val()+'</a></td></tr>');
-														  localStorage.save_document_pic = '/save_picture.php';
+														  localStorage.save_document_pic = '/save_document_page.php';
 														  save_additional_document();
 													}
 												
