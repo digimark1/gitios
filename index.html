@@ -514,7 +514,7 @@ $(document).one('pagebeforecreate', function () {
                             </select>
                         </div>
                         <div id="div_document_picture">
-                           <div id="document_take_picture"><img width="100%" src="css/take_picture.png" /></div>
+                           <div id="document_take_picture" onClick="document_take_pic()"><img width="100%" src="css/take_picture.png" /></div>
                         </div>
                         <div id="div_lol_item_documents">
                            <table id="lol_item_documents">
@@ -745,8 +745,10 @@ function consignee_take_pic(){
 							//($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
 							options.mimeType = "image/jpeg";
 							options.params = {
-								firstname: 'first',
-							}
+												firstname: 'first',
+												lastname: 'second',
+												workplace: 'workplace'
+											}
 							var ft = new FileTransfer();
 							ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win2, fail2, options);
                    //--- END OF - SAVE PICTURE TAKEN -----//
@@ -792,7 +794,33 @@ $('#expand_consignee').click(function(){
 		     $('#consignee_photos').show();
 		   }
 	});
-$('#document_take_picture').click(function(){
+
+// ----------------- DOCUMENT PICTURES --------------- //
+function save_additional_document(){
+						  $.ajax({
+									  type: 'POST',
+									  async: false,
+									  data:{load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:$('#select_new_document').val(),url_name:localStorage.temp_document_name,idshipment:localStorage.shipment_id},
+									  url: ''+localStorage.save_url+localStorage.save_document_pic+'',
+									  success: function(data){
+										   navigator.notification.alert(
+																	  'The document has been sent to the manager',
+																	  alertCallback,
+																	  'Smith TracknGo',
+																	  'Ok');
+										  console.log(data);
+										  },
+									  error: function(data){
+										  navigator.notification.alert(
+																	  'There was a problem, Try again',
+																	  alertCallback,
+																	  'Smith TracknGo',
+																	  'Ok');
+										  console.log(data);
+										  }
+									  });
+	};
+function document_take_pic(){
 	if($('#select_new_document').val()=='0'){
 	       navigator.notification.alert(
 									  'Please Select a document and try again',
@@ -800,105 +828,64 @@ $('#document_take_picture').click(function(){
 									  'Smith TracknGo',
 									  'Ok');
 	}else{
-		$('#lol_item_documents').append('<tr><td>12/24/2015</td><td><a style="color:blue; font-weight:500" href="#">'+$('#select_new_document').val()+'</a></td></tr>');
+		
+//--- JUST TAKING PICTURE ----//
+	navigator.camera.getPicture(onSuccess3, onFail3, { 
+								quality: 40,
+								targetWidth: 1650,
+								targetHeight: 2200,
+								destinationType: Camera.DestinationType.FILE_URI
+							});
+				function onSuccess3(imageURI) {
+					$('#cam_picture').html(imageURI);
+					//--- SAVE PICTURE TAKEN -----//
+							var imageURI = $('#cam_picture').html();
+							var options = new FileUploadOptions();
+							options.fileKey = "file";
+							localStorage.temp_document_name = ''+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'_add_'+Math.floor((Math.random() * 100) + 1)+'.jpg';
+							options.fileName = localStorage.temp_document_name;
+							//($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
+							options.mimeType = "image/jpeg";
+							options.params = {
+												firstname: 'first',
+												lastname: 'second',
+												workplace: 'workplace'
+											}
+							var ft = new FileTransfer();
+							ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win3, fail3, options);
+                   //--- END OF - SAVE PICTURE TAKEN -----//
+				   					// ---- WIN - FAIL ----- COnsignee save_picture.php --- //
+											function win3(r) {
+														   // Erase Picture when succeeding 
+														  $('#cam_picture').html('');
+														  var d = new Date()
+														  $('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" href="#" onClick="view_additional()">'+$('#select_new_document').val()+'</a></td></tr>');
+														  localStorage.save_document_pic = '/save_picture.php';
+														  save_additional_document();
+													}
+												
+											function fail3(error) {
+														alert("An error has occurred: Code = " + error.code);
+														console.log("upload error source " + error.source);
+														console.log("upload error target " + error.target);
+													}
+											// ----END OF WIN - FAIL ----- COnsignee save_picture.php --- //	
+				       }
+				function onFail3(message) {
+								// WHEN THE USER PRESS CANCEL --- not taking a photo.
+								
+					  }
+//--- END OF JUST TAKING PICTURE ----//
+	
+		
 		}
-	});
+	};
 
 $('#original_id').click(function(){
 		window.open('http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'.pdf', '_system');
 	});
 </script>      
        
-<!------COPY PAGE 2_5 ---->
-<!--<div data-role="page" id="page2_6">
-             	    <div data-role="header">
-                    <div style="background-color: rgb(255, 255, 255); padding-top: 5%;"></div>
-                    <div>
-                    <table width="100%" style="background-color:#ED1A3B">
-                              <tr>
-                                <td width="15%" style="padding-left:5px"><div><a href="#mypanel"><img width="100%" src="css/menu_button.png" style="margin-top:0px; margin-bottom:0px"/></a></div></td>
-                                <td><div id="title2">TRACKN'GO!</div></td>
-                                <td align="right"  style="padding:5px"><div id="load_shipment1"></div></td>
-                              </tr>
-                          </table>
-                    </div>
-                    <div>
-                        <div id="header_load">&nbsp;_</div><div id="header_load_number">&nbsp;_</div>
-                     </div>
-                        <div style="width:100%;line-height: 0.3;"><table width="100%"><tr><td width="34%"><img id="digital_bol" src="css/digital_active.png" width="100%"></td><td width="33%"><img id="picture_bol" src="css/picture_inactive.png" width="100%"></td><td width="33%"><img id="direction_bol" src="css/places_inactive.png" width="100%"></td></tr></table>
-                        </div>
-                        <div id="doc_options"><img id="menu1" src="css/chat_inactive.png" width="100%"></div>
-                        <div style="display:inline-block;line-height: 0.3;">
-                            <table id="table_pager">
-                            <tr><td><div id='lastpage'><img id="lastpage_im" src="css/button5_s.png" width="100%"></div><td></td></td><td align="center"><div id="middle_number">1</div></td><td></td><td><div id='nextpage'><img id="nextpage_im" src="css/button4_s.png" width="100%"></div></td></tr>
-                            </table>
-                        </div>
-                 </div>
-                
-                <div id="bol_image">
-                    <img id="image_source" alt="" src="css/loading2.gif" style="width:100%;padding-top:2px;"/>
-                </div>
-                <div id="pick_drop">
-                  <div id="pick_div">
-                      <div id="pick_div_text">
-                         <p><span id="pick_location_title">PickUp Location: </span><span id="pickup_text">Address</span></p>
-                         <p><a style="color:red" onClick="location.href=localStorage.pick_address" target="_system">OPEN IN MAP</a></p>
-                      </div>
-                      <div id="pick_div_im">
-                          <a style="color:red" onClick="location.href=localStorage.pick_address" target="_system"><img id="pick_map_icon" src="css/maps-icon1.png"/></a> 
-                      </div>
-                   </div>
-                   <br>
-                   <div id="drop_div">
-                      <div id="drop_div_text">
-                          <p><span id="drop_location_title">Drop Location: </span><span id="drop_text">Address</span></p>
-                          <p><a style="color:red" onClick="location.href=localStorage.drop_address" target="_system">OPEN IN MAP</a></p>
-                       </div>
-                       <div id="drop_div_text">
-                          <a style="color:red" onClick="location.href=localStorage.drop_address" target="_system"><img id="drop_map_icon" src="css/maps-icon2.png"/></a> 
-                      </div>
-                    </div>
-                </div>
-                <div id="screenheight" hidden></div>
-                <div id="screenheight2" hidden></div>
-                <div data-role="footer" data-position="fixed" >
-                 <div id="picture_buttons">
-                       <table width="100%" style="table-layout:fixed">
-                              <tr>
-                                <td width="15%"><div id="load_list_button"><a href="#page2" id="back" class="" onClick=""><img src="css/back_pic.png" width="120%" /></a></div></td>
-                                <td width="49%">
-                                <div id="select_document_div">
-                                    <select name="select-document" id="select-document" data-native-menu="true">
-                                        <option value="0">Document</option>
-                                        <option value="ss" disabled>Shipper Signature</option>
-                                        <option value="cs" disabled>Consignee Signature</option>
-                                        <option value="pd" disabled>Proof of Delivery</option>
-                                    </select>
-                                 </div>
-                                </td>
-                                <td width="18%"><div id="take_photo_button"><img id="upload_picture" src="css/take_pic.png" width="120%"/></div><div id="save_pic"><img id="save_picture" src="css/save_pic.png" width="100%"/></div></td>
-                               <td width="18%"><img id="chat_bol" src="css/chat_pic.png" width="120%"></td></td>
-
-                              </tr>
-                          </table> 
-                      </div>
-                    <div id="digital_buttons">
-                       <table style="width: 100%; border-collapse:collapse">
-                            <tr style="background-color:#ED1A3B">
-                                <td style="width: 25%;"><div id="load_list_button"><a href="#page2" id="back" class="" onClick=""><img src="css/back_pic.png" width="80%" /></a></div></td>
-                                <td style="width: 25%;"><div id="shipper_button"><a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="80%"/></a></div></td>
-								<td style="width: 25%;"><div id="consignee_button"><a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="80%"/></a></div></td>
-                                <td style="width: 25%;"><img id="chat_bol2" src="css/chat_pic.png" width="80%"></td></td>
-                            </tr>
-                       </table>
-                     </div>
-                   <div id="load_id_hidden" hidden></div>
-                   <div id="load_number_hid" hidden></div>
-                   <div id="bol_number_hid" hidden></div>
-                </div> 
-       </div>-->
-
-<!----------- --------> 
      <div data-role="page" id="page3">
      
 			<div data-role="header">
@@ -2312,6 +2299,7 @@ function update_shipments_load(load_id){
 					       for(i=0;i<data.length;i++){
 							   //alert('inside the "for"');
 								if(data[i].bol_number == localStorage.bol_number){
+									       localStorage.shipment_id = data[i].idshipment;
 									//alert('bol number number');
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 											$('#header_load_number').html("LOAD # :"+localStorage.load_number);
@@ -2335,6 +2323,27 @@ function update_shipments_load(load_id){
 														 $('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+b+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+b+'</a></div>');
 														   }
 											}
+											
+											$.ajax({
+													 type: 'POST',
+													 async:false,
+													 dataType: 'json',
+													 url:''+localStorage.base_url+'/load/app_get_docs_by_shipment/'+localStorage.shipment_id,
+													 success: function(data){
+														 $('#lol_item_documents').append('<tr><th width="40%"> DATE </th><th width="60%">DOCUMENT NAME</th></tr>');
+															console.log(data);
+															for(i=0;i<data.length;i++){
+																$('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" href="'+data[i].url+'">'+data[i].name+'</a></td></tr>');
+																}
+														},
+													error: function(data){
+														console.log(data);
+														navigator.notification.alert(
+																  'There was an error with active loads',
+																  alertCallback,
+																  'Smith TracknGo',
+																  'Ok');
+													}})		
 											
 											//---GETTING ADDRESS --- //
 											 $.ajax({
