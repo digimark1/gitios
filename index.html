@@ -2289,7 +2289,9 @@ function update_shipments_load(load_id){
 											$('#header_load_number').html("LOAD # :"+localStorage.load_number);
 											$('#shipper_photos').html('');
 											if(data[i].pickup_doc_pages >= 1){
+												var d = new Date();
 												for(j=1;j<=data[i].pickup_doc_pages;j++){
+													alert('Im inside');
 														 $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.bol_number+','+j+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 														   }
 											}
