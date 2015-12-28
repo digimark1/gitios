@@ -657,75 +657,10 @@ $('#expand_shipper').click(function(){
 
 function onConfirm_picture_consignee(){
 	              if(button == 1){
-					   alert('Im not in ajax');
 					  }else{
-						  alert('Im in ajax');
-						  $.ajax({
-									  type: 'POST',
-									  async: false,
-									  data:{pages_consignee:localStorage.consignee_counter,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:'Consignee Document'},
-									  url: ''+localStorage.save_url+localStorage.save_consignee_bol+'',
-									  success: function(data){
-										   navigator.notification.alert(
-																	  'Consignee document has been \n sent to the manager',
-																	  alertCallback,
-																	  'Smith TracknGo',
-																	  'Ok');
-										//$('#shipper_take_picture').hide();
-										$('#consignee_take_picture').hide();
-										
-										//-------------------------
-													   //----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
-																  $.ajax({
-																	 type: 'POST',
-																	 async:false,
-																	 dataType: 'json',
-																	 url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+localStorage.load_id_bol,
-																	 success: function(data){
-																			console.log(data);
-																			for(i=0;i<data.length;i++){
-																				if(data[i].destination_sign != 1){
-																					 unsigned_shipments++;
-																					}else{
-																						}
-																				}
-																		},
-																	error: function(data){
-																		console.log(data);
-																		navigator.notification.alert(
-																									  'There was an error with active loads',
-																									  alertCallback,
-																									  'Smith TracknGo',
-																									  'Ok');
-																	}})						
-																// Reset location traces sending //
-																if(unsigned_shipments >= 1){
-																	//alert('unsigned_shipments >=1');
-																	}else{
-																			localStorage.start = 0;
-																			localStorage.finish = 1;
-																			// To enable the restart --- driver setinterval --- driver_location_interval
-																			localStorage.location_mark = 0;
-																			//-/-----/-//
-																			localStorage.trace = 0;//$('#localstorage_trace').html(0);
-																			clearInterval(location_trace_interval);
-																			cordova.plugins.backgroundMode.disable();
-																			//--ACHTUNG--//bgGeo.stop();
-																		};
-													
-										  //-------------------------------
-										
-										  console.log(data);
-										  },
-									  error: function(data){
-										  navigator.notification.alert(
-																	  'There was a problem, Try again',
-																	  alertCallback,
-																	  'Smith TracknGo',
-																	  'Ok');
-										  console.log(data);
-										  }
-									  });
+						  
+							  alert('Hello world');
+							
 						  }
 	}
 
