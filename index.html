@@ -549,6 +549,7 @@ function onConfirm_picture_shipper(button){
 																	  alertCallback,
 																	  'Smith TracknGo',
 																	  'Ok');
+										   $('#shipper_take_picture').hide();
 										  console.log(data);
 										  },
 									  error: function(data){
@@ -2264,16 +2265,10 @@ function update_shipments_load(load_id){
 					localStorage.bol_number = bol_number;
 					//------------------------------//
 			   		$("#image_source").attr('src','css/loading2.gif');
-			        //localStorage.trace = 1;
 			   		$('#load_hid').html(load_id);
-					$('#sig_button1').attr("href","#page3");
-					$('#sig_button1').html('<img src="css/button2.png" width="100%"/>');
-					//$('#sig_button1').attr("href","#");
-					$('#sig_button2').attr("href","#page5");
-					$('#sig_button2').html('<img src="css/button3.png" width="100%"/>');
-					$('#select_document_div').show();
-					$("#select-document option[value='ss']").removeAttr("disabled");
-					$('#take_photo_button').show();
+					//Show take picture for the shipper
+					$('#shipper_take_picture').show();
+					$('#consignee_take_picture').hide();
 				   location.href = "#page2_5";
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
@@ -2290,16 +2285,15 @@ function update_shipments_load(load_id){
 							   //alert('inside the "for"');
 								if(data[i].bol_number == localStorage.bol_number){
 									//alert('bol number number');
-											var bolh = (0.51)*parseFloat(window.screen.height);
-											$('#bol_image').css("height",bolh);
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 											$('#header_load_number').html("LOAD # :"+localStorage.load_number);
+											$('#shipper_photos').html('');
+											if(data[i].pickup_doc_pages != null){
+												for(j=1;j<=data[i].pickup_doc_pages;j++){
+														 $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.bol_number+','+j+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
+														   }
+											}
 											
-											/*if(parseFloat(localStorage.pages)>1){
-												       $('#header_load_number').html(localStorage.pages+' pages');
-												}else{
-													   $('#header_load_number').html(localStorage.pages+' page');
-													}*/
 											//---GETTING ADDRESS --- //
 											 $.ajax({
 												   type: 'POST',
@@ -2325,24 +2319,12 @@ function update_shipments_load(load_id){
 											$('#drop_text').html(localStorage.drop_formatted_address);
 											$("#bol_number_hid").html(data[i].bol_number);
 											if (data[i].origin_sign != 0){
-													  $('#sig_button1').attr("href","#");
-													  $('#sig_button1').html('<img src="css/button2s.png" width="100%"/>'); 
-													  $('#consignee_button').html('<a href="#page5" id="sig_button2" name="b" class=""><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-													  $("#select-document option[value='ss']").attr("disabled", "disabled");
-													  $("#select-document option[value='cs']").removeAttr("disabled");
-													  $("#select-document option[value='pd']").removeAttr("disabled");
-													  //$("select option:contains('Value a')").attr("disabled","disabled");
+												      $('#shipper_take_picture').hide();
 												}else{
-													 $('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
-													 //$("#select-document option[value='cs']").attr("disabled", "disabled");
-													 //$("#select-document option[value='pd']").attr("disabled", "disabled");
+													  $('#shipper_take_picture').show();
 													}
 											if(data[i].destination_sign != 0){
-												  $('#sig_button2').attr("href","#");
-												  $('#sig_button2').html('<img src="css/button3s.png" width="100%"/>');
-												  $('#select_document_div').hide();
-												  /*$('#select-document').hide();*/
-												  $('#take_photo_button').hide();
+												  $('#consignee_take_picture').hide();
 												    }
 											d = new Date();
 											setTimeout(function(){
