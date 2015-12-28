@@ -611,7 +611,7 @@ function shipper_take_pic(){
 					}
 				
 				function fail1(error) {
-						alert("An error has occurred: Code = " + error.code);
+						alert("A1n error has occurred: Code = " + error.code);
 						console.log("upload error source " + error.source);
 						console.log("upload error target " + error.target);
 					}
@@ -623,8 +623,10 @@ function shipper_take_pic(){
 					//($("#image_source").attr('alt')).substr(($('#image_source').attr('alt')).lastIndexOf("/")+1);
 					options.mimeType = "image/jpeg";
 					options.params = {
-						firstname: 'first',
-					}
+											firstname: 'first',
+											lastname: 'second',
+											workplace: 'workplace'
+										}
 					var ft = new FileTransfer();
 					ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win1, fail1, options);
 				
