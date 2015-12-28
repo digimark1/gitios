@@ -589,32 +589,7 @@ function shipper_take_pic(){
 					    }
 //--- END OF JUST TAKING PICTURE ----//
 //--- SAVE PICTURE TAKEN -----//
-				function win1(r) {
-						  console.log("Code = " + r.responseCode);
-						  console.log("Response = " + r.response);
-						  console.log("Sent = " + r.bytesSent);
-						   // Erase Picture when succeeding 
-						  $('#cam_picture').html('');
-						  var d = new Date()
-						  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
-				          $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
-				          $('#shipper_photos').show();
-						  localStorage.save_shipper_bol = '/save_shipper_page.php';
-						  localStorage.shipper_counter = parseFloat(localStorage.shipper_counter) + 1;
-						  navigator.notification.confirm(
-									'Do you want to take another picture \n'
-									+'for the shipper?',
-									onConfirm_picture_shipper,
-									'Smith TracknGo',
-									['Yes','No']
-								 );
-					}
-				
-				function fail1(error) {
-						alert("A1n error has occurred: Code = " + error.code);
-						console.log("upload error source " + error.source);
-						console.log("upload error target " + error.target);
-					}
+	
 							
 					var imageURI = $('#cam_picture').html();
 					var options = new FileUploadOptions();
@@ -633,9 +608,36 @@ function shipper_take_pic(){
 														 
 						   
 //--- END OF - SAVE PICTURE TAKEN -----//
-
-				 
 	};
+// ---- WIN - FAIL ----- SHIPPER save_picture.php --- //
+function win1(r) {
+			  console.log("Code = " + r.responseCode);
+			  console.log("Response = " + r.response);
+			  console.log("Sent = " + r.bytesSent);
+			   // Erase Picture when succeeding 
+			  $('#cam_picture').html('');
+			  var d = new Date()
+			  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
+			  $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
+			  $('#shipper_photos').show();
+			  localStorage.save_shipper_bol = '/save_shipper_page.php';
+			  localStorage.shipper_counter = parseFloat(localStorage.shipper_counter) + 1;
+			  navigator.notification.confirm(
+						'Do you want to take another picture \n'
+						+'for the shipper?',
+						onConfirm_picture_shipper,
+						'Smith TracknGo',
+						['Yes','No']
+					 );
+		}
+	
+function fail1(error) {
+			alert("A1n error has occurred: Code = " + error.code);
+			console.log("upload error source " + error.source);
+			console.log("upload error target " + error.target);
+		}
+// ---- END OF WIN - FAIL ----- SHIPPER save_picture.php --- //
+
 // ---- EXPAND SHIPPER ---- //
 
 $('#expand_shipper').click(function(){
@@ -704,33 +706,7 @@ function consignee_take_pic(){
 					    }
 //--- END OF JUST TAKING PICTURE ----//
 //--- SAVE PICTURE TAKEN -----//
-				function win2(r) {
-						  console.log("Code = " + r.responseCode);
-						  console.log("Response = " + r.response);
-						  console.log("Sent = " + r.bytesSent);
-						   // Erase Picture when succeeding 
-						  $('#cam_picture').html('');
-						  var d = new Date()
-						  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
-				          $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
-				          $('#shipper_photos').show();
-						  localStorage.save_consignee_bol = '/save_consignee_page.php';
-						  localStorage.shipper_counter = parseFloat(localStorage.shipper_counter) + 1;
-						  navigator.notification.confirm(
-									'Do you want to take another picture \n'
-									+'for the consignee?',
-									onConfirm_picture_consignee,
-									'Smith TracknGo',
-									['Yes','No']
-								 );
-					}
-				
-				function fail2(error) {
-						alert("An error has occurred: Code = " + error.code);
-						console.log("upload error source " + error.source);
-						console.log("upload error target " + error.target);
-					}
-							
+		
 					var imageURI = $('#cam_picture').html();
 					var options = new FileUploadOptions();
 					options.fileKey = "file";
@@ -745,6 +721,34 @@ function consignee_take_pic(){
 //--- END OF - SAVE PICTURE TAKEN -----//
 	};
 
+// ---- WIN - FAIL ----- COnsignee save_picture.php --- //
+function win2(r) {
+			  console.log("Code = " + r.responseCode);
+			  console.log("Response = " + r.response);
+			  console.log("Sent = " + r.bytesSent);
+			   // Erase Picture when succeeding 
+			  $('#cam_picture').html('');
+			  var d = new Date()
+			  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
+			  $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
+			  $('#shipper_photos').show();
+			  localStorage.save_consignee_bol = '/save_consignee_page.php';
+			  localStorage.shipper_counter = parseFloat(localStorage.shipper_counter) + 1;
+			  navigator.notification.confirm(
+						'Do you want to take another picture \n'
+						+'for the consignee?',
+						onConfirm_picture_consignee,
+						'Smith TracknGo',
+						['Yes','No']
+					 );
+		}
+	
+function fail2(error) {
+			alert("An error has occurred: Code = " + error.code);
+			console.log("upload error source " + error.source);
+			console.log("upload error target " + error.target);
+		}
+// ----END OF WIN - FAIL ----- COnsignee save_picture.php --- //						
 
 $('#expand_consignee').click(function(){
 	   if($('#expand_consignee').html() == "<b>&nbsp; - </b>Consignee BOL"){
