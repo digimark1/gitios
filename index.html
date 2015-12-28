@@ -859,7 +859,7 @@ function document_take_pic(){
 														   // Erase Picture when succeeding 
 														  $('#cam_picture').html('');
 														  var d = new Date()
-														  $('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" href="http://leanstaffing.com/tkgo_files2/'+localStorage.temp_document_name+'">'+$('#select_new_document').val()+'</a></td></tr>');
+														  $('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" href="http://leanstaffing.com/tkgo_files2/'+localStorage.temp_document_name+'" target="_system">'+$('#select_new_document').val()+'</a></td></tr>');
 														  localStorage.save_document_pic = '/save_picture.php';
 														  save_additional_document();
 													}
