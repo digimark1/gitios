@@ -591,20 +591,11 @@ function shipper_take_pic(){
 						var ft = new FileTransfer();
 						ft.upload(imageURI, encodeURI(localStorage.save_url+"/save_picture.php"), win1, fail1, options);
                     //--- END OF - SAVE PICTURE TAKEN -----//
-					setTimeout(function(){
-						   $('#image_source').attr('src',$('#cam_picture').html());
-						   setTimeout(function () {
-								myScroll.refresh();
-							}, 100);
-						},0);
 				       }
 				function onFail1(message) {
 								// WHEN THE USER PRESS CANCEL --- not taking a photo.
 					     $("#image_source").attr('src',localStorage.image_name);
 					    }
-//--- END OF JUST TAKING PICTURE ----//
-
-	};
 // ---- WIN - FAIL ----- SHIPPER save_picture.php --- //
 function win1(r) {
 			  console.log("Code = " + r.responseCode);
@@ -613,7 +604,7 @@ function win1(r) {
 			   // Erase Picture when succeeding 
 			  $('#cam_picture').html('');
 			  var d = new Date()
-			  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
+			  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture('+h+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 			  $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
 			  $('#shipper_photos').show();
 			  localStorage.save_shipper_bol = '/save_shipper_page.php';
@@ -633,6 +624,10 @@ function fail1(error) {
 			console.log("upload error target " + error.target);
 		}
 // ---- END OF WIN - FAIL ----- SHIPPER save_picture.php --- //
+//--- END OF JUST TAKING PICTURE ----//
+
+	};
+
 
 // ---- EXPAND SHIPPER ---- //
 
