@@ -582,6 +582,7 @@ function shipper_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess1(imageURI) {
+					$.mobile.loading("show");
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 						var imageURI = $('#cam_picture').html();
@@ -601,7 +602,8 @@ function shipper_take_pic(){
 										// ---- WIN - FAIL ----- SHIPPER save_picture.php --- //
 										function win1(r) {
 											//alert('Im in');
-													   // Erase Picture when succeeding 
+													   // Erase Picture when succeeding
+													  $.mobile.loading("hide");
 													  $('#cam_picture').html('');
 													  var d = new Date();
 													  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
