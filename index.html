@@ -859,7 +859,7 @@ function document_take_pic(){
 														   // Erase Picture when succeeding 
 														 $('#cam_picture').html('');
 														 var d = new Date()
-										                  $('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" onClick="window.open("http://leanstaffing.com/tkgo_files2/'+localStorage.temp_document_name+'","_system")">'+$('#select_new_document').val()+'</a></td></tr>');
+										                  $('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+localStorage.temp_document_name+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+$('#select_new_document').val()+'</a></td></tr>');
 														  localStorage.save_document_pic = '/save_document_page.php';
 														  save_additional_document();
 													}
@@ -2334,7 +2334,7 @@ function update_shipments_load(load_id){
 														 $('#lol_item_documents').append('<tr><th width="40%"> DATE </th><th width="60%">DOCUMENT NAME</th></tr>');
 															console.log(data);
 															for(i=0;i<data.length;i++){
-																$('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><astyle="color:blue; font-weight:500" onClick="window.open("http://leanstaffing.com/tkgo_files2/'+data[i].url+'","_system")">'+data[i].name+'</a></td></tr>');
+																$('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><astyle="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+data[i].url+''+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+data[i].name+'</a></td></tr>');
 																}
 														},
 													error: function(data){
