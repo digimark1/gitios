@@ -540,7 +540,7 @@ function onConfirm_picture_shipper(button){
 	              if(button == 1){
 					  
 					  }else{
-						 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;margin-left:40%;" />'});
+						 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -582,7 +582,7 @@ function shipper_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess1(imageURI) {
-					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;margin-left:40%;" />'});
+					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 						var imageURI = $('#cam_picture').html();
@@ -665,7 +665,7 @@ $('#expand_shipper').click(function(){
 function onConfirm_picture_consignee(button){
 	              if(button == 1){
 					  }else{
-						  $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: ""});
+						  $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -717,7 +717,8 @@ function onConfirm_picture_consignee(button){
 																			localStorage.trace = 0;//$('#localstorage_trace').html(0);
 																			clearInterval(location_trace_interval);
 																			cordova.plugins.backgroundMode.disable();
-																			//--ACHTUNG--//bgGeo.stop();
+																			//--ACHTUNG--//
+																			bgGeo.stop();
 																		};
 													
 										  //-------------------------------
@@ -745,7 +746,7 @@ function consignee_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess2(imageURI) {
-					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: ""});
+					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 							var imageURI = $('#cam_picture').html();
@@ -808,7 +809,7 @@ $('#expand_consignee').click(function(){
 
 // ----------------- DOCUMENT PICTURES --------------- //
 function save_additional_document(){
-	                      $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: ""});
+	                      $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -851,7 +852,7 @@ function document_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess3(imageURI) {
-					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: ""});
+					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 							var imageURI = $('#cam_picture').html();
