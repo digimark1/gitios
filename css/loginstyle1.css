@@ -421,6 +421,10 @@ body :-ms-input-placeholder {
 				#lol_item, #lol_item_shipment, #lol_item_documents{
 					width:100%;
 					}
+				#lol_item_documents td{
+					font-size: 1.3em;
+                    line-height: 2;
+				}
 				#lol_item_inactive{
 					width:100%;
 					}

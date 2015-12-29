@@ -2334,7 +2334,7 @@ function update_shipments_load(load_id){
 														 $('#lol_item_documents').append('<tr><th width="40%"> DATE </th><th width="60%">DOCUMENT NAME</th></tr>');
 															console.log(data);
 															for(i=0;i<data.length;i++){
-																$('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><astyle="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+data[i].url+''+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+data[i].name+'</a></td></tr>');
+																$('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+data[i].url+''+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+data[i].name+'</a></td></tr>');
 																}
 														},
 													error: function(data){
