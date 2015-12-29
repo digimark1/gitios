@@ -78,6 +78,8 @@ $(document).one('pagebeforecreate', function () {
 					 console.log(navigator.camera);
 	
 					 navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:10000});
+					 
+					 
 					 //Push Notification
 					 try 
 							{ 
@@ -538,6 +540,7 @@ function onConfirm_picture_shipper(button){
 	              if(button == 1){
 					  
 					  }else{
+						  $.mobile.loading("show");
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -551,6 +554,7 @@ function onConfirm_picture_shipper(button){
 																	  'Ok');
 										   $('#shipper_take_picture').show();
 										   $('#consignee_take_picture').show();
+										   $.mobile.loading("hide");
 										  console.log(data);
 										  },
 									  error: function(data){
@@ -559,6 +563,7 @@ function onConfirm_picture_shipper(button){
 																	  alertCallback,
 																	  'Smith TracknGo',
 																	  'Ok');
+											$.mobile.loading("hide");
 										  console.log(data);
 										  }
 									  });
