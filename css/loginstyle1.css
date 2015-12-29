@@ -469,7 +469,7 @@ body :-ms-input-placeholder {
 					/*background-image:url(css/1633.jpeg);*/
 					height:100vh;
 					}
-				#page3_tr, #page5_tr{
+				#page3_tr, #page5_tr, #page3_tr3{
 					
 					background-image:url(http://www.leanstaffing.com/tkgo_files/1697.jpg);
 					background-size:100% auto;
@@ -489,29 +489,30 @@ body :-ms-input-placeholder {
 					/*background-position: -15px 100px;*/
 					}
 				
-				#signatureparent2, #signatureparent{
+				#signatureparent3, #signatureparent2, #signatureparent{
 /*					height:500px;
 */					background-color: rgba(0,0,0, 0.1);
 					}
-				#signature_button, #signature_button2, #comment_button{
+				#signature_button, #signature_button2, #comment_button, #signature_button3{
 					background-color:#ED1A3B;
 					
 						}
-				#loading_signature, #loading_signature2, #loading_comment_hand{
+				#loading_signature, #loading_signature2, #loading_signature3, #loading_comment_hand{
 					background-color:#ED1A3B;
 					}
 				#bol{
 					text-decoration:none;
 					color:#000000;
 					}
-				#bol, #bol1, #bol2, #bol3, #bol4, #header_signature_1, #header_signature_2, #header_comment, #header_message{
+				#bol, #bol1, #bol2, #bol3, #bol4, #header_signature_1, #header_signature_2, #header_comment, #header_message, #header_signature_3{
 				text-decoration:none;
 				color:#626262
 				}
-				#header_container{
+				#header_container, #header_container2{
 					display:inline-block;
 					width:100%
 					}
+					
 				#header_load{
 					   display:inline-block;
 					   float:left;
@@ -527,7 +528,7 @@ body :-ms-input-placeholder {
 					   padding-right:5px;
 					}
 
-				#please_shipper, #please_consignee, #please_comment{
+				#please_shipper, #please_consignee, #please_comment, #please_shipper3{
 					text-align: center;
 					background-color:#626262;
 					color:#FFF;
@@ -535,11 +536,11 @@ body :-ms-input-placeholder {
 					letter-spacing:1px;
 				    font: italic bold 18px 'Yanone Kaffeesatz'; 
 					}
-				#sig_table_1{
+				#sig_table_1, #sig_table_3{
 					width:40%;
 					margin-left:30%
 					}
-				#sig_table_1 td, #sig_table_2 td, #comment_table td{
+				#sig_table_1 td, #sig_table_2 td, #comment_table td, #sig_table_3 td{
 					text-align:center
 					}
 					
