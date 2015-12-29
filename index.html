@@ -682,7 +682,8 @@ function onConfirm_picture_consignee(button){
 										$.mobile.loading("hide");
 										//-------------------------
 													   //----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
-																 /* $.ajax({
+													   var unsigned_shipments2 = 0;
+																 $.ajax({
 																	 type: 'POST',
 																	 async:false,
 																	 dataType: 'json',
@@ -691,7 +692,7 @@ function onConfirm_picture_consignee(button){
 																			console.log(data);
 																			for(i=0;i<data.length;i++){
 																				if(data[i].destination_sign != 1){
-																					 unsigned_shipments++;
+																					 unsigned_shipments2++;
 																					}else{
 																						}
 																				}
@@ -705,7 +706,7 @@ function onConfirm_picture_consignee(button){
 																									  'Ok');
 																	}})						
 																// Reset location traces sending //
-																if(unsigned_shipments >= 1){
+																if(unsigned_shipments2 >= 1){
 																	//alert('unsigned_shipments >=1');
 																	}else{
 																			localStorage.start = 0;
@@ -717,7 +718,7 @@ function onConfirm_picture_consignee(button){
 																			clearInterval(location_trace_interval);
 																			cordova.plugins.backgroundMode.disable();
 																			//--ACHTUNG--//bgGeo.stop();
-																		};*/
+																		};
 													
 										  //-------------------------------
 										
