@@ -540,7 +540,7 @@ function onConfirm_picture_shipper(button){
 	              if(button == 1){
 					  
 					  }else{
-						 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
+						 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -582,7 +582,7 @@ function shipper_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess1(imageURI) {
-					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
+					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 						var imageURI = $('#cam_picture').html();
@@ -665,7 +665,7 @@ $('#expand_shipper').click(function(){
 function onConfirm_picture_consignee(button){
 	              if(button == 1){
 					  }else{
-						  $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
+						  $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -746,7 +746,7 @@ function consignee_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess2(imageURI) {
-					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
+					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;"  />'});
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 							var imageURI = $('#cam_picture').html();
@@ -809,7 +809,7 @@ $('#expand_consignee').click(function(){
 
 // ----------------- DOCUMENT PICTURES --------------- //
 function save_additional_document(){
-	                      $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
+	                      $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;"  />'});
 						  $.ajax({
 									  type: 'POST',
 									  async: false,
@@ -852,7 +852,7 @@ function document_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess3(imageURI) {
-					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;" />'});
+					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;"  />'});
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 							var imageURI = $('#cam_picture').html();
@@ -2823,6 +2823,7 @@ function update_shipments_load(load_id){
 	    });
 		
 $('#page2').on('pageshow',function(e,data){
+	//$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 //-----------------------------------------	
 				if(localStorage.inactive == 1){
 					}else{
