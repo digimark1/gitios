@@ -549,7 +549,7 @@ function onConfirm_picture_shipper(button){
 																	  alertCallback,
 																	  'Smith TracknGo',
 																	  'Ok');
-										   $('#shipper_take_picture').hide();
+										   $('#shipper_take_picture').show();
 										   $('#consignee_take_picture').show();
 										  console.log(data);
 										  },
@@ -670,7 +670,7 @@ function onConfirm_picture_consignee(button){
 																	  'Smith TracknGo',
 																	  'Ok');
 										//$('#shipper_take_picture').hide();
-										$('#consignee_take_picture').hide();
+										$('#consignee_take_picture').show();
 										
 										//-------------------------
 													   //----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
@@ -859,7 +859,7 @@ function document_take_pic(){
 														   // Erase Picture when succeeding 
 														 $('#cam_picture').html('');
 														 var d = new Date()
-										                  $('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+localStorage.temp_document_name+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+$('#select_new_document').val()+'</a></td></tr>');
+										                  $('#lol_item_documents').append('<tr><td>'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+localStorage.temp_document_name+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+$('#select_new_document').val()+'</a></td></tr>');
 														  localStorage.save_document_pic = '/save_document_page.php';
 														  save_additional_document();
 													}
@@ -2283,7 +2283,7 @@ function update_shipments_load(load_id){
 			   		$('#load_hid').html(load_id);
 					//Show take picture for the shipper
 					$('#shipper_take_picture').show();
-					$('#consignee_take_picture').hide();
+					$('#consignee_take_picture').show();
 				   location.href = "#page2_5";
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
@@ -2334,7 +2334,7 @@ function update_shipments_load(load_id){
 														 $('#lol_item_documents').append('<tr><th width="40%"> DATE </th><th width="60%">DOCUMENT NAME</th></tr>');
 															console.log(data);
 															for(i=0;i<data.length;i++){
-																$('#lol_item_documents').append('<tr><td>'+d.getMonth()+d.getDate()+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+data[i].url+''+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+data[i].name+'</a></td></tr>');
+																$('#lol_item_documents').append('<tr><td>'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'</td><td><a style="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+data[i].url+''+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+data[i].name+'</a></td></tr>');
 																}
 														},
 													error: function(data){
@@ -2371,12 +2371,12 @@ function update_shipments_load(load_id){
 											$('#drop_text').html(localStorage.drop_formatted_address);
 											$("#bol_number_hid").html(data[i].bol_number);
 											if (data[i].origin_sign != 0){
-												      $('#shipper_take_picture').hide();
+												      $('#shipper_take_picture').show();
 												}else{
 													  $('#shipper_take_picture').show();
 													}
 											if(data[i].destination_sign != 0){
-												  $('#consignee_take_picture').hide();
+												  $('#consignee_take_picture').show();
 												    }
 											if(data[i].origin_sign != 0 && data[i].destination_sign != 1){
 												  $('#consignee_take_picture').show();
@@ -2733,7 +2733,7 @@ function update_shipments_load(load_id){
 					$('#clear_sig1').click(function(){
 						$sigdiv1.jSignature('reset');
 					});
-				$('#page3_tr').css('background-image','url('+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg)');			
+				$('#page3_tr').css('background-image','url('+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'_sp-1.jpg)');			
 			},1000);
 	
 		setTimeout(function(){
