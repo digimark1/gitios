@@ -2313,7 +2313,7 @@ function update_shipments_load(load_id){
 														 $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+a+')">-'+d.getMonth()+'/'+d.getDate()+'/'+d.getFullYear()+'_'+a+'</a></div>');
 														   }
 											}
-											
+											$('#consignee_photos').html('');
 											if(data[i].drop_doc_pages >= 1){
 												var d = new Date();
 												var b = 0;
