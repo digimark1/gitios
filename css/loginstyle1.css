@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /* CSS Document */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+#shp_sig_options, #cs_sig_options{
+	line-height:2;}
 #aditional_documents{
 	padding: 5px;
 	}

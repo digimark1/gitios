@@ -541,7 +541,7 @@ $(document).one('pagebeforecreate', function () {
                 <!-- POP UP for adding signature SHIPPER-->
                 <div data-role="popup" data-overlay-theme="b" id="choose_signature_shipper" class="ui-content" data-theme="a">
                     <div id="shp_sig_title">Select to sign :</div>
-                    <div><a style="color:blue; font-weight:600" href="#page3">Original Document</a></div>
+                    <div><a style="color:blue; font-weight:600; line-height:2" href="#page3">Original Document</a></div>
                     <div id="shp_sig_options"></div>
                 </div>
                   <!-- POP UP for adding signature CONSIGNEE -->
@@ -553,11 +553,9 @@ $(document).one('pagebeforecreate', function () {
        </div>
 <script>
 function shipper_add_sig(){
-	   $('#shp_sig_options').append('Success');
 	};
 	
 function consignee_add_sig(){
-	   $('#cs_sig_options').html('Success');
 	};
 //---- SHIPPER SAVING DATA , SIGNATURE MARK, DATE AND PAGES NUMBER ------ //
 function onConfirm_picture_shipper(button){
@@ -2694,10 +2692,14 @@ function update_shipments_load(load_id){
 					data: {load_id:localStorage.load_id_pic, bol_number:localStorage.bol_number_pic, index:localStorage.shp_cs_id, pic_number:localStorage.pic_number, sig_print:$("#signature_print3").html()},
 					url: ''+localStorage.save_url+'/save_sig_pic.php',
 					success: function(data){
+						function alertCallback2(){
+						        location.href='#page2_5';
+						        screen.lockOrientation('portrait');
+						}
 						console.log(data);
 						navigator.notification.alert(
 												  'Signature Saved on Picture',
-												  alertCallback,
+												  alertCallback2,
 												  'Smith TracknGo',
 												  'Ok');
 						//sigData.jSignature("reset");
