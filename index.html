@@ -582,7 +582,7 @@ function shipper_take_pic(){
 								destinationType: Camera.DestinationType.FILE_URI
 							});
 				function onSuccess1(imageURI) {
-					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: ""});
+					$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:50%;margin-left:40%;" />'});
 					$('#cam_picture').html(imageURI);
 					//--- SAVE PICTURE TAKEN -----//
 						var imageURI = $('#cam_picture').html();
