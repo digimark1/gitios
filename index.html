@@ -2015,6 +2015,7 @@ $('#original_id').click(function(){
 			
 		//---------------------------End ------------------
 		function active_load(id_driver){
+			                  $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 			                  var active_shipment;// Active shipments counter variable. //
 							  var shipment_number; // Number of shipments, active or inactive.
 							 $.ajax({
@@ -2073,6 +2074,7 @@ $('#original_id').click(function(){
 												}
 												//localStorage.active_shipment = active_shipment;
 											$('#loading_loads').html(""); //--Delete Loading Gif when all loads are checked. -----/
+											$.mobile.loading("hide");
 											
 									//-------------- SEND REGISTER ID TO DATABASE --- ANDROID CLOUD MESSAGING --- PUSH
 									setTimeout(function(){
@@ -2131,6 +2133,7 @@ $('#original_id').click(function(){
 localStorage.comma = "'";
 		//------- LOAD SHIPMENTS -----//
 		function active_shipments_load(load_id,load_number){
+			$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 			              $('#load_number_hid').html(load_number);
 			               //----- After being Closed and Reopened ---//
 						   if(localStorage.tobecontinued == 1){
@@ -2205,6 +2208,7 @@ localStorage.comma = "'";
 										},0);
 										}*/
 								//----END   ---  MOVE if there is only one active shipment
+								    $.mobile.loading("hide");
 									$('#loading_shipments').html("");
                                 },
                             error: function(data){
@@ -2218,6 +2222,7 @@ localStorage.comma = "'";
 	    	};
 //-------------------INACTIVE SHIPMENTS LOAD---------------------------//
 		function inactive_shipments_load(load_id,load_number){
+							  $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 							  //////////////////--------
 							  localStorage.load_id_bol = load_id;
 							  //////////////////--------
@@ -2269,7 +2274,7 @@ localStorage.comma = "'";
 															}
 															/*if(active_shipment_counter == 1){
 										bol_details(id_load,localStorage.comma+bol_number+localStorage.comma,pages_number,origin_sign,destination_sign,pickup_lat,pickup_lng,drop_lat,drop_lng);
-										}*/
+										}*/               $.mobile.loading("hide");
 														$('#loading_shipments').html("");
 													},
 												error: function(data){
@@ -2285,6 +2290,7 @@ localStorage.comma = "'";
 							          };
 //--------------------UNCHANGED SHIPMENTS----------------------//
 		function unchanged_shipments_load(load_id,load_number){
+							 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 							$('#load_number_hid').html(load_number);
 			                  localStorage.active_shipment_counter = "";
 			                  var active_shipment_counter = 0;
@@ -2339,6 +2345,7 @@ localStorage.comma = "'";
 										/*if(active_shipment_counter == 1){
 										bol_details(id_load,localStorage.comma+bol_number+localStorage.comma,pages_number,origin_sign,destination_sign,pickup_lat,pickup_lng,drop_lat,drop_lng);
 										}*/
+										$.mobile.loading("hide")
 									$('#loading_shipments').html("");
                                 },
                             error: function(data){
@@ -2353,6 +2360,7 @@ localStorage.comma = "'";
 //------- UPDATE SHIPMENTS (LOAD) ------------//
 
 function update_shipments_load(load_id){
+						 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 						location.href = '#page2';
 						$.ajax({
 							 type: 'POST',
@@ -2399,6 +2407,7 @@ function update_shipments_load(load_id){
 										bol_details(id_load,localStorage.comma+bol_number+localStorage.comma,pages_number,origin_sign,destination_sign,pickup_lat,pickup_lng,drop_lat,drop_lng);
 										}*/
 									$('#loading_shipments').html("");
+									$.mobile.loading("hide");
                                 },
                             error: function(data){
                                 console.log(data);
