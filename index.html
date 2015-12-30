@@ -839,7 +839,7 @@ function consignee_take_pic(){
 											  $('#expand_consignee').html('<b>&nbsp; - </b>Consignee BOL');
 											  $('#consignee_photos').show();
 											  //---- POP UP SHIPPER -----//
-											  $('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
+											  $('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.consignee_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
 											  localStorage.save_consignee_bol = '/save_consignee_page.php';
 											  localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
 												$.ajax({
