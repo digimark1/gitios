@@ -2583,7 +2583,7 @@ function update_shipments_load(load_id){
 													a++;
 														 //$('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+a+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+a+'</a></div>');
 														 $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+a+')">-'+split_shp_date_1[1]+'/'+split_shp_date_1[2]+'/'+split_shp_date_1[0]+'_'+a+'</a></div>');
-														 $('#shp_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+split_shp_date_1[1]+'/'+split_shp_date_1[2]+'/'+split_shp_date_1[0]+'_'+a+'</a></div>');
+														 $('#shp_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+a+')">-'+split_shp_date_1[1]+'/'+split_shp_date_1[2]+'/'+split_shp_date_1[0]+'_'+a+'</a></div>');
 														   }
 														    
 											}else{
@@ -2602,7 +2602,7 @@ function update_shipments_load(load_id){
 													b++;
 														 //$('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+b+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+b+'</a></div>');
 												$('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+b+')">-'+split_cs_date_1[1]+'/'+split_cs_date_1[2]+'/'+split_cs_date_1[0]+'_'+b+'</a></div>');
-												$('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+split_cs_date_1[1]+'/'+split_cs_date_1[2]+'/'+split_cs_date_1[0]+'_'+b+'</a></div>');
+												$('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+b+')">-'+split_cs_date_1[1]+'/'+split_cs_date_1[2]+'/'+split_cs_date_1[0]+'_'+b+'</a></div>');
 														   }
 											}else{
 												localStorage.consignee_counter = 1;
