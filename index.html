@@ -2612,7 +2612,7 @@ function update_shipments_load(load_id){
 											}else{
 												localStorage.consignee_counter = 1;
 												}
-											
+											alert('shipmentid-'+localStorage.shipment_id);
 											$.ajax({
 													 type: 'POST',
 													 async:false,
@@ -2647,6 +2647,7 @@ function update_shipments_load(load_id){
 												   async:false,
 												   url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+pickup_lat+','+pickup_lng+'&key=AIzaSyAp8XadZn74QX4NLDphnzehQ0AN7q6NCwg',
 												   success: function(data){
+													     alert('formatted pickup');
 														 localStorage.pickup_formatted_address = ''+data.results[0].formatted_address+'';
 													   }
 												 })
@@ -2656,6 +2657,7 @@ function update_shipments_load(load_id){
 												   async:false,
 												   url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+drop_lat+','+drop_lng+'&key=AIzaSyAp8XadZn74QX4NLDphnzehQ0AN7q6NCwg',
 												   success: function(data){
+													   alert('formatted drop');
 														localStorage.drop_formatted_address = ''+data.results[0].formatted_address+'';
 													   }
 												 })
