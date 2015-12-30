@@ -646,6 +646,16 @@ function shipper_take_pic(){
 																						  alertCallback,
 																						  'Smith TracknGo',
 																						  'Ok');
+																//----------CHECK if there is already a signature to not send the callcheck ------
+																 $.ajax({
+																	  type: 'POST',
+																	  async: false,
+																	  dataType:'json',
+																	  url: ''+localStorage.save_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
+																	  success: function(data){},
+																	  error: function(data){}
+																 });
+																 //---------
 															   $.mobile.loading("hide");
 															  console.log(data);
 															  },
