@@ -2122,6 +2122,7 @@ localStorage.comma = "'";
 														//active_loads_number = 0;
 														//Load's number to guide the user. BOL's with current load number.
 														$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+														$('#header_load_number2').html("LOAD # :"+$('#load_number_hid').html());
 														$("#lol_item_shipment").html("");
 														$("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 														$("#lol_item_shipment_inactive").html("");
@@ -2177,6 +2178,7 @@ localStorage.comma = "'";
 									//active_loads_number = 0;
 									//Load's number to guide the user. BOL's with current load number.
 									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+								    $('#header_load_number2').html("LOAD # :"+$('#load_number_hid').html());
 								    $("#lol_item_shipment").html("");
 								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").html("");
@@ -2222,6 +2224,7 @@ function update_shipments_load(load_id){
 									//active_loads_number = 0;
 									//Load's number to guide the user. BOL's with current load number.
 									$("#load_shipment, #load_shipment1, #load_shipment4").html(" LOAD # :"+'<a style="color:#fff" id="bol" href="#" x-apple-data-detectors="false">'+load_number+'</a>');
+									$('#header_load_number2').html("LOAD # :"+localStorage.load_number);
 								    $("#lol_item_shipment").html("");
 								    $("#lol_item_shipment").append('<tr><th width="33%"> DATE </th><th width="33%"> BOL # </th><th width="33%">&nbsp;</th></tr>');
 									$("#lol_item_shipment_inactive").html("");

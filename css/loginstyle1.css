@@ -522,7 +522,7 @@ body :-ms-input-placeholder {
 				       color:#626262;
 					   padding-left:5px;
 					}
-				#header_load_pages, #header_load_number{
+				#header_load_pages, #header_load_number, #header_load_number2{
 					   display:inline-block;
 					   float:right;
 					   text-decoration:none;
