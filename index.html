@@ -2570,7 +2570,7 @@ function update_shipments_load(load_id){
 								if(data[k].bol_number == localStorage.bol_number){
 									       localStorage.shipment_id = data[k].idshipment;
 									alert('bol number number');
-											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[k].bol_number+'</a>');
 											$('#header_load_number').html("LOAD # :"+$('#load_number_hid').html());
 									alert('bol number number-2');
 											$('#shipper_photos').html('');
