@@ -625,9 +625,7 @@ function shipper_take_pic(){
                     //--- END OF - SAVE PICTURE TAKEN -----//
 										// ---- WIN - FAIL ----- SHIPPER save_picture.php --- //
 										function win1(r) {
-											//alert('Im in');
-													   // Erase Picture when succeeding
-													  $.mobile.loading("hide");
+													  //$.mobile.loading("hide");
 													  $('#cam_picture').html('');
 													  var d = new Date();
 													  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
@@ -637,13 +635,37 @@ function shipper_take_pic(){
 													  $('#shp_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 													  localStorage.save_shipper_bol = '/save_shipper_page.php';
 													  localStorage.shipper_counter = parseFloat(localStorage.shipper_counter) + 1;
-													  navigator.notification.confirm(
+													   $.ajax({
+														  type: 'POST',
+														  async: false,
+														  data:{pages_shipper:localStorage.shipper_counter,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:'Shipper Document'},
+														  url: ''+localStorage.save_url+'/shipper_page_number.php',
+														  success: function(data){
+															  navigator.notification.alert(
+																						  'Shipper picture has been sent to the manager',
+																						  alertCallback,
+																						  'Smith TracknGo',
+																						  'Ok');
+															   $.mobile.loading("hide");
+															  console.log(data);
+															  },
+														  error: function(data){
+															  navigator.notification.alert(
+																						  'There was a problem, Try again',
+																						  alertCallback,
+																						  'Smith TracknGo',
+																						  'Ok');
+																$.mobile.loading("hide");
+															  console.log(data);
+															  }
+														  });
+													 /* navigator.notification.confirm(
 																'Do you want to take another picture \n'
 																+'for the shipper?',
 																onConfirm_picture_shipper,
 																'Smith TracknGo',
 																['Yes','No']
-															 );
+															 );*/
 												}
 											
 										function fail1(error) {
@@ -811,17 +833,86 @@ function consignee_take_pic(){
                    //--- END OF - SAVE PICTURE TAKEN -----//
 				   					// ---- WIN - FAIL ----- COnsignee save_picture.php --- //
 											function win2(r) {
-												$.mobile.loading("hide");
+												$('#cam_picture').html('');
+											  var d = new Date()
+											  $('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.consignee_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
+											  $('#expand_consignee').html('<b>&nbsp; - </b>Consignee BOL');
+											  $('#consignee_photos').show();
+											  //---- POP UP SHIPPER -----//
+											  $('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
+											  localStorage.save_consignee_bol = '/save_consignee_page.php';
+											  localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
+												$.ajax({
+												  type: 'POST',
+												  async: false,
+												  data:{pages_consignee:localStorage.consignee_counter,load_id:localStorage.load_id_bol,bol_number:localStorage.bol_number,doc_name:'Consignee Document'},
+												  url: ''+localStorage.save_url+'/consignee_page_number.php',
+												  success: function(data){
+													   navigator.notification.alert(
+																				  'Consignee picture has been \n sent to the manager',
+																				  alertCallback,
+																				  'Smith TracknGo',
+																				  'Ok');
+													//$('#shipper_take_picture').hide();
+													$('#consignee_take_picture').show();
+													$.mobile.loading("hide");
+													//-------------------------
+																   //----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
+																   var unsigned_shipments2 = 0;
+																			 $.ajax({
+																				 type: 'POST',
+																				 async:false,
+																				 dataType: 'json',
+																				 url:''+localStorage.base_url+'/load/app_get_shipments_by_load/'+localStorage.load_id_bol,
+																				 success: function(data){
+																						console.log(data);
+																						for(i=0;i<data.length;i++){
+																							if(data[i].destination_sign != 1){
+																								 unsigned_shipments2++;
+																								}else{
+																									}
+																							}
+																					},
+																				error: function(data){
+																					console.log(data);
+																					navigator.notification.alert(
+																												  'There was an error with active loads',
+																												  alertCallback,
+																												  'Smith TracknGo',
+																												  'Ok');
+																				}})						
+																			// Reset location traces sending //
+																			if(unsigned_shipments2 >= 1){
+																				//alert('unsigned_shipments >=1');
+																				}else{
+																						localStorage.start = 0;
+																						localStorage.finish = 1;
+																						// To enable the restart --- driver setinterval --- driver_location_interval
+																						localStorage.location_mark = 0;
+																						//-/-----/-//
+																						localStorage.trace = 0;//$('#localstorage_trace').html(0);
+																						clearInterval(location_trace_interval);
+																						cordova.plugins.backgroundMode.disable();
+																						//--ACHTUNG--//
+																						//bgGeo.stop();
+																					};
+																
+													  //-------------------------------
+													
+													  console.log(data);
+													  },
+												  error: function(data){
+													  navigator.notification.alert(
+																				  'There was a problem, Try again',
+																				  alertCallback,
+																				  'Smith TracknGo',
+																				  'Ok');
+													  console.log(data);
+													  }
+												  });
+												//$.mobile.loading("hide");
 														   // Erase Picture when succeeding 
-														  $('#cam_picture').html('');
-														  var d = new Date()
-														  $('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.consignee_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
-														  $('#expand_consignee').html('<b>&nbsp; - </b>Consignee BOL');
-														  $('#consignee_photos').show();
-														  //---- POP UP SHIPPER -----//
-													      $('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
-														  localStorage.save_consignee_bol = '/save_consignee_page.php';
-														  localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
+														  
 														  navigator.notification.confirm(
 																	'Do you want to take another picture for the consignee?',
 																	onConfirm_picture_consignee,
@@ -2375,9 +2466,6 @@ function update_shipments_load(load_id){
            function bol_details(load_id,bol_number,pages_number,origin,destination,pickup_lat,pickup_lng,drop_lat,drop_lng){
 			   // Make a counter for the pictures taken
 			   // you need to count the links
-			   
-			   localStorage.shipper_counter = 1;
-			   localStorage.consignee_counter = 1;
 			    // make those counters work
 			        if(origin == 0){
 						     localStorage.signature = 0; // SAVE BOL button ask to saving shipper signature
@@ -2425,6 +2513,7 @@ function update_shipments_load(load_id){
 											$('#shipper_photos').html('');
 											$('#shp_sig_options').html('');
 											if(data[i].pickup_doc_pages >= 1){
+												localStorage.shipper_counter = data[i].pickup_doc_pages + 1;
 												var d = new Date();
 												var shp_date = data[i].origin_sign_date;
 												var split_shp_date = shp_date.split(' ');
@@ -2438,9 +2527,12 @@ function update_shipments_load(load_id){
 														 $('#shp_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+split_shp_date_1[1]+'/'+split_shp_date_1[2]+'/'+split_shp_date_1[0]+'_'+a+'</a></div>');
 														   }
 														    
-											}
+											}else{
+												localStorage.shipper_counter = 1;
+												}
 											$('#consignee_photos').html('');
 											if(data[i].drop_doc_pages >= 1){
+												localStorage.consignee_counter = data[i].drop_doc_pages + 1;
 												var d = new Date();
 												var cs_date = data[i].destination_sign_date;
 												var split_cs_date = cs_date.split(' ');
@@ -2453,7 +2545,9 @@ function update_shipments_load(load_id){
 												$('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+b+')">-'+split_cs_date_1[1]+'/'+split_cs_date_1[2]+'/'+split_cs_date_1[0]+'_'+b+'</a></div>');
 												$('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+split_cs_date_1[1]+'/'+split_cs_date_1[2]+'/'+split_cs_date_1[0]+'_'+b+'</a></div>');
 														   }
-											}
+											}else{
+												localStorage.consignee_counter = 1;
+												}
 											
 											$.ajax({
 													 type: 'POST',
@@ -2905,7 +2999,7 @@ function update_shipments_load(load_id){
 					$('#clear_sig1').click(function(){
 						$sigdiv1.jSignature('reset');
 					});
-				$('#page3_tr').css('background-image','url('+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'_sp-1.jpg)');			
+				$('#page3_tr').css('background-image','url('+localStorage.files+'/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'-0.jpg)');			
 			},1000);
 	
 		setTimeout(function(){
