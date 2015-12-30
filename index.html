@@ -2557,24 +2557,25 @@ function update_shipments_load(load_id){
                     var latitude_driver = parseFloat($('#latitude').val());//37.55;
                     var longitude_driver = parseFloat($('#longitude').val());//-77.44;
 		    		var id_driver = $('#user_name').val();
-					  //alert('bol_details clicked');
+					  alert('bol_details clicked');
                         $.ajax({
                             type: 'POST',
 			    			dataType: 'json',
                             url: ''+localStorage.base_url+'/load/app_get_shipments_by_load/'+load_id,
                             success: function(data){
-								 //alert('shipment-'+load_id+'-success');
+								 alert('shipment-'+load_id+'-success');
                             console.log(data);
 					       for(i=0;i<data.length;i++){
-							   //alert('inside the "for"');
+							   alert('inside the "for"');
 								if(data[i].bol_number == localStorage.bol_number){
 									       localStorage.shipment_id = data[i].idshipment;
-									//alert('bol number number');
+									alert('bol number number');
 											$("#header_load").html("BOL # :"+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
 											$('#header_load_number').html("LOAD # :"+$('#load_number_hid').html());
 											$('#shipper_photos').html('');
 											$('#shp_sig_options').html('');
 											if(data[i].pickup_doc_pages >= 1){
+												alert('Im inside_0');
 												localStorage.shipper_counter = parseFloat(data[i].pickup_doc_pages) + 1;
 												var d = new Date();
 												var shp_date = data[i].origin_sign_date;
