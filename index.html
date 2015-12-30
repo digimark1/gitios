@@ -2624,6 +2624,7 @@ function update_shipments_load(load_id){
 														 $('#lol_item_documents').append('<tr><th width="40%"> DATE </th><th width="60%">DOCUMENT NAME</th></tr>');
 															console.log(data);
 															for(i=0;i<data.length;i++){
+																alert('docs by shipment');
 																var doc_date = data[i].date_created;
 												                 var split_doc_date = doc_date.split(' ');
 												                 var split_doc_date_1 = split_doc_date[0].split('-');
