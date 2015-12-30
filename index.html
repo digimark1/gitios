@@ -2201,8 +2201,8 @@ localStorage.comma = "'";
 								//----MOVE if there is only one active shipment
 									if(active_shipment_counter == 1){
 										setTimeout(function(){
-										bol_details(id_load,localStorage.comma+bol_number+localStorage.comma,pages_number,origin_sign,destination_sign,pickup_lat,pickup_lng,drop_lat,drop_lng);
-										},100);
+										  bol_details(id_load,localStorage.comma+bol_number+localStorage.comma,pages_number,origin_sign,destination_sign,pickup_lat,pickup_lng,drop_lat,drop_lng);
+										},0);
 										}
 								//----END   ---  MOVE if there is only one active shipment
 									$('#loading_shipments').html("");
@@ -2289,7 +2289,7 @@ localStorage.comma = "'";
 							  localStorage.comment = 0;
 					          localStorage.load_hid_2 = load_id;
 							 //---END of Markers for resets, traces and more---//
-							 location.href = '#page2';
+							// location.href = '#page2';
 							 localStorage.load_id_bol = load_id;
 							 localStorage.load_number = load_number;
 							 $.ajax({
