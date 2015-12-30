@@ -2535,6 +2535,7 @@ function update_shipments_load(load_id){
 		// Load BOL details -----///
 	
            function bol_details(load_id,bol_number,pages_number,origin,destination,pickup_lat,pickup_lng,drop_lat,drop_lng){
+			   $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 			   // Make a counter for the pictures taken
 			   // you need to count the links
 			    // make those counters work
@@ -2605,6 +2606,7 @@ function update_shipments_load(load_id){
 												localStorage.shipper_counter = 1;
 												}
 											$('#consignee_photos').html('');
+											$('#cs_sig_options').html('');
 											if(data[k].drop_doc_pages >= 1){
 												localStorage.consignee_counter = parseFloat(data[k].drop_doc_pages) + 1;
 												var d = new Date();
@@ -2629,17 +2631,18 @@ function update_shipments_load(load_id){
 													 dataType: 'json',
 													 url:''+localStorage.base_url+'/load/app_get_docs_by_shipment/'+localStorage.shipment_id,
 													 success: function(data){
-														 alert('bol number number-3');
+														 //alert('bol number number-3');
 														 $('#lol_item_documents').html('');
 														 $('#lol_item_documents').append('<tr><th width="40%"> DATE </th><th width="60%">DOCUMENT NAME</th></tr>');
 															console.log(data);
 															for(i=0;i<data.length;i++){
-																alert('docs by shipment');
+																//alert('docs by shipment');
 																var doc_date = data[i].date_created;
 												                 var split_doc_date = doc_date.split(' ');
 												                 var split_doc_date_1 = split_doc_date[0].split('-');
 																$('#lol_item_documents').append('<tr><td>'+split_doc_date_1[1]+'/'+split_doc_date_1[2]+'/'+split_doc_date_1[0]+'</td><td><a style="color:blue; font-weight:500" onClick="window.open('+localStorage.comma+'http://leanstaffing.com/tkgo_files2/'+data[i].url+''+localStorage.comma+','+localStorage.comma+'_system'+localStorage.comma+')">'+data[i].name+'</a></td></tr>');
 																}
+																$.mobile.loading("hide");
 														},
 													error: function(data){
 														console.log(data);
@@ -2648,6 +2651,7 @@ function update_shipments_load(load_id){
 																  alertCallback,
 																  'Smith TracknGo',
 																  'Ok');
+																 $.mobile.loading("hide");
 													}})		
 											
 											//---GETTING ADDRESS --- //
