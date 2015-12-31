@@ -2921,6 +2921,7 @@ function update_shipments_load(load_id){
 						  $('#shipper_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 						  $('#expand_shipper').html('<b>&nbsp; - </b>Shipper BOL');
 						  $('#shipper_photos').show();
+						  localStorage.shipper_counter = parseFloat(localStorage.shipper_counter) + 1;
 					},
 					error: function(data){
 						console.log(data);
@@ -2984,6 +2985,7 @@ function update_shipments_load(load_id){
 						 $('#consignee_photos').append('<div><a style="color:blue; font-weight:500" href="#" onClick="view_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.consignee_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
 						 $('#expand_consignee').html('<b>&nbsp; - </b>Consignee BOL');
 						 $('#consignee_photos').show();
+						 localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
 						//----- ASK FOR DESTINATION EMPTY SIGNATURES-----//
                           $.ajax({
 							 type: 'POST',
