@@ -640,7 +640,7 @@ function shipper_take_pic(){
 																	  type: 'POST',
 																	  async: false,
 																	  dataType:'json',
-																	  url: ''+localStorage.save_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
+																	  url: ''+localStorage.base_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
 																	  success: function(data){
 																		  if(data[0].origin_sign == 1){
 																			  alert('test 1');
@@ -879,7 +879,7 @@ function consignee_take_pic(){
 																	  type: 'POST',
 																	  async: false,
 																	  dataType:'json',
-																	  url: ''+localStorage.save_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
+																	  url: ''+localStorage.base_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
 																	  success: function(data){
 																		  if(data[0].destination_sign == 1){
 																			   alert('test 3');
