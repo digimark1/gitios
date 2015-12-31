@@ -635,6 +635,34 @@ function shipper_take_pic(){
 													  $('#shp_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_shipper('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.shipper_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.shipper_counter+'</a></div>');
 													  localStorage.save_shipper_bol = '/save_shipper_page.php';
 													  localStorage.shipper_counter = parseFloat(localStorage.shipper_counter) + 1;
+													  //----------CHECK if there is already a signature to not send the callcheck ------
+																 $.ajax({
+																	  type: 'POST',
+																	  async: false,
+																	  dataType:'json',
+																	  url: ''+localStorage.save_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
+																	  success: function(data){
+																		  if(data[0].origin_sign == 1){
+																			  }else{
+																				  // ------------Message to signature saving 
+																				$.ajax({
+																					type: 'POST',
+																					data: {load_id:localStorage.load_id_bol, sig_id: 1, bol_number:localStorage.bol_number, user_id: localStorage.user_id, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
+																					url: ''+localStorage.save_url+'/message_pic.php',
+																					success: function(data){
+																						},
+																					error: function(data){
+																						},
+																					})
+																			// -----------End of message to signature saving
+																				  }
+																		  $.mobile.loading("hide");  
+																		  },
+																	  error: function(data){
+																		  $.mobile.loading("hide");
+																		  }
+																 });
+														//----------------------------------------------------------------------------
 													   $.ajax({
 														  type: 'POST',
 														  async: false,
@@ -646,17 +674,6 @@ function shipper_take_pic(){
 																						  alertCallback,
 																						  'Smith TracknGo',
 																						  'Ok');
-																//----------CHECK if there is already a signature to not send the callcheck ------
-																 $.ajax({
-																	  type: 'POST',
-																	  async: false,
-																	  dataType:'json',
-																	  url: ''+localStorage.save_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
-																	  success: function(data){},
-																	  error: function(data){}
-																 });
-																 //---------
-															   $.mobile.loading("hide");
 															  console.log(data);
 															  },
 														  error: function(data){
@@ -740,7 +757,7 @@ $('#expand_shipper').click(function(){
 	});
 // ---- END OF EXPAND SHIPPER ---- //
 
-function onConfirm_picture_consignee(button){
+/*function onConfirm_picture_consignee(button){
 	              if(button == 1){
 					  }else{
 						  $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
@@ -813,7 +830,7 @@ function onConfirm_picture_consignee(button){
 										  }
 									  });
 						  }
-	}
+	}*/
 
 function consignee_take_pic(){
 //--- JUST TAKING PICTURE ----//
@@ -852,6 +869,34 @@ function consignee_take_pic(){
 											  $('#cs_sig_options').append('<div><a style="color:blue; font-weight:500" href="#" onClick="sign_picture_consignee('+localStorage.load_id_bol+','+localStorage.comma+localStorage.bol_number+localStorage.comma+','+localStorage.consignee_counter+')">-'+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()+'_'+localStorage.consignee_counter+'</a></div>');
 											  localStorage.save_consignee_bol = '/save_consignee_page.php';
 											  localStorage.consignee_counter = parseFloat(localStorage.consignee_counter) + 1;
+											   //----------CHECK if there is already a signature to not send the callcheck ------
+																 $.ajax({
+																	  type: 'POST',
+																	  async: false,
+																	  dataType:'json',
+																	  url: ''+localStorage.save_url+'/load/app_get_shipments_by_id/'+localStorage.shipment_id,
+																	  success: function(data){
+																		  if(data[0].destination_sign == 1){
+																			  }else{
+																				  // ------------Message to signature saving 
+																				$.ajax({
+																					type: 'POST',
+																					data: {load_id:localStorage.load_id_bol, sig_id: 2, bol_number:localStorage.bol_number, user_id: localStorage.user_id, lat_sig: $('#latitude').val(), lng_sig:$('#longitude').val()},
+																					url: ''+localStorage.save_url+'/message_pic.php',
+																					success: function(data){
+																						},
+																					error: function(data){
+																						},
+																					})
+																			// -----------End of message to signature saving
+																				  }
+																		  //$.mobile.loading("hide");  
+																		  },
+																	  error: function(data){
+																		  //$.mobile.loading("hide");
+																		  }
+																 });
+														//----------------------------------------------------------------------------
 												$.ajax({
 												  type: 'POST',
 												  async: false,
