@@ -2854,7 +2854,7 @@ function update_shipments_load(load_id){
 			$('#troubles_-button').css('color', '#626262');
 			$('#troubles_msg').attr('class','');
 		    
-			$('#message_body').css('height',(0.8*parseFloat(window.screen.height)));
+			$('#message_body').css('height',(0.72*parseFloat(window.screen.height)));
 		    $('#notification_message').css('height',(0.37*parseFloat(window.screen.height)));
 			/*setTimeout(function () {
 									myScroll_message.refresh();
@@ -3278,7 +3278,7 @@ function update_shipments_load(load_id){
 	})
 	
 	$('#page1_1').on('pageshow',function(e,data) {
-		$('#lol').css('height',(0.7*parseFloat(window.screen.height)));
+		$('#lol').css('height',(0.68*parseFloat(window.screen.height)));
 		active_load(localStorage.user_id);
 		cordova.plugins.backgroundMode.enable();
 		$('#back_change').attr('href','#page2');
