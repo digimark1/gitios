@@ -2267,7 +2267,7 @@ localStorage.comma = "'";
 											//Active shipment counter for trace control
 											   active_shipment_counter++;
 											   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 											//----------
 											localStorage.id_load_t = data[i].ts_load_idts_load;
 											localStorage.bol_number_t = data[i].bol_number;
@@ -2278,12 +2278,14 @@ localStorage.comma = "'";
 											localStorage.pickup_lng_t = data[i].pickup_lng;
 											localStorage.drop_lat_t = data[i].drop_lat;
 											localStorage.drop_lng_t = data[i].drop_lng;
+											localStorage.pick_add_t = data[i].pickup_address2;
+											localStorage.drop_add_t = data[i].drop_address2;
 											//----------
 											  localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
 												//Change load detals. Just to see old BOL's
 												if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 												}
 										}
 
@@ -2333,7 +2335,7 @@ localStorage.comma = "'";
 																  //Active shipment counter for trace control
 																   active_shipment_counter++;
 																   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-																	$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+																	$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 																	//----------
 																	localStorage.id_load_t = data[i].ts_load_idts_load;
 																	localStorage.bol_number_t = data[i].bol_number;
@@ -2344,12 +2346,14 @@ localStorage.comma = "'";
 																	localStorage.pickup_lng_t = data[i].pickup_lng;
 																	localStorage.drop_lat_t = data[i].drop_lat;
 																	localStorage.drop_lng_t = data[i].drop_lng;
+																	localStorage.pick_add_t = data[i].pickup_address2;
+																	localStorage.drop_add_t = data[i].drop_address2;
 																	//----------
 																	localStorage.active_shipment_counter = active_shipment_counter;
 																}else{
 																	//Change load detals. Just to see old BOL's
 																	if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-																	$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+																	$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 																	}
 															}
 															/*if(active_shipment_counter == 1){
@@ -2403,7 +2407,7 @@ localStorage.comma = "'";
 											  //Active shipment counter for trace control
 											   active_shipment_counter++;
 											   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 																	//----------
 																	localStorage.id_load_t = data[i].ts_load_idts_load;
 																	localStorage.bol_number_t = data[i].bol_number;
@@ -2414,12 +2418,14 @@ localStorage.comma = "'";
 																	localStorage.pickup_lng_t = data[i].pickup_lng;
 																	localStorage.drop_lat_t = data[i].drop_lat;
 																	localStorage.drop_lng_t = data[i].drop_lng;
+																	localStorage.pick_add_t = data[i].pickup_address2;
+																	localStorage.drop_add_t = data[i].drop_address2;
 																	//----------
 																	localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
 												//Change load detals. Just to see old BOL's
 												if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 												}
 										}
 										/*if(active_shipment_counter == 1){
@@ -2464,7 +2470,7 @@ function update_shipments_load(load_id){
 											  //Active shipment counter for trace control
 											   active_shipment_counter++;
 											   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 											   //----------
 												localStorage.id_load_t = data[i].ts_load_idts_load;
 												localStorage.bol_number_t = data[i].bol_number;
@@ -2475,12 +2481,14 @@ function update_shipments_load(load_id){
 												localStorage.pickup_lng_t = data[i].pickup_lng;
 												localStorage.drop_lat_t = data[i].drop_lat;
 												localStorage.drop_lng_t = data[i].drop_lng;
+												localStorage.pick_add_t = data[i].pickup_address2;
+												localStorage.drop_add_t = data[i].drop_address2;
 												//----------
 												localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
 												//Change load detals. Just to see old BOL's
 												if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
-												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
+												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+','+localStorage.comma+data[i].pickup_address2+localStorage.comma+','+localStorage.comma+data[i].drop_address2+localStorage.comma+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 												}
 										}
 									/*if(active_shipment_counter == 1){
@@ -2616,7 +2624,7 @@ function update_shipments_load(load_id){
 		
 		// Load BOL details -----///
 	
-           function bol_details(load_id,bol_number,pages_number,origin,destination,pickup_lat,pickup_lng,drop_lat,drop_lng){
+           function bol_details(load_id,bol_number,pages_number,origin,destination,pickup_lat,pickup_lng,drop_lat,drop_lng,pickup_add_2,drop_add_2){
 			   $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 			   // Make a counter for the pictures taken
 			   // you need to count the links
@@ -2758,9 +2766,14 @@ function update_shipments_load(load_id){
 													   }
 												 })
 											localStorage.pick_address = 'maps://?q='+''+localStorage.pickup_formatted_address+'';
-											$('#pickup_text').html(localStorage.pickup_formatted_address);
+											//pickup_add_2,drop_add_2
+											var pickup_add_1_1 = (localStorage.pickup_formatted_address).substring(0,(localStorage.pickup_formatted_address).indexOf(","));
+											var pickup_add_1_2 = (localStorage.pickup_formatted_address).substring((localStorage.pickup_formatted_address).indexOf(","));
+											$('#pickup_text').html(pickup_add_1_1+' - '+pickup_add_2+pickup_add_1_2);
 											localStorage.drop_address = 'maps://?q='+''+localStorage.drop_formatted_address+'';
-											$('#drop_text').html(localStorage.drop_formatted_address);
+											var drop_add_1_1 = (localStorage.drop_formatted_address).substring(0,(localStorage.drop_formatted_address).indexOf(","));
+											var drop_add_1_2 = (localStorage.drop_formatted_address).substring((localStorage.drop_formatted_address).indexOf(","));
+											$('#drop_text').html(drop_add_1_1+' - '+drop_add_2+drop_add_1_2);
 											$("#bol_number_hid").html(data[k].bol_number);
 											if (data[k].origin_sign != 0){
 												      $('#shipper_take_picture').show();
@@ -3296,7 +3309,7 @@ $('#page2').on('pageshow',function(e,data){
 		//----MOVE if there is only one active shipment
 		if(localStorage.active_shipment_counter == '1'){
 			setTimeout(function(){
-			  bol_details(localStorage.id_load_t,localStorage.bol_number_t,localStorage.pages_number_t,localStorage.origin_sign_t,localStorage.destination_sign_t,localStorage.pickup_lat_t,localStorage.pickup_lng_t,localStorage.drop_lat_t,localStorage.drop_lng_t);
+			  bol_details(localStorage.id_load_t,localStorage.bol_number_t,localStorage.pages_number_t,localStorage.origin_sign_t,localStorage.destination_sign_t,localStorage.pickup_lat_t,localStorage.pickup_lng_t,localStorage.drop_lat_t,localStorage.drop_lng_t, localStorage.pick_add_t, localStorage.drop_add_t);
 			  $('#back_change').attr('href','#page1_1');
 			},0);
 			}
