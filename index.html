@@ -1098,9 +1098,10 @@ function document_take_pic(){
 		}
 	};
 
-$('#original_id, #original_id2').click(function(){
+$('#original_id').click(function(){
 		window.open('http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'.pdf', '_system');
 	});
+
 </script>      
        
      <div data-role="page" id="page3">
@@ -1321,7 +1322,11 @@ $('#original_id, #original_id2').click(function(){
                 </div>
         
    </div>
-   
+   <script>
+   $('#original_id2').click(function(){
+		window.open('http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'.pdf', '_system');
+	});
+   </script>
     <div data-role="page" id="page6">
         <div data-role="header">
                   <div style="background-color: rgb(255, 255, 255); padding-top: 3%;"></div>       	
