@@ -2298,6 +2298,7 @@ localStorage.comma = "'";
 															  'Smith TracknGo',
 															  'Ok');
                             }})
+							
 	    	};
 //-------------------INACTIVE SHIPMENTS LOAD---------------------------//
 		function inactive_shipments_load(load_id,load_number){
@@ -3291,13 +3292,14 @@ $('#page2').on('pageshow',function(e,data){
 		localStorage.load_hid = localStorage.load_hid_2;
 //-----------------------------------------	
 		}
-//----MOVE if there is only one active shipment
+		//----MOVE if there is only one active shipment
 		if(localStorage.active_shipment_counter == '1'){
 			setTimeout(function(){
-			  bol_details(localStorage.id_load_t,localStorage.comma+localStorage.bol_number_t+localStorage.comma,localStorage.pages_number_t,localStorage.origin_sign_t,localStorage.destination_sign_t,localStorage.pickup_lat_t,localStorage.pickup_lng_t,localStorage.drop_lat_t,localStorage.drop_lng_t);
+			  bol_details(localStorage.id_load_t,localStorage.bol_number_t,localStorage.pages_number_t,localStorage.origin_sign_t,localStorage.destination_sign_t,localStorage.pickup_lat_t,localStorage.pickup_lng_t,localStorage.drop_lat_t,localStorage.drop_lng_t);
 			},0);
 			}
 //----END   ---  MOVE if there is only one active shipment
+
 		});
 		
 		//$("select option:contains('Value a')").attr("disabled","disabled")
