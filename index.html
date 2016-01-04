@@ -46,6 +46,7 @@ $(document).one('pagebeforecreate', function () {
     // device APIs are available
 				function onDeviceReady() {
 					 navigator.splashscreen.hide();
+					 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 					 // base url for dashboard
 					 localStorage.base_url = 'http://leanstaffing.com/trackngo2';
 					 // Url to save data into database
@@ -140,6 +141,7 @@ $(document).one('pagebeforecreate', function () {
 	
 				if(!localStorage.user_id){
 					location.href='#page1';
+					$.mobile.loading("hide");
 					$('#loading_start').hide();
 					//alert('device ready and needs the user');
 					}else{
@@ -147,19 +149,24 @@ $(document).one('pagebeforecreate', function () {
 						if(localStorage.location_mark == 1){
 						        localStorage.location_mark = 0;
 								location.href='#page1_1';
+								$.mobile.loading("hide");
 							}else{
 								location.href='#page1_1';
+								$.mobile.loading("hide");
 								};
 						if(localStorage.finish == 0){
 							      localStorage.tobecontinued = 1;
 								  //alert('localStorage.finish ==0');
 								  localStorage.first_trace = 'device_ready';
 								  active_shipments_load(localStorage.last_active_load, localStorage.last_active_load_number);
+								  $.mobile.loading("hide");
 							}else{
 								  localStorage.tobecontinued = 0;
 								  location.href='#page1_1';
+								  $.mobile.loading("hide");
 								};
 						setTimeout(function(){
+							$.mobile.loading("hide");
 							 $('#loading_start').hide();
 							 $('#full_name').html(localStorage.name);
 							 $('#full_name1').html(localStorage.name);
@@ -356,7 +363,7 @@ $(document).one('pagebeforecreate', function () {
         </div>
                         <div style="width:100%"><table width="100%"><tr><td width="50%"><img id="" src="css/active_active.png" width="100%"></td><td width=50%><img id="" src="css/history_inactive.png" width="100%"></td></tr></table></div>
                     	<div role="listpage" class="ui-content" id="">
-                        <div id=""><img src="css/loading.gif" style="width:20%;margin-left:40%;" /></div>
+                        <div id=""><!--<img src="css/loading.gif" style="width:20%;margin-left:40%;" />--></div>
                      </div>
              <!-- register id for push notifications -->
                <div id="" hidden></div>
@@ -381,7 +388,7 @@ $(document).one('pagebeforecreate', function () {
                 <div id="hid_uid" hidden></div>
                 <br />
             	<div id="start_button"><a href="#" id="login_phone" name="login_phone" class="btn-class-send2">START</a></div>
-                <div id="loading_start"><img src="css/loading.gif" style="width:8%;margin-left:45%;" /></div>
+                <div id="loading_start"><!--<img src="css/loading.gif" style="width:8%;margin-left:45%;" />--></div>
      	</div>
      </div>
    </div>
@@ -2498,6 +2505,7 @@ function update_shipments_load(load_id){
 };
 		//---------------------------Query DATA From SERVER  -------------------
 			$('#login_phone').click(function(){
+				$.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 				$('#start_button').hide();
 				$('#loading_start').show();
 				var cont_2 = 0;
@@ -2533,6 +2541,7 @@ function update_shipments_load(load_id){
 										//alert(localStorage.user_id)
 										//active_load(localStorage.user_id);
 										location.href = "#page1_1";
+										$.mobile.loading("hide");
 								 	}else{
 										navigator.notification.alert(
 										  'Invalid User',
