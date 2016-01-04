@@ -1098,7 +1098,7 @@ function document_take_pic(){
 		}
 	};
 
-$('#original_id').click(function(){
+$('#original_id, #original_id2').click(function(){
 		window.open('http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'.pdf', '_system');
 	});
 </script>      
@@ -1267,7 +1267,7 @@ $('#original_id').click(function(){
                     <div id="header_message">_</div>
                  </div>
                    <div style="width:100%; line-height:0.3">
-                         <table width="100%"><tr><td width="12%"><a href="" id="backmessage" class=""><img width="100%" src="css/back_pic.png"></a></td><td width="40%">&nbsp;</td><td width=40%>&nbsp;</td></tr></table>
+                         <table width="100%"><tr><td width="12%"><a href="" id="backmessage" class=""><img width="100%" src="css/back_pic.png"></a></td><td width="40%"><img id="original_id2" src="css/original_link.png" width="100%"></td><td width=40%><img id="chat_bol2" src="css/message_link.png" width="100%"></td></tr></table>
                      </div>
                     <div id="please_consignee">
                 	   SEND A CALL CHECK
@@ -1378,7 +1378,7 @@ $('#original_id').click(function(){
 		var driver_location_interval;
 		var active_shipment;
 		
-		function load_history(){
+	/*	function load_history(){
 			localStorage.inactive = 1;
 			 location.href = '#page1_1';
 			 setTimeout(function(){ 
@@ -1387,9 +1387,9 @@ $('#original_id').click(function(){
 				 $('#active_ld').attr('src','css/active_inactive.png');
 				 $('#history_ld').attr('src','css/history_active.png');
 			 },0);
-			};
+			};*/
 			
-		function active_loads(){
+		/*function active_loads(){
 			localStorage.inactive = 0;
 			 location.href = '#page1_1';
 			 setTimeout(function(){ 
@@ -1398,7 +1398,7 @@ $('#original_id').click(function(){
 				 $('#active_ld').attr('src','css/active_active.png');
 				 $('#history_ld').attr('src','css/history_inactive.png');
 			 },0);
-			};
+			};*/
 		
 		
 		$('#signout0, #signout0_2, #signout0_5, #signout1, #signout2, #signout3, #signout5, #signout6, #signout7').click(function(){
@@ -2160,6 +2160,10 @@ $('#original_id').click(function(){
 										//--------------------
 										//---trace load adjustments----
 									if(active_loads_number >= 1){
+										      $('#active_ld').attr('src','css/active_active.png');
+				                              $('#history_ld').attr('src','css/history_inactive.png');
+											  $('#lol_item_inactive').hide();
+											  $('#lol_item').show();
 										// Start interval, just when new one arrives (or there is one active) //
 											if(localStorage.location_mark == 1){
 												}else{
@@ -2181,7 +2185,12 @@ $('#original_id').click(function(){
 														 },60000);
 													localStorage.location_mark = 1;
 												}
-										}
+										}else{
+											  $('#active_ld').attr('src','css/active_inactive.png');
+				                              $('#history_ld').attr('src','css/history_active.png');
+											  $('#lol_item_inactive').show();
+											  $('#lol_item').hide();
+											};
 		 // Changed from 20 Seconds to 40 seconds Aprox. //20151008 changed to 60
 										},
                             error: function(data){
