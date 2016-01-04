@@ -1273,10 +1273,11 @@ $('#original_id').click(function(){
                           </table>
                     </div>
                     <div id="header_message">_</div>
-                 </div>
-                   <div style="width:100%; line-height:0.3">
+                    <div style="width:100%; line-height:0.3">
                          <table width="100%"><tr><td width="12%"><a href="" id="backmessage" class=""><img width="100%" src="css/back_pic.png"></a></td><td width="40%"><img id="original_id2" src="css/original_link.png" width="100%"></td><td width=40%><img id="chat_bol2" src="css/message_link.png" width="100%"></td></tr></table>
                      </div>
+                 </div>
+                   
                     <div id="please_consignee">
                 	   SEND A CALL CHECK
                     </div>
@@ -2131,6 +2132,7 @@ $('#original_id').click(function(){
 																			  shipment_number++;
 																			  };
 																	};
+																$.mobile.loading("hide");
 																localStorage.active_shipment = active_shipment;
 																console.log(data_s);
 															},
@@ -2852,8 +2854,8 @@ function update_shipments_load(load_id){
 			$('#troubles_-button').css('color', '#626262');
 			$('#troubles_msg').attr('class','');
 		    
-			$('#message_body').css('height',(0.71*parseFloat(window.screen.height)));
-		    $('#notification_message').css('height',(0.3*parseFloat(window.screen.height)));
+			$('#message_body').css('height',(0.8*parseFloat(window.screen.height)));
+		    $('#notification_message').css('height',(0.37*parseFloat(window.screen.height)));
 			/*setTimeout(function () {
 									myScroll_message.refresh();
 										}, 500);*/
@@ -3276,6 +3278,7 @@ function update_shipments_load(load_id){
 	})
 	
 	$('#page1_1').on('pageshow',function(e,data) {
+		$('#lol').css('height',(0.7*parseFloat(window.screen.height)));
 		active_load(localStorage.user_id);
 		cordova.plugins.backgroundMode.enable();
 		$('#back_change').attr('href','#page2');
