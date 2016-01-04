@@ -2269,15 +2269,15 @@ localStorage.comma = "'";
 											   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 											//----------
-											/*var id_load = data[i].ts_load_idts_load;
-											var bol_number = data[i].bol_number;
-											var pages_number = data[i].pages_number;
-											var origin_sign = data[i].origin_sign;
-											var destination_sign = data[i].destination_sign;
-											var pickup_lat = data[i].pickup_lat;
-											var pickup_lng = data[i].pickup_lng;
-											var drop_lat = data[i].drop_lat;
-											var drop_lng = data[i].drop_lng;*/
+											localStorage.id_load_t = data[i].ts_load_idts_load;
+											localStorage.bol_number_t = data[i].bol_number;
+											localStorage.pages_number_t = data[i].pages_number;
+											localStorage.origin_sign_t = data[i].origin_sign;
+											localStorage.destination_sign_t = data[i].destination_sign;
+											localStorage.pickup_lat_t = data[i].pickup_lat;
+											localStorage.pickup_lng_t = data[i].pickup_lng;
+											localStorage.drop_lat_t = data[i].drop_lat;
+											localStorage.drop_lng_t = data[i].drop_lng;
 											//----------
 											  localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
@@ -2286,13 +2286,7 @@ localStorage.comma = "'";
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: black;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 												}
 										}
-								//----MOVE if there is only one active shipment
-									/*if(active_shipment_counter == 1){
-										setTimeout(function(){
-										  bol_details(id_load,localStorage.comma+bol_number+localStorage.comma,pages_number,origin_sign,destination_sign,pickup_lat,pickup_lng,drop_lat,drop_lng);
-										},0);
-										}*/
-								//----END   ---  MOVE if there is only one active shipment
+
 								    $.mobile.loading("hide");
 									$('#loading_shipments').html("");
                                 },
@@ -2340,15 +2334,15 @@ localStorage.comma = "'";
 																   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
 																	$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
 																	//----------
-																		/*var id_load = data[i].ts_load_idts_load;
-																		var bol_number = data[i].bol_number;
-																		var pages_number = data[i].pages_number;
-																		var origin_sign = data[i].origin_sign;
-																		var destination_sign = data[i].destination_sign;
-																		var pickup_lat = data[i].pickup_lat;
-																		var pickup_lng = data[i].pickup_lng;
-																		var drop_lat = data[i].drop_lat;
-																		var drop_lng = data[i].drop_lng;*/
+																	localStorage.id_load_t = data[i].ts_load_idts_load;
+																	localStorage.bol_number_t = data[i].bol_number;
+																	localStorage.pages_number_t = data[i].pages_number;
+																	localStorage.origin_sign_t = data[i].origin_sign;
+																	localStorage.destination_sign_t = data[i].destination_sign;
+																	localStorage.pickup_lat_t = data[i].pickup_lat;
+																	localStorage.pickup_lng_t = data[i].pickup_lng;
+																	localStorage.drop_lat_t = data[i].drop_lat;
+																	localStorage.drop_lng_t = data[i].drop_lng;
 																	//----------
 																	localStorage.active_shipment_counter = active_shipment_counter;
 																}else{
@@ -2409,18 +2403,18 @@ localStorage.comma = "'";
 											   active_shipment_counter++;
 											   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
-											   //----------
-												/*var id_load = data[i].ts_load_idts_load;
-												var bol_number = data[i].bol_number;
-												var pages_number = data[i].pages_number;
-												var origin_sign = data[i].origin_sign;
-												var destination_sign = data[i].destination_sign;
-												var pickup_lat = data[i].pickup_lat;
-												var pickup_lng = data[i].pickup_lng;
-												var drop_lat = data[i].drop_lat;
-												var drop_lng = data[i].drop_lng;*/
-												//----------
-												localStorage.active_shipment_counter = active_shipment_counter;
+																	//----------
+																	localStorage.id_load_t = data[i].ts_load_idts_load;
+																	localStorage.bol_number_t = data[i].bol_number;
+																	localStorage.pages_number_t = data[i].pages_number;
+																	localStorage.origin_sign_t = data[i].origin_sign;
+																	localStorage.destination_sign_t = data[i].destination_sign;
+																	localStorage.pickup_lat_t = data[i].pickup_lat;
+																	localStorage.pickup_lng_t = data[i].pickup_lng;
+																	localStorage.drop_lat_t = data[i].drop_lat;
+																	localStorage.drop_lng_t = data[i].drop_lng;
+																	//----------
+																	localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
 												//Change load detals. Just to see old BOL's
 												if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
@@ -2470,16 +2464,16 @@ function update_shipments_load(load_id){
 											   active_shipment_counter++;
 											   if(data[i].pages_number>1){pages = ' pages'}else{pages = ' page'}
 												$("#lol_item_shipment").append('<tr><td>'+data[i].date_created+'</td><td><a href="#" style="color: red;" class="" onclick="bol_details('+data[i].ts_load_idts_load+','+localStorage.comma+data[i].bol_number+localStorage.comma+','+data[i].pages_number+','+data[i].origin_sign+','+data[i].destination_sign+','+data[i].pickup_lat+','+data[i].pickup_lng+','+data[i].drop_lat+','+data[i].drop_lng+')"><h3>'+data[i].bol_number+'</h3></a></td><td>'+data[i].pages_number+pages+'</td></tr>');
-											     //----------
-													/*var id_load = data[i].ts_load_idts_load;
-													var bol_number = data[i].bol_number;
-													var pages_number = data[i].pages_number;
-													var origin_sign = data[i].origin_sign;
-													var destination_sign = data[i].destination_sign;
-													var pickup_lat = data[i].pickup_lat;
-													var pickup_lng = data[i].pickup_lng;
-													var drop_lat = data[i].drop_lat;
-													var drop_lng = data[i].drop_lng;*/
+											   //----------
+												localStorage.id_load_t = data[i].ts_load_idts_load;
+												localStorage.bol_number_t = data[i].bol_number;
+												localStorage.pages_number_t = data[i].pages_number;
+												localStorage.origin_sign_t = data[i].origin_sign;
+												localStorage.destination_sign_t = data[i].destination_sign;
+												localStorage.pickup_lat_t = data[i].pickup_lat;
+												localStorage.pickup_lng_t = data[i].pickup_lng;
+												localStorage.drop_lat_t = data[i].drop_lat;
+												localStorage.drop_lng_t = data[i].drop_lng;
 												//----------
 												localStorage.active_shipment_counter = active_shipment_counter;
 											}else{
@@ -3297,6 +3291,13 @@ $('#page2').on('pageshow',function(e,data){
 		localStorage.load_hid = localStorage.load_hid_2;
 //-----------------------------------------	
 		}
+//----MOVE if there is only one active shipment
+		if(localStorage.active_shipment_counter == '1'){
+			setTimeout(function(){
+			  bol_details(localStorage.id_load_t,localStorage.comma+localStorage.bol_number_t+localStorage.comma,localStorage.pages_number_t,localStorage.origin_sign_t,localStorage.destination_sign_t,localStorage.pickup_lat_t,localStorage.pickup_lng_t,localStorage.drop_lat_t,localStorage.drop_lng_t);
+			},0);
+			}
+//----END   ---  MOVE if there is only one active shipment
 		});
 		
 		//$("select option:contains('Value a')").attr("disabled","disabled")
