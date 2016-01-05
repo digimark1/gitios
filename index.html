@@ -247,8 +247,8 @@ $(document).one('pagebeforecreate', function () {
 												if (data[i].load_number == load_number){
 														localStorage.load_id_bol = data[i].idts_load;
 														$('#load_number_hid').html(data[i].load_number);
-														$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
-														$("#bol_number_hid").html(data[i].bol_number);
+														//$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
+														//$("#bol_number_hid").html(data[i].bol_number);
 														localStorage.load_number = data[i].load_number;
 														//$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img src="css/button3.png" width="100%"/></a>');
 														//localStorage.msg = 1;
@@ -295,7 +295,7 @@ $(document).one('pagebeforecreate', function () {
 														$('#load_number_hid').html(data[i].load_number);
 														localStorage.last_active_load_number = data[i].load_number;
 														//$("#header_load").html('BOL # :'+'<a id="bol" href="#" x-apple-data-detectors="false">'+data[i].bol_number+'</a>');
-														$("#bol_number_hid").html(data[i].bol_number);
+														//$("#bol_number_hid").html(data[i].bol_number);
 														//$('#consignee_button').html('<a href="#" id="sig_button2" name="b" onClick="consignee_alert()"><img id="img_gps" src="css/button3.png" width="100%"/></a>');
 														//$('#shipper_button').html('<a href="#page3" id="sig_button1" name="a" class=""><img src="css/button2.png" width="100%"/></a>');
 														//localStorage.bol = 1;
