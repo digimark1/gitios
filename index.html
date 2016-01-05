@@ -48,7 +48,7 @@ $(document).one('pagebeforecreate', function () {
 					 navigator.splashscreen.hide();
 					 $.mobile.loading("show", {text: 'loading',textVisible: true,theme: 'b',html: '<img src="css/loading.gif" style="width:40%;margin-left: 30%;" />'});
 					 // base url for dashboard
-					 localStorage.base_url = 'http://leanstaffing.com/trackngo2';
+					 localStorage.base_url = 'http://leanstaffing.com/trackngo';
 					 // Url to save data into database
 					 localStorage.save_url = 'http://leanstaffing.com/testserver2';
 					 localStorage.files = 'http://leanstaffing.com/tkgo_files2';
@@ -404,8 +404,12 @@ $(document).one('pagebeforecreate', function () {
                               </tr>
                           </table>
                          </div>
+                         <div id="header_container3">
+                            <div id="header_load_number3">&nbsp;</div>
+                        </div>
+                        <div style="width:100%; line-height:0.3"><table width="100%"><tr><td width="50%"><img id="active_ld" src="css/active_active.png" width="100%"></td><td width=50%><img id="history_ld" src="css/history_inactive.png" width="100%"></td></tr></table></div>
                  </div>
-                        <div style="width:100%"><table width="100%"><tr><td width="50%"><img id="active_ld" src="css/active_active.png" width="100%"></td><td width=50%><img id="history_ld" src="css/history_inactive.png" width="100%"></td></tr></table></div>
+                        
                     	<div role="listpage" class="ui-content" id="lol">
                         <table width="100%" id="lol_item"></table>
                         <table id="lol_item_inactive"></table>
@@ -433,8 +437,9 @@ $(document).one('pagebeforecreate', function () {
                       <div id="header_container2">
                         <div id="header_load_number2">&nbsp;_</div>
                      </div>
+                     <div style="width:100%; line-height:0.3"><table width="100%"><tr><td width="12%"><a href="#page1_1" id="" class=""><img width="100%" src="css/back_pic.png"></a></td><td width="30%"><img id="active_shp" src="css/active_shipments.png" width="100%"></td><td width=40%><!--<img id="history_shp" src="css/history_inactive.png" width="100%">--></td></tr></table></div>
                  </div>
-                        <div style="width:100%"><table width="100%"><tr><td width="12%"><a href="#page1_1" id="" class=""><img width="100%" src="css/back_pic.png"></a></td><td width="30%"><img id="active_shp" src="css/active_shipments.png" width="100%"></td><td width=40%><!--<img id="history_shp" src="css/history_inactive.png" width="100%">--></td></tr></table></div>
+                        
                     	<div role="listpage" class="ui-content" id="lol_shipment">
                         <table width="100%" id="lol_item_shipment"></table>
                         <table id="lol_item_shipment_inactive"></table>
@@ -1278,7 +1283,7 @@ $('#div_document_name').click(function(){
                     </div>
                     <div id="header_message">_</div>
                     <div style="width:100%; line-height:0.3">
-                         <table width="100%"><tr><td width="12%"><a href="" id="backmessage" class=""><img width="100%" src="css/back_pic.png"></a></td><td width="40%"><img id="original_id2" src="css/original_link.png" width="100%"></td><td width=40%><img id="chat_bol2" src="css/message_link.png" width="100%"></td></tr></table>
+                         <table width="100%"><tr><td width="12%"><a href="" id="backmessage" class=""><img width="100%" src="css/back_pic.png"></a></td><td width="40%"><img id="original_id2" src="css/original_link_inactive.png" width="100%"></td><td width=40%><img id="chat_bol2" src="css/message_link_active.png" width="100%"></td></tr></table>
                      </div>
                  </div>
                    
