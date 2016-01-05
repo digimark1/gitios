@@ -1108,7 +1108,11 @@ function document_take_pic(){
 $('#original_id').click(function(){
 		window.open('http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'.pdf', '_system');
 	});
-
+	
+$('#div_document_name').click(function(){
+		$('#select_new_document-listbox-popup').css('width','90%');
+		$('#select_new_document-listbox-popup').css('max-width', '500px');
+	});
 </script>      
        
      <div data-role="page" id="page3">
@@ -1292,13 +1296,15 @@ $('#original_id').click(function(){
                                 <div id="template"><a href="#" id="select_template" name="send_message" class="btn-class-clear3" onClick="">TEMPLATE</a></div>
                              </div>
                              <div id="troubles_div">
-                                <select id="troubles_">
-                                     <option value="">Select Template Message</option>
+                             
+                              <select data-role="" id="troubles_" data-native-menu="false" data-theme="a" data-overlay-theme="b">
+                                     <option data-placeholder="false" value="">Select Template Message</option>
                                      <option value="1">Traffic Jam</option>
                                      <option value="2">Flat Tire</option>
                                      <option value="3">Damaged Vehicle</option>
                                      <option value="4">Weather Problem</option>
                                 </select>
+                            
                             </div>
                      </div>
                 <div id="msg_hid">
@@ -1334,6 +1340,7 @@ $('#original_id').click(function(){
    $('#original_id2').click(function(){
 		window.open('http://leanstaffing.com/tkgo_files2/'+localStorage.load_id_bol+'_bol_'+localStorage.bol_number+'.pdf', '_system');
 	});
+	
    </script>
     <div data-role="page" id="page6">
         <div data-role="header">
